@@ -1,0 +1,41 @@
+var Desktop = {  
+	'lang' : 'pt-br',
+	'languaje': [
+			{ "group" : "loginForm", "alias" : "login" , 			"string" : "Login"},
+			{ "group" : "loginForm", "alias" : "user" , 			"string" : "Usuário"},
+			{ "group" : "loginForm", "alias" : "password" , 		"string" : "Senha"},
+			{ "group" : "loginForm", "alias" : "rememberUser" , 	"string" : "Lembrar usuário"},
+			{ "group" : "loginForm", "alias" : "rememberPass" , 	"string" : "Lembrar senha"},
+			{ "group" : "loginForm", "alias" : "enter" , 			"string" : "Entrar"},
+			{ "group" : "loginForm", "alias" : "cancel" , 			"string" : "Cancelar"},			
+			
+			{ "group" : "startMenu", "alias" : "start" , 			"string" : "Iniciar"},
+			{ "group" : "startMenu", "alias" : "settings", 			"string" : "Configurações"},
+			{ "group" : "startMenu", "alias" : "logout" , 			"string" : "Sair"},
+			{ "group" : "startMenu", "alias" : "areYouSure" , 		"string" : "Você tem certeza?"},
+			
+			{ "group" : "desktop",   "alias" : "changeSettings" , 	"string" : "Alterar configurações"},
+			{ "group" : "desktop",   "alias" : "tile" , 			"string" : "Janelas lado a lado"},
+			{ "group" : "desktop",   "alias" : "cascade" , 			"string" : "Janelas em castaca"},
+			{ "group" : "desktop",   "alias" : "restore" , 			"string" : "Restaurar"},
+			{ "group" : "desktop",   "alias" : "minimize" , 		"string" : "Minimizar"},
+			{ "group" : "desktop",   "alias" : "maximize" , 		"string" : "Maximizar"},
+			{ "group" : "desktop",   "alias" : "close" , 			"string" : "Fechar"},
+			
+			{ "group" : "settigs",   "alias" : "wallpaper" , 		"string" : "Papel de parede"},
+			{ "group" : "settigs",   "alias" : "wallpaper_label" ,	"string" : "Alterar papel de parede"},
+			{ "group" : "settigs",   "alias" : "preview" , 			"string" : "Pré visualização"},
+			{ "group" : "settigs",   "alias" : "selectImage" , 		"string" : "Selecionar imagem"},
+			{ "group" : "settigs",   "alias" : "stretch" , 			"string" : "Ajustar"},
+			{ "group" : "settigs",   "alias" : "shortcut" 		,	"string" : "Atalho"},
+			{ "group" : "settigs",   "alias" : "shortcut_label" ,	"string" : "Adicionar ou remover atalhos para o desktop."},
+			{ "group" : "settigs",   "alias" : "quicklaunch" 		,	"string" : "Inicio rapido"},
+			{ "group" : "settigs",   "alias" : "quicklaunch_label" ,	"string" : "Adicionar ou remover atalhos da barra de Inicio Rapido."}
+			
+						
+	
+	]
+	
+	
+}; 
+

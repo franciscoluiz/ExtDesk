@@ -1,0 +1,41 @@
+var Desktop = {  
+	'lang' : 'en',
+	'languaje': [
+			{ "group" : "loginForm", "alias" : "login" , 			"string" : "Login"},
+			{ "group" : "loginForm", "alias" : "user" , 			"string" : "User"},
+			{ "group" : "loginForm", "alias" : "password" , 		"string" : "Password"},
+			{ "group" : "loginForm", "alias" : "rememberUser" , 	"string" : "Remember User"},
+			{ "group" : "loginForm", "alias" : "rememberPass" , 	"string" : "Remember Pass"},
+			{ "group" : "loginForm", "alias" : "enter" , 			"string" : "Enter"},
+			{ "group" : "loginForm", "alias" : "cancel" , 			"string" : "Cancel"},			
+			
+			{ "group" : "startMenu", "alias" : "start" , 			"string" : "Start"},
+			{ "group" : "startMenu", "alias" : "settings", 			"string" : "Settings"},
+			{ "group" : "startMenu", "alias" : "logout" , 			"string" : "Logout"},
+			{ "group" : "startMenu", "alias" : "areYouSure" , 		"string" : "Are you sure?"},
+			
+			{ "group" : "desktop",   "alias" : "changeSettings" , 	"string" : "Change Settings"},
+			{ "group" : "desktop",   "alias" : "tile" , 			"string" : "Tile"},
+			{ "group" : "desktop",   "alias" : "cascade" , 			"string" : "Cascade"},
+			{ "group" : "desktop",   "alias" : "restore" , 			"string" : "Restore"},
+			{ "group" : "desktop",   "alias" : "minimize" , 		"string" : "Minimize"},
+			{ "group" : "desktop",   "alias" : "maximize" , 		"string" : "Maximize"},
+			{ "group" : "desktop",   "alias" : "close" , 			"string" : "close"},
+			
+			{ "group" : "settigs",   "alias" : "wallpaper" , 		"string" : "Wallpaper"},
+			{ "group" : "settigs",   "alias" : "wallpaper_label" ,	"string" : "Change the wallpaper"},
+			{ "group" : "settigs",   "alias" : "preview" , 			"string" : "Preview"},
+			{ "group" : "settigs",   "alias" : "selectImage" , 		"string" : "Select Image"},
+			{ "group" : "settigs",   "alias" : "stretch" , 			"string" : "Stretch"},
+			{ "group" : "settigs",   "alias" : "shortcut" 		,	"string" : "Shortcut"},
+			{ "group" : "settigs",   "alias" : "shortcut_label" ,	"string" : "Add or remove shortcuts to the desk."},
+			{ "group" : "settigs",   "alias" : "quicklaunch" 		,	"string" : "Quick Launch"},
+			{ "group" : "settigs",   "alias" : "quicklaunch_label" ,	"string" : "Add or remove shortcuts to the quick launch bar."}
+			
+						
+	
+	]
+	
+	
+}; 
+

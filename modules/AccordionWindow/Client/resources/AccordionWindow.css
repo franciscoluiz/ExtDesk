@@ -1,0 +1,44 @@
+.accordion-shortcut {
+    background-image: url("./Images/Accordion_48x48.png");
+}
+.x-ie6 .accordion-shortcut {
+    background-image: none;
+    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='./Images/Accordion_48x48.png', sizingMethod='scale');
+}
+
+.icon-accordion {
+    background-image:url("./Images/Accordion_16x16.png") !important;
+}
+
+/*----------------------------------------------------
+    IM window icons
+*/
+
+.user {
+    /*background-image:url( ../resources/icons/fam/user.gif ) !important;*/
+	background-image:url( ../../../../resources/images/icons/fam/user.gif ) !important;
+}
+
+.user-add {
+    background-image:url( ../../../../resources/images/icons/fam/user_add.gif) !important;
+}
+
+.user-delete {
+    background-image:url(../../../../resources/images/icons/fam/user_delete.gif) !important;
+}
+
+.connect {
+    background-image:url(../../../../resources/images/icons/fam/connect.gif) !important;
+}
+
+.user-girl {
+    background-image:url(../../../../resources/images/icons/fam/user_female.gif) !important;
+}
+
+.user-kid {
+    background-image:url(../../../../resources/images/icons/fam/user_green.gif) !important;
+}
+
+.user-suit {
+    background-image:url(../../../../resources/images/icons/fam/user_suit.gif) !important;
+}

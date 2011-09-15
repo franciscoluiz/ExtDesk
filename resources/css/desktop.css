@@ -1,0 +1,346 @@
+/*!
+* Ext JS Library 4.0
+* Copyright(c) 2006-2011 Sencha Inc.
+* licensing@sencha.com
+* http://www.sencha.com/license
+*/
+
+#poweredby {
+    position: absolute;
+    bottom: 40px;
+    right: 20px;
+    z-index: 15000;
+
+    /* IE 5-7 */
+    filter: alpha(opacity=70);
+    /* Netscape */
+    -moz-opacity: 0.7;
+    /* Safari 1.x */
+    -khtml-opacity: 0.7;
+    /* Good browsers */
+    opacity: 0.7;
+}
+
+#poweredby div {
+    position: relative;
+    width: 150px;
+    height: 25px;
+    background-image: url(../images/powered-by-ext-js.png);
+    background-repeat: no-repeat;
+}
+
+/* The simple background image PNG does not work in IE6-8, but does in IE9 */
+.x-ie6 #poweredby div,
+.x-ie7 #poweredby div,
+.x-ie8 #poweredby div {
+    background-image: none;
+    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/powered-by-ext-js.png', sizingMethod='scale');
+}
+
+/*----------------------------------------------------
+    Start Button
+*/
+
+.ux-start-button-icon {
+    background-image: url(../images/taskbar/sencha.gif) !important;
+    background-color: transparent;
+}
+
+.ux-start-button .x-btn-arrow {
+    background-image: none;
+}
+
+.ux-start-button .x-btn-arrow-right {
+    padding-left: 10px;
+}
+
+.ux-taskbar {
+    padding-left: 4px !important;
+}
+
+/*
+    Start Button (Black)
+*/
+
+.ux-desktop-black .ux-start-button {
+    height: 28px;
+    padding: 0px;
+    display: block;
+}
+
+.ux-desktop-black .ux-start-button em {
+    margin-top: 5px;
+}
+
+.ux-desktop-black .ux-start-button .x-btn-inner {
+    color: black;
+    font-size:11px;
+    font-weight: bold;
+}
+
+.ux-desktop-black .ux-start-button {
+    background-image: -moz-linear-gradient(center top , #E4F3FF, #D9EDFF 48%, #C2D8F2 52%, #C6DCF6);
+    border-radius: 8px 8px 8px 8px;
+    border-color: #81A4D0;
+}
+
+/*----------------------------------------------------
+    Start Menu
+*/
+
+.ux-start-menu-toolbar .x-btn-inner {
+    text-align: left;
+}
+
+.ux-start-menu-toolbar {
+    padding: 4px !important;
+}
+
+/*----------------------------------------------------
+    TaskBar
+*/
+
+.ux-taskbar .x-toolbar {
+    background: transparent none;
+    border-color: transparent;
+}
+
+.x-ie6 .ux-taskbar .x-toolbar {
+    border-color: #d3e1f1;
+}
+
+.ux-desktop-windowbar .x-btn-inner,
+.x-nbr .ux-desktop-windowbar .x-btn-icon-text-left button {
+    text-align: left !important;
+}
+
+.ux-taskbar .x-toolbar {
+    height: 28px;
+}
+
+.ux-taskbar {
+    height: 28px;
+    padding: 0;
+}
+
+.x-toolbar .x-toolbar {
+    padding: 0;
+}
+
+/*
+    TaskBar (Black)
+*/
+
+.ux-desktop-black .ux-taskbar {
+    background: transparent url('../images/taskbar/black/taskbar-start-panel-bg.gif') repeat-x left top;
+    border-color: transparent;
+    /*height: 30px;*/
+}
+
+.ux-desktop-black .ux-taskbar .x-splitter {
+    background: transparent url(../images/taskbar/black/taskbar-split-h.gif) no-repeat scroll 0 -2px;
+}
+
+.ux-desktop-black .ux-taskbar .x-toolbar-text {
+    color: white !important;
+}
+
+.ux-desktop-black .ux-taskbar .x-btn-default-toolbar-small-over {
+    background-color: yellow;
+}
+
+.ux-desktop-black .ux-taskbar .x-btn-inner {
+    color: white;
+}
+
+.ux-desktop-black .ux-taskbar .x-btn-pressed .x-btn-inner, .ux-taskbar .x-btn-over .x-btn-inner {
+    color: black;
+}
+
+/*----------------------------------------------------
+    Tray Clock
+*/
+
+.ux-desktop-trayclock {
+    text-align: center;
+    vertical-align: middle;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+/*----------------------------------------------------
+    Desktop DataView
+*/
+
+.ux-wallpaper {
+    background-color: #3d71b8;
+}
+
+.ux-wallpaper-tiled {
+    background-repeat: repeat;
+}
+
+.ux-desktop-shortcut {
+    cursor: pointer;
+    text-align: center;
+    padding: 8px;
+    margin: 8px;
+    width: 64px;
+}
+
+.ux-desktop-shortcut-icon {
+    width: 48px;
+    height: 48px;
+    background-color: transparent;
+    background-repeat: no-repeat;
+}
+
+.ux-desktop-shortcut-text {
+    font: normal 10px tahoma,arial,verdana,sans-serif;
+    text-decoration: none;
+    padding-top: 5px;
+    color: white;
+}
+
+.x-view-over .ux-desktop-shortcut-text {
+    text-decoration: underline;
+}
+
+
+/*----------------------------------------------------
+    Various icon classes
+*/
+
+
+.video {
+    background-image: url(../images/gears.gif);
+}
+
+
+.logout {
+    background-image: url( ../images/logout.gif ) !important;
+}
+
+.settings {
+    background-image: url( ../images/gears.gif ) !important;
+}
+
+.add {
+    background-image:url(../images/icons/fam/add.gif) !important;
+}
+.option {
+    background-image:url(../images/icons/fam/plugin.gif) !important;
+}
+.remove {
+    background-image:url(../images/icons/fam/delete.gif) !important;
+}
+.save {
+    background-image:url(../../shared/icons/save.gif) !important;
+}
+
+
+
+.ico-Blue {
+    background-image: url( ../wallpapers/ico_blue.jpg ) !important;
+}
+
+.ico-Blue-Sencha{
+	background-image: url( ../wallpapers/ico_Blue-Sencha.jpg ) !important;
+}
+
+.ico-Dark-Sencha{
+	background-image: url( ../wallpapers/ico_Dark-Sencha.jpg ) !important;
+}
+
+.ico-Wood-Sencha{
+	background-image: url( ../wallpapers/ico_Wood-Sencha.jpg ) !important;
+}
+
+.ico-Desk{
+	background-image: url( ../wallpapers/ico_Desk.jpg ) !important;
+}
+
+.ico-Desktop{
+	background-image: url( ../wallpapers/ico_Desktop.jpg ) !important;
+}
+
+.ico-Desktop2{
+	background-image: url( ../wallpapers/ico_Desktop2.jpg ) !important;
+}
+
+.ico-Sky{
+	background-image: url( ../wallpapers/ico_Sky.jpg ) !important;
+}
+
+.ico-None{
+	background-image: url( ../wallpapers/ico_none.gif ) !important;
+}
+
+
+/*aditional*/
+body {    background: none repeat scroll 0 0 #F8F8F8;}
+
+#loading {
+	height: 140px;
+	left: 50%;
+	margin: -70px 0 0 -90px;
+	position: absolute;
+	top: 50%;
+	width: 180px;
+}		
+		
+#loading .logo{
+	background: url("../images/loading.gif") no-repeat scroll 0 0 transparent;
+	margin:0 auto;
+	display: block;
+	height: 120px;
+	left: 22px;
+	position: absolute;
+	top: 25px;
+	width: 120px;
+}
+
+/**test**/
+
+div.thumb-wrap{	
+	margin: 15px;
+	clear :both;
+	height: 48px;
+	padding:2px;
+}
+
+div.thumb-wrap:hover{	
+	/*backg: 1px solid blue;*/
+	color:#3D71B8;
+	cursor :pointer;
+}
+
+
+div.thumb-wrap img{	
+	float : left;
+	width : 48px;
+	height : 48px;
+	
+}
+div.thumb-wrap span{
+	padding-left : 25px;
+	
+}
+
+div.thumb-wrap span.title{
+	color:#269926;
+}
+
+div.thumb-wrap span.caption{
+	color:#133CAC;
+}
+div.thumb-wrap:hover span.title{	
+	/*backg: 1px solid blue;*/
+	/*color: #C0272B;*/
+	font-weight:bold;
+	text-decoration: underline;
+	
+
+}
+
+
