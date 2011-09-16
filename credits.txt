@@ -5,3 +5,7 @@ TaskBar and StartMenu UX components. More information can be found in
 this thread on the ext js forums:
 
 http://sencha.com/forum/showthread.php?t=10950
+
+The ExtDesk fork is a work in progress
+Roy (xcape) mexicolibre@gmail.com
+Francisco Luiz franciscoluiz@gmail.com 
