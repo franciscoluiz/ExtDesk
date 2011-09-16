@@ -31,11 +31,6 @@ var Desktop = {
 			{ "group" : "settigs",   "alias" : "shortcut_label" ,	"string" : "Adicionar ou remover atalhos para o desktop."},
 			{ "group" : "settigs",   "alias" : "quicklaunch" 		,	"string" : "Inicio rapido"},
 			{ "group" : "settigs",   "alias" : "quicklaunch_label" ,	"string" : "Adicionar ou remover atalhos da barra de Inicio Rapido."}
-			
-						
-	
 	]
-	
-	
 }; 
 

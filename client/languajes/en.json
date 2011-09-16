@@ -31,11 +31,6 @@ var Desktop = {
 			{ "group" : "settigs",   "alias" : "shortcut_label" ,	"string" : "Add or remove shortcuts to the desk."},
 			{ "group" : "settigs",   "alias" : "quicklaunch" 		,	"string" : "Quick Launch"},
 			{ "group" : "settigs",   "alias" : "quicklaunch_label" ,	"string" : "Add or remove shortcuts to the quick launch bar."}
-			
-						
-	
 	]
-	
-	
 }; 
 

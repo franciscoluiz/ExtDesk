@@ -11,7 +11,7 @@
         	);  
     		
     		foreach($regexes as $regex)	{  
-        		$datastring = preg_replace($regex['p'], $regex['r'], $datastring);  
+                $datastring = preg_replace($regex['p'], $regex['r'], $datastring);  
     		}  
     		preg_match("/Desktop[ ]?=[ ]?\{([^\;]+)\\;/", $datastring, $matches);  
     
@@ -22,4 +22,5 @@
 		}
 	
     }
+    
 ?>

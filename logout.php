@@ -3,8 +3,6 @@
 	
 	$_SESSION = array(); //destroy all of the session variables
     session_destroy();
-
-
 ?>
 
-{	"success" : true}
+{"success" : true}
