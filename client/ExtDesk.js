@@ -55,7 +55,7 @@ Ext.define('MyDesktop.ExtDesk', {
 	loadCss : function(filename){
 		/* http://www.javascriptkit.com/javatutors/loadjavascriptcss.shtml  we need put a credit in somewhere*/
 		
-		file='Modules/'+filename+'/Client/Resources/'+filename+'.css';
+		file='modules/'+filename+'/Client/Resources/'+filename+'.css';
 		
 		var fileref=document.createElement("link");
 		fileref.setAttribute("rel", "stylesheet");

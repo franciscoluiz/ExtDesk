@@ -1,14 +1,12 @@
 .tab-shortcut {
-    background-image: url(./Images/Tabs_48x48.png);
+    background-image: url(./images/tabs_48x48.png);
 }
-
 
 .x-ie6 .tab-shortcut {
     background-image: none;
-    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='./Images/Tabs_48x48.png', sizingMethod='scale');
+    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='./images/tabs_48x48.png', sizingMethod='scale');
 }
 
-
 .icon-tab {
-    background-image:url(./Images/Tabs_16x16.png) !important;
+    background-image:url(./images/tabs_16x16.png) !important;
 }
