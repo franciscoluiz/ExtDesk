@@ -4,7 +4,7 @@
 
 .x-ie6 .accordion-shortcut {
     background-image: none;
-    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='./images/accordion_48x48.png', sizingMethod='scale');
+    filter: progid DXImageTransform.Microsoft.AlphaImageLoader(src='./images/accordion_48x48.png', sizingMethod='scale');
 }
 
 .icon-accordion {
