@@ -1,10 +1,12 @@
 <?php
-    //sleep(0.5);
-
-    //var_dump($_POST);
-
     session_start();
+
+    require_once('server/os.php');
     
+    if(!class_exists('os')) { 
+        die('os class is missing!'); 
+    }
+        
     if(!empty($_SESSION['ExtDeskSession']['logged'])) {
         //var_dump($_SESSION);
         echo '{	"success" : true, "login": true,';
@@ -19,12 +21,6 @@
             //$_SESSION['logged'] = 'si';
             $_SESSION['ExtDeskSession']['logged'] = 'si';
         }
-    }
-
-    require_once('server/os.php');
-    
-    if(!class_exists('os')) { 
-        die('os class is missing!'); 
     }
 
     $myOs= New os;	
@@ -47,7 +43,7 @@
         {js : "SystemStatus",		"name" : "System Status",		iconCls:"systemStatus-shortcut",	module:"systemstatus",	shorcut:true, 	qLaunch:true,	iconLaunch :'icon-systemStatus'},					
         {js : "TabWindow",			"name" : "Tab Window",			iconCls:"tab-shortcut",				module:"tab-win",  		shorcut:true,	qLaunch:false, 	iconLaunch :'icon-tab'},					
         {js : "BogusModule",		"name" : "Bogus Module",		iconCls:"bugus-shortcut",			module:"bogus-menu",  	shorcut:false,	qLaunch:false, 	iconLaunch :''},
-        {js : "BogusMenuModule",	"name" : "Bogus Menu Module",	iconCls:"bugus-shortcut",			module:"bogus-menu",  	shorcut:false,	qLaunch:false, 	iconLaunch :'icon-bugus'},
+        {js : "BogusMenuModule",	"name" : "Bogus Menu Module",	iconCls:"bugus-shortcut",			module:"bogus-menu",  	shorcut:false,	qLaunch:false, 	iconLaunch :'icon-bugus'}
     ]
 }
 

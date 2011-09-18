@@ -68,14 +68,17 @@
 							apps.push('Ext.ux.desktop.ShortcutModel');							
 							userStore.modules().each(function(module) {
 								
-								apps.push('MyDesktop.Modules.' + module.get('js')+'.Client.'+module.get('js'));
+								apps.push('MyDesktop.Modules.' + module.get('js') + '.Client.' + module.get('js'));
 								
 							});
+							
 							apps.push('MyDesktop.Settings');		//dirty trick to add settings module...
 						
+						    var myDesktopApp;
 							Ext.require(apps,function(){
 								myDesktopApp = new MyDesktop.ExtDesk();
-							},this);				
+							},this);
+				
 						},
 						failure : this.login
 						
@@ -83,6 +86,7 @@
 				},
 			
 				login : function(e,c){
+				    
 					var jsonData=c.request.scope.reader.jsonData;
 					var strings=jsonData.user[0].strings;
 					
@@ -95,7 +99,6 @@
 					lan["enter"] 	= strings[5].string;
 					lan["cancel"] 	= strings[6].string;
 					
-				
 					var win=Ext.getCmp('idWinLogin');
 					
 					if(win==undefined){

@@ -1,0 +1,14 @@
+.notepad-shortcut {
+    background-image: url("./images/Notepad_46x46.png");
+    width: 46px;
+    height: 46px;
+}
+
+.x-ie6 .notepad-shortcut {
+    background-image: none;
+    filter: progid DXImageTransform.Microsoft.AlphaImageLoader(src='images/Notepad_16x16.png', sizingMethod='scale');
+}
+
+.icon-notepad {
+    background-image: url( ./images/Notepad_16x16.png ) !important;
+}
