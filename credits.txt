@@ -7,5 +7,10 @@ this thread on the ext js forums:
 http://sencha.com/forum/showthread.php?t=10950
 
 The ExtDesk fork is a work in progress
+
+Site : www.extdesk.net
+blog : http://blog.extdesk.net/
+wiki : https://github.com/franciscoluiz/ExtDesk/wiki/ExtDesk-Wiki
+
 Roy (xcape) mexicolibre@gmail.com
 Francisco Luiz franciscoluiz@gmail.com 
