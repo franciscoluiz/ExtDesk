@@ -111,6 +111,7 @@
 							bodyStyle: "background-image:url(blue.jpg) !important",
 							items: [
 								{
+									id:"idLoginUser",
 									fieldLabel: lan["user"],
 									fieldWidth: 60,
 									msgTarget: 'side',
@@ -121,6 +122,7 @@
 									anchor: '-5'  
 								},
 								{
+									id:"idLoginPassword",
 									inputType: 'password',
 									fieldLabel: lan["pswd"],
 									fieldWidth: 60,
