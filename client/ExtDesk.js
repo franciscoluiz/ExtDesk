@@ -180,7 +180,7 @@ Ext.define('MyDesktop.ExtDesk', {
 			if (btn == 'yes'){
 				// process text value and close...
 					Ext.Ajax.request({
-						url: 'logout.php',
+						url: 'logout.php?action=exit',
 						success: function(response){
 							window.location.href=window.location.href
 						}

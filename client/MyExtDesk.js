@@ -10,7 +10,7 @@
 			],
 			proxy: {
 				type: 'rest',
-				url: 'login.php',
+				url: 'ExtDesk.php',
 				reader: {
 					type: 'json',
 					root: 'user',
@@ -27,7 +27,7 @@
 
 			proxy: {
 				type: 'rest',
-				url : 'login.php',
+				url : 'ExtDesk.php',
 				reader: {
 					type: 'json',
 					root: 'strings'
@@ -43,7 +43,7 @@
 
 			proxy: {
 				type: 'rest',
-				url : 'login.php',
+				url : 'ExtDesk.php',
 				reader: {
 					type: 'json',
 					root: 'modules'
@@ -87,28 +87,29 @@
 			
 				login : function(e,c){
 				    
-					var jsonData=c.request.scope.reader.jsonData;
-					var strings=jsonData.user[0].strings;
-					
-					var lan=Array;
-					lan["login"] 	= strings[0].string;
-					lan["user"] 	= strings[1].string;
-					lan["pswd"] 	= strings[2].string;
-					lan["r_user"]	= strings[3].string;
-					lan["r_psd"] 	= strings[4].string;
-					lan["enter"] 	= strings[5].string;
-					lan["cancel"] 	= strings[6].string;
-					
-					var win=Ext.getCmp('idWinLogin');
+				    var win=Ext.getCmp('idWinLogin');
 					
 					if(win==undefined){
+						var jsonData=c.request.scope.reader.jsonData;
+						var strings=jsonData.user[0].strings;
+										
+						var lan=Array;
+						lan["login"] 	= strings[0].string;
+						lan["user"] 	= strings[1].string;
+						lan["pswd"] 	= strings[2].string;
+						lan["r_user"]	= strings[3].string;
+						lan["r_psd"] 	= strings[4].string;
+						lan["enter"] 	= strings[5].string;
+						lan["cancel"] 	= strings[6].string;
+
+
 						
 						var form = Ext.create('Ext.form.Panel', {
 							layout: 'absolute',
-							url: 'login.php',
+							url: 'ExtDesk.php',
 							defaultType: 'textfield',
 							border: false,
-							bodyStyle: "background-image:url(blue.jpg) !important",
+							//bodyStyle: "background-image:url(blue.jpg) !important",
 							items: [
 								{
 									fieldLabel: lan["user"],

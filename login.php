@@ -35,6 +35,7 @@
     "name"             : "Pancho Lopez",
     "wallPaper"        : "desktop",
     "wallpaperStretch" : true,
+    
     "strings"          : <?php echo $languaje;?>,
     "modules"          : [
         {js : "Notepad", 			"name" : "Notepad",				iconCls:"notepad-shortcut",			module:"notepad",		shorcut:true, 	qLaunch:true, 	iconLaunch :'icon-notepad'},
