@@ -123,7 +123,7 @@
 									anchor: '-5'  
 								},
 								{
-									id:"idLoginPassword",
+									id:"idLoginPswd",
 									inputType: 'password',
 									fieldLabel: lan["pswd"],
 									fieldWidth: 60,
@@ -190,6 +190,11 @@
 								text: lan["cancel"]
 							}]
 						},this);
+					}else{
+						Ext.getCmp('idLoginUser').setValue("");
+						Ext.getCmp('idLoginPswd').setValue("");
+						
+						
 					}
 					
 					win.show();
