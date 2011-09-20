@@ -4,10 +4,15 @@
 class Settings	{
     protected $dbh;
     function __construct(){
-		$dsn = 'mysql:dbname=extdesk;host=127.0.0.1';
-		$user = 'root';
-		$password = '79513';
-
+		//var_dump($_SESSION);
+		$server =  $_SESSION["drivers"]["mysql"]["0"];
+		$driver =  $_SESSION["drivers"]["mysql"]["1"];
+		$user =    $_SESSION["drivers"]["mysql"]["2"];
+		$password= $_SESSION["drivers"]["mysql"]["3"];
+		$dbname=   $_SESSION["drivers"]["mysql"]["4"];
+		
+		$dsn = "$driver:dbname=$dbname;host=$server";
+	
 		try {
 	    	$this->dbh = new PDO($dsn, $user, $password);
 	    

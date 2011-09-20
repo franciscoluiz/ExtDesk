@@ -10,6 +10,7 @@
     $myOs= New os;	
     $myOs->start();
 	
+
 	$myOs->process();
 
 
