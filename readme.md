@@ -22,7 +22,7 @@ Links
 * Page  : <http://www.extdesk.net>
 * Blog  : <http://blog.extdesk.net>
 * Forum : <http://forum.extdesk.net>
-* Wiki : <https://github.com/franciscoluiz/ExtDesk/wiki>
+* Wiki  : <https://github.com/franciscoluiz/ExtDesk/wiki>
 
 
 Credits
@@ -32,5 +32,5 @@ Credits
 * Using a part of "login-script-pdo" by Oran: <http://www.phpclasses.org/package/5644-PHP-Manage-user-accounts-stored-in-a-database-with-PDO.html>
 
 * Xcape (Rodolfo Escobar) xcape@extdesk.net
-* Francisco Ruiz francisco@extdesk.net
+* Francisco Luiz francisco@extdesk.net
 
