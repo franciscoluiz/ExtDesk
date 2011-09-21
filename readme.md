@@ -10,12 +10,13 @@ Screenshot
 
 Features
 ------------
-*Using Extjs 4
-*Multilingual Español, English, Brazillian-Portuguese, Esperanto
-*OpenSource
+* Using Extjs 4
+* Multilingual Español, English, Brazillian-Portuguese, Esperanto
+* OpenSource
+
 
 
 Installation
 -------------
-*1)Run install.sql
-*2)Config /server/include/config.ini
+* Run install.sql
+* Config /server/include/config.ini
