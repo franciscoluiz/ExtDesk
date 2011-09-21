@@ -133,6 +133,7 @@
 									anchor: '-5'  								
 								},
 								{
+									id: 'idRememberUser',
 									xtype: 'checkboxfield',		
 									name: 'recordarUsuario',
 									x: 110,
@@ -143,6 +144,7 @@
 									boxLabel: lan["r_user"]
 								},
 								{
+									id: 'idRememberPswd',
 									xtype: 'checkboxfield',		
 									name: 'recordarUsuario',
 									x: 110,
@@ -173,7 +175,19 @@
 								handler: function() {
 									form.submit({
 										success: function(form,action){
-											//console.log("test");
+											//remember user
+											if(Ext.getCmp('idRememberUser').getValue()){
+												Ext.util.Cookies.set("rem_user",Ext.getCmp('idLoginUser').getValue(""));																								
+											}else{
+												Ext.util.Cookies.clear("rem_user");												
+											}
+											//remember pswd
+											if(Ext.getCmp('idRememberPswd').getValue()){
+												Ext.util.Cookies.set("rem_pswd",Ext.getCmp('idLoginPswd').getValue(""));																								
+											}else{
+												Ext.util.Cookies.clear("rem_pswd");												
+											}
+											
 											win.close();
 											MyExtDesk.load();
 										
@@ -192,10 +206,19 @@
 						},this);
 					}else{
 						Ext.getCmp('idLoginUser').setValue("");
-						Ext.getCmp('idLoginPswd').setValue("");
-						
-						
+						Ext.getCmp('idLoginPswd').setValue("");						
 					}
+					// fill with the cokies
+					if (Ext.util.Cookies.get("rem_user")!=null){
+						Ext.getCmp('idLoginUser').setValue(Ext.util.Cookies.get("rem_user"));
+						Ext.getCmp('idRememberUser').setValue(true);
+					}
+					if (Ext.util.Cookies.get("rem_pswd")!=null){
+						Ext.getCmp('idLoginPswd').setValue(Ext.util.Cookies.get("rem_pswd"));
+						Ext.getCmp('idRememberPswd').setValue(true);
+					}
+							
+
 					
 					win.show();
 								
