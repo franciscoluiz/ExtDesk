@@ -49,7 +49,7 @@
 					root: 'modules'
 				}
 			},
-			belongsTo: 'User',
+			belongsTo: 'User'
 			
 		});
 
