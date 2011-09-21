@@ -27,10 +27,10 @@ Links
 
 Credits
 -------------
-Inspired by qwikioffice by Tood Murdok : <http://www.qwikioffice.com>
-Inspired by Desk Example of Sencha Extjs 4: <http://dev.sencha.com/deploy/ext-4.0.2a/examples/desktop/desktop.html>
-Using a part of "login-script-pdo" by Oran: <http://www.phpclasses.org/package/5644-PHP-Manage-user-accounts-stored-in-a-database-with-PDO.html>
+* Inspired by qwikioffice by Tood Murdok : <http://www.qwikioffice.com>
+* Inspired by Desk Example of Sencha Extjs 4: <http://dev.sencha.com/deploy/ext-4.0.2a/examples/desktop/desktop.html>
+* Using a part of "login-script-pdo" by Oran: <http://www.phpclasses.org/package/5644-PHP-Manage-user-accounts-stored-in-a-database-with-PDO.html>
 
-Xcape (Rodolfo Escobar)
-Francisco Ruiz
+* Xcape (Rodolfo Escobar) xcape@extdesk.net
+* Francisco Ruiz francisco@extdesk.net
 
