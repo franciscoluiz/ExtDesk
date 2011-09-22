@@ -12,5 +12,5 @@ Site : www.extdesk.net
 blog : http://blog.extdesk.net/
 wiki : https://github.com/franciscoluiz/ExtDesk/wiki/ExtDesk-Wiki
 
-Roy (xcape) mexicolibre@gmail.com
-Francisco Luiz franciscoluiz@gmail.com 
+Roy (xcape) xcape@extdesk.net
+Francisco Luiz francisco@extdesk.net
