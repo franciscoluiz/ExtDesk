@@ -1,8 +1,6 @@
-delimiter $$
+CREATE DATABASE extdesk;
 
-CREATE DATABASE `extdesk` /*!40100 DEFAULT CHARACTER SET latin1 */$$
-
-delimiter $$
+use extdesk;
 
 CREATE TABLE `users` (
   `P_Id` int(11) NOT NULL AUTO_INCREMENT,
@@ -21,7 +19,7 @@ CREATE TABLE `users` (
   PRIMARY KEY (`P_Id`),
   UNIQUE KEY `id` (`P_Id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci$$
+) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 INSERT INTO `extdesk`.`users`
 (`username`,`password`,`email`,`regdate`,`CpassReqDate`,`voucher`,
@@ -34,6 +32,3 @@ INSERT INTO `extdesk`.`users`
 `wallPaper`,`wpStretch`,`extrainfo1`,`extrainfo2`,`extrainfo3`,`active`)
 VALUES
 ('francisco','0944024e99eae16d3a062e03c745bae4b03a1a4c','francisco@extdesk.net','1316495884','','','Desktop',1,'','','',1);
-
-
-
