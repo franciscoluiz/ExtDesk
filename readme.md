@@ -33,7 +33,8 @@ Credits
 * Using Icons from Tango Project : <http://tango.freedesktop.org/> 
 * Via Openclipart <http://www.openclipart.org>
 
-
+Developers
+-------------
 * Xcape (Rodolfo Escobar) xcape@extdesk.net
 * Francisco Luiz francisco@extdesk.net
 
