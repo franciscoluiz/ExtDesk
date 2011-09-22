@@ -30,7 +30,10 @@ Credits
 * Inspired by qwikioffice by Tood Murdok : <http://www.qwikioffice.com>
 * Inspired by Desk Example of Sencha Extjs 4: <http://dev.sencha.com/deploy/ext-4.0.2a/examples/desktop/desktop.html>
 * Using a part of "login-script-pdo" by Oran: <http://www.phpclasses.org/package/5644-PHP-Manage-user-accounts-stored-in-a-database-with-PDO.html>
-* Using Icons from Tango Project : <http://tango.freedesktop.org/>
+* Using Icons from Tango Project : <http://tango.freedesktop.org/> 
+* Via Openclipart <http://www.openclipart.org>
+
+
 * Xcape (Rodolfo Escobar) xcape@extdesk.net
 * Francisco Luiz francisco@extdesk.net
 
