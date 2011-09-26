@@ -10,6 +10,7 @@ Features
 ------------
 * Using Extjs 4
 * Multilingual Español, English, Brazillian-Portuguese, Esperanto
+* Multiples Themes
 * OpenSource
 
 Installation
