@@ -37,8 +37,8 @@ Ext.define('MyDesktop.Settings', {
     layout: 'fit',
     title: userStore.strings().findRecord("alias","changeSettings").data.string,
     modal: true,
-    width: 640,
-    height: 480,
+    width: 540,
+    height: 380,
     border: false,
     lang:Array,
 
@@ -56,6 +56,8 @@ Ext.define('MyDesktop.Settings', {
         this.lang["quicklaunch"]		= userStore.strings().findRecord("alias","quicklaunch").data.string;
         this.lang["quicklaunch_label"]	= userStore.strings().findRecord("alias","quicklaunch_label").data.string;
         this.lang["settings"]			= userStore.strings().findRecord("alias","settings").data.string;
+		this.lang["themes"]				= userStore.strings().findRecord("alias","themes").data.string;
+		this.lang["themes_label"]		= userStore.strings().findRecord("alias","themes_label").data.string;
         
         
 		/**
@@ -74,9 +76,10 @@ Ext.define('MyDesktop.Settings', {
 			id:'imagesStore',
 			model: 'Image',
 			data: [
-				{id : 'wallpaper', src:'resources/images/tango/preferences-desktop-wallpaper_48x48.png', 		title :this.lang["wallpaper"],	caption : this.lang["wallpaper_label"]},
+				{id : 'wallpaper', src:'resources/images/tango/preferences-desktop-wallpaper_48x48.png', 	title :this.lang["wallpaper"],	caption : this.lang["wallpaper_label"]},
 				{id : 'shortcut',  src:'resources/images/tango/preferences-desktop-shorcut_48x48.png',		title : this.lang["shortcut"],		caption : this.lang["shortcut_label"]},
-				{id : 'qLaunch', src:'resources/images/tango/preferences-desktop-quick-launch_48x48.png', 	title : this.lang["quicklaunch"],		caption : this.lang["quicklaunch_label"]}
+				{id : 'qLaunch', src:'resources/images/tango/preferences-desktop-quick-launch_48x48.png', 	title : this.lang["quicklaunch"],		caption : this.lang["quicklaunch_label"]},
+				{id : 'themes', src:'resources/images/tango/preferences-desktop-wallpaper_48x48.png', 		title :this.lang["themes"],	caption : this.lang["themes_label"]}
 				]
 		});
 
@@ -98,7 +101,7 @@ Ext.define('MyDesktop.Settings', {
                 bodyStyle: 'padding: 5px;',
                 layout:'border',				
 				items:[
-						{	// tab z
+						{	// Settings Tab
 							id : 'SettingsTab',
 							title: this.lang["settings"],
 							header:false,
@@ -122,15 +125,17 @@ Ext.define('MyDesktop.Settings', {
 														break;
 												case 1 : me.openTabShortcuts();
 														break;											
-												case 2 : me.openTabQuickLaunch();
+												case 2 : me.openTabQuickLaunch();												
 														break;
+												case 3 : me.openTabTheme();
+														
 											}					
 										}
 									}		
 								
 							})
-	
-						}					]
+						}
+					]
 			}
 	
 		]
@@ -146,7 +151,8 @@ Ext.define('MyDesktop.Settings', {
 
         me.preview = Ext.create('widget.wallpaper');
         me.preview.setWallpaper(me.selected);
-        me.tree = me.createTree();
+        //console.log(me.selected);
+        me.tree = me.createTreeWallpaper();
 		
 		var tw=Ext.getCmp('preferTabWallpaper');
 		if (tw==undefined){
@@ -197,7 +203,7 @@ Ext.define('MyDesktop.Settings', {
                                 // FIXME : ExtDesk/Settings : Cambiar por una cadena literal.
                                 xtype: 'button',
                                 text: 'Guardar',
-                                handler: me.onOK, 
+                                handler: me.onOkWallpaper, 
                                 scope: me
                             },
                             {
@@ -298,7 +304,6 @@ Ext.define('MyDesktop.Settings', {
 			);
 				
 			});
-
 			
 			var sp = Ext.getCmp('settingsTabPanel');
 			var tq = Ext.getCmp('preferTabQuickLaunchForm')
@@ -306,15 +311,90 @@ Ext.define('MyDesktop.Settings', {
 			
 		}
 		tq.show();
-
-	
 	},
+	
+	openTabTheme : function(){
+		
+		var me = this;
+
+		var selectTheme=Ext.getDom('idTheme').href.replace("http://127.0.0.1/extdesk/extjs/resources/css/ext-all-", "", "gi");
+		selectTheme=selectTheme.replace(".css","","gi");
+		selectTheme="resources/themes/"+selectTheme+".jpg";
+        
+        me.previewTheme = Ext.create('widget.wallpaper');
+        me.previewTheme.setWallpaper(selectTheme);
+        
+        me.treeTheme = me.createTreeTheme();
+		
+		var tt=Ext.getCmp('preferTabTheme');
+		if (tt==undefined){
+			
+			me.tabTheme= Ext.create('Ext.Panel', {
+				id : 'preferTabTheme',
+				// FIXME : remplace for a lenguaje string...
+				//title: this.lang["wallpaper"],  
+				title: 'Temas',
+				closable : true,
+				header:false,
+				border:false,
+				layout:'anchor',		
+				items:							
+					[
+						{
+							anchor: '0 -30',
+							border: false,
+							layout: 'border',
+							items: [
+								me.treeTheme,
+								{
+									xtype: 'panel',
+									region: 'center',
+									layout: 'fit',
+									items: [ me.previewTheme ]
+								}
+							]
+						}
+				],
+				dockedItems: [
+                    {
+                        xtype: 'toolbar',
+                        dock: 'bottom',
+                        statusAlign: 'right',
+                        items: [
+                            '->',
+                            {
+                                // FIXME : ExtDesk/Settings : Cambiar por una cadena literal.
+                                xtype: 'button',
+                                text: 'Guardar',
+                                handler: me.onOkTheme, 
+                                scope: me
+                            },
+                            {
+                                // FIXME : ExtDesk/Settings : Cambiar por una cadena literal.
+                                xtype: 'button',
+                                text: 'Cancelar',
+                                handler:me.close, 
+                                scope: me
+                            }
+                        ]
+                    }
+                ]
+				
+			});			
+ 	
+			var sp = Ext.getCmp('settingsTabPanel');
+			var tt = Ext.getCmp('preferTabTheme')
+			sp.add(tt);
+		}
+		tt.show();
+	},
+
 	
 /*
  * Wallpaer methods
  */
 	
-	createTree : function() {
+	createTreeWallpaper : function() {
         var me = this;
 
         function child (img) {
@@ -332,7 +412,7 @@ Ext.define('MyDesktop.Settings', {
             minWidth: 100,
             listeners: {
                 afterrender: { fn: this.setInitialSelection, delay: 100 },
-                select: this.onSelect,
+                select: this.onSelectWallpaper,
                 scope: this
             },
             store: new Ext.data.TreeStore({
@@ -382,7 +462,7 @@ Ext.define('MyDesktop.Settings', {
 		return text;
     },
 	
-    onOK: function () {
+    onOkWallpaper: function () {
         var me = this;
         if (me.selected) {
             me.desktop.setWallpaper(me.selected, me.stretch);
@@ -390,7 +470,7 @@ Ext.define('MyDesktop.Settings', {
         me.destroy();
     },
 
-    onSelect: function (tree, record) {
+    onSelectWallpaper: function (tree, record) {
         var me = this;
 
         if (record.data.img) {
@@ -409,6 +489,15 @@ Ext.define('MyDesktop.Settings', {
             this.tree.selectPath(path, 'text');
         }
     },
+
+    setInitialSelectionTheme: function () {
+        var s = this.desktop.getWallpaper();
+        if (s) {
+            var path = '/resources/wallpapers/' + this.getTextOfWallpaper(s);
+            this.treeTheme.selectPath(path, 'text');
+        }
+    },
+
 
 /*
  * Other Methods
@@ -466,7 +555,88 @@ Ext.define('MyDesktop.Settings', {
     	
     	
     
-    }	
+    },	
+	
+	//*** Themes Metodos ***/
+	createTreeTheme : function() {
+        var me = this;
+
+        function child (img) {
+            return { img: img, text: me.getTextOfWallpaper(img), iconCls: me.getTextOfIcoTheme(img), leaf: true };
+        }
+
+        var tree = new Ext.tree.Panel({
+            //
+            //title: this.lang['selectImage'],
+            title: 'Seleccione un tema',
+            rootVisible: false,
+            lines: false,
+            autoScroll: true,
+            width: 150,
+            region: 'west',
+            split: true,
+            minWidth: 100,
+            listeners: {
+                afterrender: { fn: this.setInitialSelectionTheme, delay: 100 },
+                select: this.onSelectTheme,
+                scope: this
+            },
+            store: new Ext.data.TreeStore({
+                model: 'MyDesktop.WallpaperModel',
+                root: {
+                    text:'Tema',
+                    expanded: true,
+                    children:[
+                        child('blue.jpg'),
+                        child('gray.jpg'),
+                        child('green.jpg'),
+                    ]
+                }
+            })
+        });
+
+        return tree;
+    },
+
+	onOkTheme : function(){
+		var me = this;
+
+		var text= me.getTextOfWallpaper(me.selectedTheme);
+		text=text.toLowerCase();
+
+		Ext.getDom('idTheme').href="http://127.0.0.1/extdesk/extjs/resources/css/ext-all-"+text+".css";
+		 
+		me.destroy();
+		
+	},
+
+   getTextOfIcoTheme: function (path) {
+        var text = path, slash = path.lastIndexOf('/');
+        if (slash >= 0) {
+            text = text.substring(slash+1);
+        }
+        var dot = text.lastIndexOf('.');
+        text = Ext.String.capitalize(text.substring(0, dot));
+        text = 'ico-theme-'+text.replace(/[-]/g, '-');
+        
+		return text;
+    },
+   
+   onSelectTheme : function (tree, record) {
+       //console.log(record.data.text.toLowerCase());
+       
+        var me = this;
+
+        if (record.data.img) {
+            me.selectedTheme = 'resources/themes/' + record.data.img;
+        } else {
+            me.selectedTheme = Ext.BLANK_IMAGE_URL;
+        }
+
+        me.previewTheme.setWallpaper(me.selectedTheme);
+        
+    },
+
 
 });
 

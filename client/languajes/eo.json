@@ -30,7 +30,12 @@ var Desktop = {
 			{ "group" : "settigs",   "alias" : "shortcut" 		,	"string" : "Ŝparvojo"},
 			{ "group" : "settigs",   "alias" : "shortcut_label" ,	"string" : "Aldoni aŭ maldoni ŝparvojo por laborareo."},
 			{ "group" : "settigs",   "alias" : "quicklaunch" 		,	"string" : "Rapida iniciata"},
-			{ "group" : "settigs",   "alias" : "quicklaunch_label" ,	"string" : "Aldoni aŭ maldoni ŝparvojo por la Rapida iniciata."}
+			{ "group" : "settigs",   "alias" : "quicklaunch_label" ,	"string" : "Aldoni aŭ maldoni ŝparvojo por la Rapida iniciata."}			
+			// FIXME : tranaslate and  delete me
+ 			{ "group" : "settigs",   "alias" : "themes" , 		"string" : "Themes"},
+			{ "group" : "settigs",   "alias" : "themes_label" ,	"string" : "Change the theme"}
+
+			
 	]
 }; 
 

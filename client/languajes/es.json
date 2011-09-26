@@ -29,8 +29,12 @@ var Desktop = {
 			{ "group" : "settigs",   "alias" : "stretch" , 			"string" : "Estirar y ajustar"},
 			{ "group" : "settigs",   "alias" : "shortcut" 		,	"string" : "Accesos directos"},
 			{ "group" : "settigs",   "alias" : "shortcut_label" ,	"string" : "Elija las aplicaciones que desea mostrar en el escritorio."},
-			{ "group" : "settigs",   "alias" : "quicklaunch" 		,	"string" : "Inicio Rapido"},
-			{ "group" : "settigs",   "alias" : "quicklaunch_label" ,	"string" : "Elija las aplicaciones que desea en la barra de inicio rapido."}
+			{ "group" : "settigs",   "alias" : "quicklaunch" 	,	"string" : "Inicio Rapido"},
+			{ "group" : "settigs",   "alias" : "quicklaunch_label",	"string" : "Elija las aplicaciones que desea en la barra de inicio rapido."},
+			{ "group" : "settigs",   "alias" : "themes" , 			"string" : "Temas"},
+			{ "group" : "settigs",   "alias" : "themes_label" ,		"string" : "Elija el tema de escritorio."}
+	
+			
 	]
 }; 
 

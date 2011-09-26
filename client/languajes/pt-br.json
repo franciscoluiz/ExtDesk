@@ -31,6 +31,10 @@ var Desktop = {
 			{ "group" : "settigs",   "alias" : "shortcut_label" ,	"string" : "Adicionar ou remover atalhos para o desktop."},
 			{ "group" : "settigs",   "alias" : "quicklaunch" 		,	"string" : "Inicio rapido"},
 			{ "group" : "settigs",   "alias" : "quicklaunch_label" ,	"string" : "Adicionar ou remover atalhos da barra de Inicio Rapido."}
+			// FIXME : tranaslate and  delete me			
+ 			{ "group" : "settigs",   "alias" : "themes" , 		"string" : "Themes"},
+			{ "group" : "settigs",   "alias" : "themes_label" ,	"string" : "Change the theme"}
+			
 	]
 }; 
 
