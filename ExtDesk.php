@@ -1,21 +1,13 @@
 <?php
-	session_start();
+session_start();
+require_once('server/os.php');
 
-    require_once('server/os.php');
+if (!class_exists('os')) {
+    die('os class is missing!');
+}
 
-    if(!class_exists('os')){ 
-        die('os class is missing!'); 
-    }
-
-    $myOs= New os;	
-    $myOs->start();
-	
-
-	$myOs->process();
+$myOs = new os();
+$myOs->start();
 
 
-//    $languaje = json_encode($myOs->lang["languaje"]);
-
-//    echo($languaje);
-    
-?>
+$myOs->process();

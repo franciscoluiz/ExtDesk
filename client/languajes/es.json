@@ -1,40 +1,38 @@
-var Desktop = {  
-	'lang' : 'es',
+var Desktop = {
+	'lang': 'es',
 	'languaje': [
-			{ "group" : "loginForm", "alias" : "login" , 			"string" : "Iniciar sesion"},
-			{ "group" : "loginForm", "alias" : "user" , 			"string" : "Usuario"},
-			{ "group" : "loginForm", "alias" : "password" , 		"string" : "Contraseña"},
-			{ "group" : "loginForm", "alias" : "rememberUser" , 	"string" : "Recordar usuario"},
-			{ "group" : "loginForm", "alias" : "rememberPass" , 	"string" : "Recordar contraseña"},
-			{ "group" : "loginForm", "alias" : "enter" , 			"string" : "Entrar"},
-			{ "group" : "loginForm", "alias" : "cancel" , 			"string" : "Cancelar"},			
-			
-			{ "group" : "startMenu", "alias" : "start" , 			"string" : "Inicio"},
-			{ "group" : "startMenu", "alias" : "settings", 			"string" : "Configuracion"},
-			{ "group" : "startMenu", "alias" : "logout" , 			"string" : "Cerrar sesion"},
-			{ "group" : "startMenu", "alias" : "areYouSure" , 		"string" : "Esta seguro de que desa salir?"},
-			
-			{ "group" : "desktop",   "alias" : "changeSettings" , 	"string" : "Cambiar configuracion"},
-			{ "group" : "desktop",   "alias" : "tile" , 			"string" : "Mostrar ventanas apiladas"},
-			{ "group" : "desktop",   "alias" : "cascade" , 			"string" : "Mostrar ventanas en cascada"},
-			{ "group" : "desktop",   "alias" : "restore" , 			"string" : "Restaurar"},
-			{ "group" : "desktop",   "alias" : "minimize" , 		"string" : "Minimizar"},
-			{ "group" : "desktop",   "alias" : "maximize" , 		"string" : "Maximizar"},
-			{ "group" : "desktop",   "alias" : "close" , 			"string" : "Cerrar"},
-			
-			{ "group" : "settigs",   "alias" : "wallpaper" , 		"string" : "Fondo de escritorio"},
-			{ "group" : "settigs",   "alias" : "wallpaper_label" ,	"string" : "Elija el fondo de escritorio."},
-			{ "group" : "settigs",   "alias" : "preview" , 			"string" : "Vista preliminar"},
-			{ "group" : "settigs",   "alias" : "selectImage" , 		"string" : "Seleciona una imagen"},
-			{ "group" : "settigs",   "alias" : "stretch" , 			"string" : "Estirar y ajustar"},
-			{ "group" : "settigs",   "alias" : "shortcut" 		,	"string" : "Accesos directos"},
-			{ "group" : "settigs",   "alias" : "shortcut_label" ,	"string" : "Elija las aplicaciones que desea mostrar en el escritorio."},
-			{ "group" : "settigs",   "alias" : "quicklaunch" 	,	"string" : "Inicio Rapido"},
-			{ "group" : "settigs",   "alias" : "quicklaunch_label",	"string" : "Elija las aplicaciones que desea en la barra de inicio rapido."},
-			{ "group" : "settigs",   "alias" : "themes" , 			"string" : "Temas"},
-			{ "group" : "settigs",   "alias" : "themes_label" ,		"string" : "Elija el tema de escritorio."}
-	
-			
-	]
-}; 
+        { 'group': 'loginForm', 'alias': 'login' , 			  'string': 'Iniciar sesion'},
+        { 'group': 'loginForm', 'alias': 'user' , 			  'string': 'Usuario'},
+        { 'group': 'loginForm', 'alias': 'password' , 		  'string': 'Contraseña'},
+        { 'group': 'loginForm', 'alias': 'rememberUser' , 	  'string': 'Recordar usuario'},
+        { 'group': 'loginForm', 'alias': 'rememberPass' , 	  'string': 'Recordar contraseña'},
+        { 'group': 'loginForm', 'alias': 'enter' , 			  'string': 'Entrar'},
+        { 'group': 'loginForm', 'alias': 'cancel' , 	      'string': 'Cancelar'},
+        { 'group': 'loginForm', 'alias': 'chooseLanguage' ,   'string': 'Elegir el idioma'},
 
+        { 'group': 'startMenu', 'alias': 'start' , 			  'string': 'Inicio'},
+        { 'group': 'startMenu', 'alias': 'settings', 		  'string': 'Configuracion'},
+        { 'group': 'startMenu', 'alias': 'logout' , 		  'string': 'Cerrar sesion'},
+        { 'group': 'startMenu', 'alias': 'areYouSure' , 	  'string': 'Esta seguro de que desa salir?'},
+
+        { 'group': 'desktop',   'alias': 'changeSettings' ,   'string': 'Cambiar configuracion'},
+        { 'group': 'desktop',   'alias': 'tile' , 			  'string': 'Mostrar ventanas apiladas'},
+        { 'group': 'desktop',   'alias': 'cascade' , 		  'string': 'Mostrar ventanas en cascada'},
+        { 'group': 'desktop',   'alias': 'restore' , 		  'string': 'Restaurar'},
+        { 'group': 'desktop',   'alias': 'minimize' , 		  'string': 'Minimizar'},
+        { 'group': 'desktop',   'alias': 'maximize' , 		  'string': 'Maximizar'},
+        { 'group': 'desktop',   'alias': 'close' , 			  'string': 'Cerrar'},
+
+        { 'group': 'settigs',   'alias': 'wallpaper' , 		  'string': 'Fondo de escritorio'},
+        { 'group': 'settigs',   'alias': 'wallpaper_label',   'string': 'Elija el fondo de escritorio.'},
+        { 'group': 'settigs',   'alias': 'preview' , 		  'string': 'Vista preliminar'},
+        { 'group': 'settigs',   'alias': 'selectImage' , 	  'string': 'Seleciona una imagen'},
+        { 'group': 'settigs',   'alias': 'stretch' , 		  'string': 'Estirar y ajustar'},
+        { 'group': 'settigs',   'alias': 'shortcut' ,	      'string': 'Accesos directos'},
+        { 'group': 'settigs',   'alias': 'shortcut_label' ,	  'string': 'Elija las aplicaciones que desea mostrar en el escritorio.'},
+        { 'group': 'settigs',   'alias': 'quicklaunch' 	,	  'string': 'Inicio Rapido'},
+        { 'group': 'settigs',   'alias': 'quicklaunch_label', 'string': 'Elija las aplicaciones que desea en la barra de inicio rapido.'},
+        { 'group': 'settigs',   'alias': 'themes' , 		  'string': 'Temas'},
+        { 'group': 'settigs',   'alias': 'themes_label' ,	  'string': 'Elija el tema de escritorio.'}
+	]
+};

@@ -7,26 +7,33 @@
         <link rel="stylesheet" type="text/css" href="resources/css/desktop.css" />
         <!--<script type="text/javascript" src="../../builds/ext-core.js"></script>
         <script type="text/javascript" src="classes.js"></script>-->
-        <script type="text/javascript" src="extjs/ext-all.js"></script>
+        <script type="text/javascript" src="extjs/ext-all-debug.js"></script>
+        <script type="text/javascript" src="extjs/ext-locale-loader.js"></script>
         <script type="text/javascript">
 
             Ext.Loader.setConfig({enabled:true});
             Ext.Loader.setPath({
-                'Ext.ux.desktop'   : 'client/js', 	
+                'Ext.ux.desktop'   : 'client/js',
                 'MyDesktop'        : 'client',
                 'MyDesktop.Modules': './modules'
             });
+            Ext.Loader.setLocale({
+                enabled: true,
+                language: 'es',
+                localizedByDefault: false,
+                types: ['controller', 'view']
+            });
 
             Ext.require('MyDesktop.ExtDesk');
-            Ext.require('Ext.data.Store');		
+            Ext.require('Ext.data.Store');
             Ext.require('MyDesktop.MyExtDesk');
 
-			
+
             var userStore;
             var myDesktopApp;
             var apps = [];
 
-            Ext.onReady(function () {          
+            Ext.onReady(function () {
 
                 MyExtDesk = new MyDesktop.MyExtDesk();
 
