@@ -8,7 +8,7 @@
         <!--<script type="text/javascript" src="../../builds/ext-core.js"></script>
         <script type="text/javascript" src="classes.js"></script>-->
         <script type="text/javascript" src="extjs/ext-all-debug.js"></script>
-        <script type="text/javascript" src="extjs/ext-locale-loader.js"></script>
+<!--        <script type="text/javascript" src="extjs/ext-locale-loader.js"></script> -->
         <script type="text/javascript">
 
             Ext.Loader.setConfig({enabled:true});
@@ -17,12 +17,13 @@
                 'MyDesktop'        : 'client',
                 'MyDesktop.Modules': './modules'
             });
-            Ext.Loader.setLocale({
+/*            Ext.Loader.setLocale({
                 enabled: true,
                 language: 'es',
                 localizedByDefault: false,
                 types: ['controller', 'view']
             });
+            */
 
             Ext.require('MyDesktop.ExtDesk');
             Ext.require('Ext.data.Store');
