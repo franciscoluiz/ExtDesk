@@ -127,7 +127,39 @@ Ext.define('Ext.ux.desktop.Desktop', {
         var me = this;
         me.callParent();
         me.el.on('contextmenu', me.onDesktopMenu, me);
-    },
+        Ext.getCmp("id_shortcut_dataview").on('resize',me.resizeDesktop,me);    
+        me.shortcuts.on('datachanged',me.resizeDesktop,me);
+	},
+	
+	resizeDesktop:function(){
+		/*
+		 * this method update de icons location in desktop when resize de window
+		 */
+		
+		var dv = Ext.getCmp('id_shortcut_dataview');
+		var dv_w = dv.getWidth();
+		var dv_h = dv.getHeight();
+		var t=0;
+		var l=0;
+		var t_add=0;
+		Ext.getCmp('id_shortcut_dataview').getStore().each(function(r){
+			var id=r.data.name;
+			if (id!=undefined)
+			{
+				id=id+"-shortcut";
+				Ext.get(id).setTop(t);
+				Ext.get(id).setLeft(l);
+				t_add=Ext.get(id).getHeight();
+				t=t+84;
+				if (t+t_add>dv_h){
+					l=l+68;
+					t=0;
+				}
+			}	
+			},this);
+
+	},
+
 
     //------------------------------------------------------
     // Overrideable configuration creation methods
@@ -136,7 +168,7 @@ Ext.define('Ext.ux.desktop.Desktop', {
         var me = this;
         return {
             xtype: 'dataview',
-			//id:'id_shortcut_dataview',
+			id:'id_shortcut_dataview',
 			overItemCls : 'x-view-over',            
 			trackOver : true,
             itemSelector : me.shortcutItemSelector,
