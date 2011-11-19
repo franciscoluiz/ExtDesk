@@ -186,7 +186,7 @@
     padding: 8px;
     margin: 8px;
     width: 64px;
-	position:absolute;
+    position:absolute;
 }
 
 .ux-desktop-shortcut-icon {
@@ -262,11 +262,11 @@
 }
 
 .ico-Desktop{
-	background-image: url( ../wallpapers/ico_Desktop.jpg ) !important;
+	background-image: url( ../wallpapers/ico_desktop.jpg ) !important;
 }
 
 .ico-Desktop2{
-	background-image: url( ../wallpapers/ico_Desktop2.jpg ) !important;
+	background-image: url( ../wallpapers/ico_desktop2.jpg ) !important;
 }
 
 .ico-Sky{

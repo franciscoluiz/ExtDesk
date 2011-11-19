@@ -317,10 +317,13 @@ Ext.define('MyDesktop.Settings', {
 		
 		var me = this;
 
-		var selectTheme=Ext.getDom('idTheme').href.replace("http://127.0.0.1/extdesk/extjs/resources/css/ext-all-", "", "gi");
-		selectTheme=selectTheme.replace(".css","","gi");
-		selectTheme="resources/themes/"+selectTheme+".jpg";
-        
+		//old
+		//var selectTheme=Ext.getDom('idTheme').href.replace("http://127.0.0.1/extdesk/extjs/resources/css/ext-all-", "", "gi");
+		
+		//new
+		var getPath = location.href.substring(0,location.href.lastIndexOf("/")+1);		
+		var selectTheme=Ext.getDom('idTheme').href.replace(getPath + "/extjs/resources/css/ext-all-", "", "gi");
+		
         me.previewTheme = Ext.create('widget.wallpaper');
         me.previewTheme.setWallpaper(selectTheme);
         
@@ -604,9 +607,14 @@ Ext.define('MyDesktop.Settings', {
 		var text= me.getTextOfWallpaper(me.selectedTheme);
 		text=text.toLowerCase();
 
-		Ext.getDom('idTheme').href="http://127.0.0.1/extdesk/extjs/resources/css/ext-all-"+text+".css";
-		 
-		me.destroy();
+		//old
+		//Ext.getDom('idTheme').href="http://127.0.0.1/extdesk/extjs/resources/css/ext-all-"+text+".css";
+		
+		//new
+		var getPath = location.href.substring(0,location.href.lastIndexOf("/")+1);
+		Ext.getDom('idTheme').href= getPath + "/extjs/resources/css/ext-all-"+text+".css";
+		
+		//me.destroy();
 		
 	},
 

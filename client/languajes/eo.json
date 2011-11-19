@@ -8,7 +8,7 @@ var Desktop = {
         { 'group': 'loginForm', 'alias': 'rememberPass' , 	   'string': 'Memoru pasvorto'},
         { 'group': 'loginForm', 'alias': 'enter' , 			   'string': 'Ensaluti'},
         { 'group': 'loginForm', 'alias': 'cancel' , 		   'string': 'Nuligi'},
-        { 'group': 'loginForm', 'alias': 'chooseLanguage' ,    'string': 'Nuligi'},
+        { 'group': 'loginForm', 'alias': 'chooseLanguage' ,    'string': 'Elektu idiomo'},
 
         { 'group': 'startMenu', 'alias': 'start' , 			   'string': 'Iniciati'},
         { 'group': 'startMenu', 'alias': 'settings', 		   'string': 'Konfiguraĵoj'},
@@ -31,9 +31,8 @@ var Desktop = {
         { 'group': 'settigs',   'alias': 'shortcut' 		,  'string': 'Ŝparvojo'},
         { 'group': 'settigs',   'alias': 'shortcut_label' ,	   'string': 'Aldoni aŭ maldoni ŝparvojo por laborareo.'},
         { 'group': 'settigs',   'alias': 'quicklaunch' 		,  'string': 'Rapida iniciata'},
-        { 'group': 'settigs',   'alias': 'quicklaunch_label' , 'string': 'Aldoni aŭ maldoni ŝparvojo por la Rapida iniciata.'}
-        // FIXME : tranaslate and  delete me
-        { 'group': 'settigs',   'alias': 'themes' , 		   'string': 'Themes'},
-        { 'group': 'settigs',   'alias': 'themes_label' ,	   'string': 'Change the theme'}
+        { 'group': 'settigs',   'alias': 'quicklaunch_label' , 'string': 'Aldoni aŭ maldoni ŝparvojo por la Rapida iniciata.'},
+        { 'group': 'settigs',   'alias': 'themes' , 		   'string': 'Temo'},
+        { 'group': 'settigs',   'alias': 'themes_label' ,	   'string': 'Ŝanĝ la temo'}
 	]
 };

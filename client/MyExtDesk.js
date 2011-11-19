@@ -109,6 +109,18 @@
 							url: 'ExtDesk.php',
 							defaultType: 'textfield',
 							border: false,
+							defaults:{
+							  enableKeyEvents:true,
+							  listeners:{
+								specialKey: function(field, el)
+								{
+								  if(el.getKey() == Ext.EventObject.ENTER)
+								  {
+									Ext.getCmp('btnEnter').handler.call(Ext.getCmp('btnEnter').scope);
+								  }
+								}
+							  }
+							},
 							//bodyStyle: "background-image:url(blue.jpg) !important",
 							items: [
 								{
@@ -120,7 +132,7 @@
 									x: 5,
 									y: 5,
 									name: 'user',
-									anchor: '-5'  
+									anchor: '-5'
 								},
 								{
 									id:"idLoginPswd",
@@ -130,7 +142,7 @@
 									x: 5,
 									y: 35,
 									name: 'password',
-									anchor: '-5'  								
+									anchor: '-5'
 								},
 								{
 									id: 'idRememberUser',
@@ -171,6 +183,7 @@
 							items: form,
 		
 							buttons: [{
+								id: 'btnEnter',
 								text: lan["enter"],
 								handler: function() {
 									form.submit({
@@ -193,7 +206,25 @@
 										
 										},
 										failure: function(form, action) {
-											MyExtDesk.login();//Ext.Msg.alert('Failed', action.result.msg);
+											//alert( window.location.protocol) ;
+											//alert( window.location.host );
+											//alert( window.location.protocol+'://'+window.location.host+'/'+window.location.pathname );
+											
+											Ext.Msg.confirm('Falha','Usuario ou Senha incorretos, tentar novamente?',
+												function(btn, text){
+												if (btn == 'yes'){
+													Ext.getCmp('idLoginUser').setValue("");
+													Ext.getCmp('idLoginPswd').setValue("");	
+													Ext.getCmp('idLoginUser').focus('', 200);
+												} else {
+													var url = window.location.href;
+													var nohttp = url.split('//')[1];
+													var hostPort = nohttp.split('/')[0]
+													window.location = 'http://' + hostPort;															
+												}
+												
+											},this);
+											//MyExtDesk.login(); //Ext.Msg.alert('Failed', action.result.msg); 
 										}
 
 									})
