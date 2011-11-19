@@ -107,7 +107,7 @@ Ext.define('MyDesktop.Settings', {
 							header:false,
 							border:false,
 							layout:'anchor',
-							bodyStyle: "background-image:url(blue.jpg) !important",
+							//bodyStyle: "background-image:url(blue.jpg) !important",
 							items :
 								Ext.create('Ext.view.View', {
 									//xtype:'dataview',
@@ -430,7 +430,7 @@ Ext.define('MyDesktop.Settings', {
                         child('Wood-Sencha.jpg'),
                         child('blue.jpg'),
                         child('desk.jpg'),
-                        child('desktop.jpg'),
+                        child('desktop1.jpg'),
                         child('desktop2.jpg'),
                         child('sky.jpg')
                     ]
