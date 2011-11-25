@@ -67,8 +67,9 @@
 				        {"js" : "SystemStatus",		"name" : "System Status",		"iconCls":"systemStatus-shortcut",	"module":"systemstatus",	"shorcut":true, 	"qLaunch":true,		"iconLaunch" :"icon-systemStatus"},
 				        {"js" : "TabWindow",			"name" : "Tab Window",			"iconCls":"tab-shortcut",		"module":"tab-win",  		"shorcut":true,		"qLaunch":false, 	"iconLaunch" :"icon-tab"},
 				        {"js" : "BogusModule",		"name" : "Bogus Module",		"iconCls":"bugus-shortcut",			"module":"bogus-menu",  	"shorcut":false,	"qLaunch":false, 	"iconLaunch" :""},
-				        {"js" : "BogusMenuModule",	"name" : "Bogus Menu Module",	"iconCls":"bugus-shortcut",			"module":"bogus-menu",  	"shorcut":false,	"qLaunch":false, 	"iconLaunch" :"icon-bugus"}
-					    ]
+				        {"js" : "BogusMenuModule",	"name" : "Bogus Menu Module",	"iconCls":"bugus-shortcut",			"module":"bogus-menu",  	"shorcut":false,	"qLaunch":false, 	"iconLaunch" :"icon-bugus"},
+				        {"js" : "Example",			"name" : "Example",			"iconCls":"example-shortcut",		"module":"example-win",  		"shorcut":true, 	"qLaunch":true, 	"iconLaunch" :"icon-example"},
+				        					    ]
 					}
 					] }';
 
