@@ -32,7 +32,7 @@ Ext.define('MyDesktop.Modules.Example.Client.Example', {			// 1.- Steep One defi
         if(!win){
             win = desktop.createWindow({							
                 id: 'example-win',									// 6.- if the win don't exist, we create this
-                title:'Grid Window',								// 7.- the title of win
+                title:'Example Window',								// 7.- the title of win
                 width:300,											// 8.- the win's width
                 height:300,											// 9.- the win's height
                 iconCls: 'icon-example',							//10.- the win's icon
