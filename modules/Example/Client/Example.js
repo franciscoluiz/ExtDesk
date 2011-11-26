@@ -31,7 +31,7 @@ Ext.define('MyDesktop.Modules.Example.Client.Example', {			// 1.- Steep One defi
         var win = desktop.getWindow('example-win');					// 5.- We obtain the id of win,
         if(!win){
             win = desktop.createWindow({							
-                id: 'grid-win',										// 6.- if the win don't exist, we create this
+                id: 'example-win',									// 6.- if the win don't exist, we create this
                 title:'Grid Window',								// 7.- the title of win
                 width:300,											// 8.- the win's width
                 height:300,											// 9.- the win's height
