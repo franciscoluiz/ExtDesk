@@ -39,7 +39,7 @@ Ext.define('MyDesktop.Modules.Example.Client.Example', {			// 1.- Steep One defi
                 animCollapse:false,
                 constrainHeader:true,
                 layout: 'fit',
-                html : 'Whe first module'							//11.-  the module body
+                html : 'We first module'							//11.-  the module body
 			})
         }
         win.show();
