@@ -15,13 +15,13 @@ Features
 
 News
 ------------
-* 2011-11-17 Shortcuts now in a good place.
+* 2011-11-31 Now we can debug from php with phpdebug
+![ExtDesk Debug ][https://lh6.googleusercontent.com/-2j4JQRqmr_I/TtagAjGh3xI/AAAAAAAABJc/2pbMHhebE9E/s618/debug.png]
 
+* 2011-11-17 Shortcuts now in a good place.
 
 ![ExtDesk shortcuts in good place] (https://lh4.googleusercontent.com/-k5N6EycNpGU/TsW1t2j3awI/AAAAAAAABI4/ndXPvd9X8-c/s543/Shortcuts_good_place_1.png)
 ![ExtDesk shortcuts in good place] (https://lh5.googleusercontent.com/-rn0VnlDMiYg/TsW2P_dsxeI/AAAAAAAABJM/NCY-OpvsDAI/s543/Shortcuts_good_place_2.png)
-
-
 
 Installation
 -------------
