@@ -16,6 +16,13 @@ Features
 News
 ------------
 * 2011-11-31 Now we can debug from php with phpdebug
+Instrucctions:
+in config.ini set debug=1
+
+In php you can use the method of os.class : $this->debug("your message or variable","your labael")
+
+Ha ve a nice debuging session ;D
+
 ![ExtDesk Debug ](https://lh6.googleusercontent.com/-2j4JQRqmr_I/TtagAjGh3xI/AAAAAAAABJc/2pbMHhebE9E/s618/debug.png)
 
 * 2011-11-17 Shortcuts now in a good place.
