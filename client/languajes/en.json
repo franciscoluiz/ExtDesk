@@ -9,7 +9,9 @@ var Desktop = {
         { 'group': 'loginForm', 'alias': 'enter' , 			   'string': 'Enter'},
         { 'group': 'loginForm', 'alias': 'cancel' , 		   'string': 'Cancel'},
         { 'group': 'loginForm', 'alias': 'chooseLanguage' ,    'string': 'Choose the language'},
-
+        { 'group': 'loginForm', 'alias': 'error' ,   	  	  'string': 'Error'},
+        { 'group': 'loginForm', 'alias': 'badlogin' ,   	  'string': 'Bad user or password, do you want another try?'},
+        
         { 'group': 'startMenu', 'alias': 'start' , 			   'string': 'Start'},
         { 'group': 'startMenu', 'alias': 'settings', 		   'string': 'Settings'},
         { 'group': 'startMenu', 'alias': 'logout' , 		   'string': 'Logout'},

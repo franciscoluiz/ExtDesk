@@ -35,6 +35,8 @@
 
 		public function process(){
 
+			//var_dump($_GET);
+			
 			//load de security class
 			$sec= new security;
 
@@ -48,46 +50,51 @@
 			$res=$sec->loged();
 
 			if ($res["success"]){
-				// we get the languaje strings
-				$languaje =json_encode($this->lang["languaje"]);
-
-				// send a ok signal
-				$json= '{	"success" : true, "login": true,';
-
-				// we print user data
-				$json=$json.'"user" : [{'.$sec->print_user();
-				$json=$json.'"strings":'.$languaje.",";
-
-				// we print the modules, we need change this part.... dirty way to test
-
-				$json=$json.'"modules"          : [
-				        {"js" : "Notepad", 			"name" : "Notepad",				"iconCls":"notepad-shortcut",		"module":"notepad",			"shorcut":true, 	"qLaunch":true, 	"iconLaunch" :"icon-notepad"},
-				        {"js" : "AccordionWindow",	"name" : "Accordion Window",	"iconCls":"accordion-shortcut",		"module":"acc-win",			"shorcut":true, 	"qLaunch":true, 	"iconLaunch" :"icon-accordion"},
-				        {"js" : "GridWindow",			"name" : "Grid Window",			"iconCls":"grid-shortcut",		"module":"grid-win",  		"shorcut":true, 	"qLaunch":true, 	"iconLaunch" :"icon-grid"},
-				        {"js" : "SystemStatus",		"name" : "System Status",		"iconCls":"systemStatus-shortcut",	"module":"systemstatus",	"shorcut":true, 	"qLaunch":true,		"iconLaunch" :"icon-systemStatus"},
-				        {"js" : "TabWindow",			"name" : "Tab Window",			"iconCls":"tab-shortcut",		"module":"tab-win",  		"shorcut":true,		"qLaunch":false, 	"iconLaunch" :"icon-tab"},
-				        {"js" : "BogusModule",		"name" : "Bogus Module",		"iconCls":"bugus-shortcut",			"module":"bogus-menu",  	"shorcut":false,	"qLaunch":false, 	"iconLaunch" :""},
-				        {"js" : "BogusMenuModule",	"name" : "Bogus Menu Module",	"iconCls":"bugus-shortcut",			"module":"bogus-menu",  	"shorcut":false,	"qLaunch":false, 	"iconLaunch" :"icon-bugus"},
-				        {"js" : "Example",			"name" : "Example",			"iconCls":"example-shortcut",		"module":"example-win",  		"shorcut":true, 	"qLaunch":true, 	"iconLaunch" :"icon-example"},
-				        					    ]
-					}
-					] }';
-
-				// yahoo...!!
-				echo $json;
-
-
+				
+				//check te action we need	
+				switch ($_GET["action"]) {
+					case "load_user":
+						// we get the languaje strings
+						$languaje =json_encode($this->lang["languaje"]);
+		
+						// send a ok signal
+						$json= '{	"success" : true, "login": true,';
+						
+						// we print user data
+						$json=$json.'"user" : [{'.$sec->print_user();
+						$json=$json.'"strings":'.$languaje.",";
+		
+						// we print the modules, we need change this part.... dirty way to test
+						$json=$json.'"modules"          : [
+						        {"js" : "Notepad", 			"name" : "Notepad",				"iconCls":"notepad-shortcut",		"module" : "notepad",		"shorcut":true, 	"qLaunch":true, 	"iconLaunch" :"icon-notepad"},
+						        {"js" : "AccordionWindow",	"name" : "Accordion Window",	"iconCls":"accordion-shortcut",		"module" : "acc-win",		"shorcut":true, 	"qLaunch":true, 	"iconLaunch" :"icon-accordion"},
+						        {"js" : "GridWindow",		"name" : "Grid Window",			"iconCls":"grid-shortcut",			"module" : "grid-win",  	"shorcut":true, 	"qLaunch":true, 	"iconLaunch" :"icon-grid"},
+						        {"js" : "SystemStatus",		"name" : "System Status",		"iconCls":"systemStatus-shortcut",	"module" : "systemstatus",	"shorcut":true, 	"qLaunch":true,		"iconLaunch" :"icon-systemStatus"},
+						        {"js" : "TabWindow",		"name" : "Tab Window",			"iconCls":"tab-shortcut",			"module" : "tab-win",  		"shorcut":true,		"qLaunch":false, 	"iconLaunch" :"icon-tab"},
+						        {"js" : "BogusModule",		"name" : "Bogus Module",		"iconCls":"bugus-shortcut",			"module" : "bogus-menu",  	"shorcut":false,	"qLaunch":false, 	"iconLaunch" :""},
+						        {"js" : "BogusMenuModule",	"name" : "Bogus Menu Module",	"iconCls":"bugus-shortcut",			"module" : "bogus-menu",  	"shorcut":false,	"qLaunch":false, 	"iconLaunch" :"icon-bugus"},
+						        {"js" : "Example",			"name" : "Example",				"iconCls":"example-shortcut",		"module" : "example-win",  	"shorcut":true, 	"qLaunch":true, 	"iconLaunch" :"icon-example"},
+						        					    ]
+							}
+							] }';
+		
+						//OutPut Json
+						echo $json;
+						break;
+					case "other":
+						break;
+					
+				}
 			}else{
 				// we are not logged
-
-				// just send de langjuage strings...
+				// just send de languaje strings...
 				$languaje =json_encode($this->lang["languaje"]);
 				$json= '{	"success" : false, "login": false,';
 				$json=$json.'"user" : [{';
 				$json=$json.'"strings":'.$languaje."}]}";
 
+				//OutPut Json
 				echo $json;
 			}
 		}
-
-    }
+   }

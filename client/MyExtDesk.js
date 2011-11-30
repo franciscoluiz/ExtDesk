@@ -10,7 +10,7 @@
 			],
 			proxy: {
 				type: 'rest',
-				url: 'ExtDesk.php',
+				url: 'ExtDesk.php?action=load_user',
 				reader: {
 					type: 'json',
 					root: 'user',
@@ -27,7 +27,7 @@
 
 			proxy: {
 				type: 'rest',
-				url : 'ExtDesk.php',
+				url : 'ExtDesk.php?action=load_user',
 				reader: {
 					type: 'json',
 					root: 'strings'
@@ -43,7 +43,7 @@
 
 			proxy: {
 				type: 'rest',
-				url : 'ExtDesk.php',
+				url : 'ExtDesk.php?action=load_user',
 				reader: {
 					type: 'json',
 					root: 'modules'
@@ -58,7 +58,7 @@
 				user : 'User',
 			
 				load : function(){
-					User.load(1, {
+					User.load('', {
 						success : function(user,options) {
 							userStore = user;
 							this.user=user;
@@ -101,12 +101,13 @@
 						lan["r_psd"] 	= strings[4].string;
 						lan["enter"] 	= strings[5].string;
 						lan["cancel"] 	= strings[6].string;
-
+						lan["error"]	= strings[8].string;
+						lan["bad_login"]= strings[9].string;
 
 						
 						var form = Ext.create('Ext.form.Panel', {
 							layout: 'absolute',
-							url: 'ExtDesk.php',
+							url: 'ExtDesk.php?action=load_user',
 							defaultType: 'textfield',
 							border: false,
 							defaults:{
@@ -150,7 +151,6 @@
 									name: 'recordarUsuario',
 									x: 110,
 									y: 55,								
-									//fieldLabel: 'RecordarUsuario',
 									hideLabel: true,
 									style: 'margin-top:15px',
 									boxLabel: lan["r_user"]
@@ -161,7 +161,6 @@
 									name: 'recordarUsuario',
 									x: 110,
 									y: 85,								
-									//fieldLabel: 'Recordar Contrase�a',
 									hideLabel: true,
 									style: 'margin-top:15px',
 									boxLabel: lan["r_psd"]
@@ -206,11 +205,8 @@
 										
 										},
 										failure: function(form, action) {
-											//alert( window.location.protocol) ;
-											//alert( window.location.host );
-											//alert( window.location.protocol+'://'+window.location.host+'/'+window.location.pathname );
 											
-											Ext.Msg.confirm('Falha','Usuario ou Senha incorretos, tentar novamente?',
+											Ext.Msg.confirm(lan["error"],lan["bad_login"],
 												function(btn, text){
 												if (btn == 'yes'){
 													Ext.getCmp('idLoginUser').setValue("");
@@ -239,7 +235,7 @@
 						Ext.getCmp('idLoginUser').setValue("");
 						Ext.getCmp('idLoginPswd').setValue("");						
 					}
-					// fill with the cokies
+					// fill with the cookies
 					if (Ext.util.Cookies.get("rem_user")!=null){
 						Ext.getCmp('idLoginUser').setValue(Ext.util.Cookies.get("rem_user"));
 						Ext.getCmp('idRememberUser').setValue(true);

@@ -9,6 +9,8 @@ var Desktop = {
         { 'group': 'loginForm', 'alias': 'enter' , 			  'string': 'Entrar'},
         { 'group': 'loginForm', 'alias': 'cancel' , 	      'string': 'Cancelar'},
         { 'group': 'loginForm', 'alias': 'chooseLanguage' ,   'string': 'Elegir el idioma'},
+        { 'group': 'loginForm', 'alias': 'error' ,   	  	  'string': 'Error'},
+        { 'group': 'loginForm', 'alias': 'badlogin' ,   	  'string': 'Usuario y contraseña incorrectos, desea intentar nuevamente'},        
 
         { 'group': 'startMenu', 'alias': 'start' , 			  'string': 'Inicio'},
         { 'group': 'startMenu', 'alias': 'settings', 		  'string': 'Configuracion'},
