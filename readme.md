@@ -21,7 +21,7 @@ Instrucctions:
 
 in config.ini set debug=1
 
-In php you can use the method of os.class : $this->debug("your message or variable","your labael")
+In php you can use the method of os.class : $this->debug("your message or variable","your label")
 
 Ha ve a nice debuging session ;D
 
