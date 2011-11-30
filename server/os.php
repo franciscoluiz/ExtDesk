@@ -29,13 +29,20 @@
 
             /*** Load the languaje file definided in config.ini***/
             $this->utils =	new utils;
-            $this->lang  = $this->utils->loadJson($this->incLang.$_SESSION["ExtDesk"]["lang"].".json");
-
+            $this->lang  = $this->utils->loadJson($this->incLang.$_SESSION['ExtDesk']['lang'].'.json');
+			
+			/*** if debug is 1, then load de firePHP***/
+			if ($_SESSION['ExtDesk']['debug']=='1'){
+				$this->load($this->libPath."firePHPCore/FirePHP.class.php",'FirePHP',true);
+			}
+			$this->load($this->incPath."class.debug.php",'debug',true);
+			$this->debug= new debug;
         }
 
 		public function process(){
 
 			//var_dump($_GET);
+			$this->debug->log($_SESSION,"Session variable from php");
 			
 			//load de security class
 			$sec= new security;
