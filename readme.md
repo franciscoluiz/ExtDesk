@@ -16,7 +16,9 @@ Features
 News
 ------------
 * 2011-11-31 Now we can debug from php with phpdebug
+
 Instrucctions:
+
 in config.ini set debug=1
 
 In php you can use the method of os.class : $this->debug("your message or variable","your labael")
