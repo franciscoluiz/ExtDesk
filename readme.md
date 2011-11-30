@@ -16,7 +16,7 @@ Features
 News
 ------------
 * 2011-11-31 Now we can debug from php with phpdebug
-![ExtDesk Debug ][https://lh6.googleusercontent.com/-2j4JQRqmr_I/TtagAjGh3xI/AAAAAAAABJc/2pbMHhebE9E/s618/debug.png]
+![ExtDesk Debug ](https://lh6.googleusercontent.com/-2j4JQRqmr_I/TtagAjGh3xI/AAAAAAAABJc/2pbMHhebE9E/s618/debug.png)
 
 * 2011-11-17 Shortcuts now in a good place.
 
