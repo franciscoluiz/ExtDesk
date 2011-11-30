@@ -52,6 +52,7 @@ Credits
 * Using a part of "login-script-pdo" by Oran: <http://www.phpclasses.org/package/5644-PHP-Manage-user-accounts-stored-in-a-database-with-PDO.html>
 * Using Icons from Tango Project : <http://tango.freedesktop.org/> 
 * Via Openclipart <http://www.openclipart.org>
+* Using FirePhp <http://www.firephp.org/>
 
 Developers
 -------------
