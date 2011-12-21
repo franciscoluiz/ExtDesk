@@ -23,6 +23,7 @@
             $this->load($this->incPath."class.utils.php",'utils',true);
 			$this->load($this->incPath."class.security.php",'Settings',true);
 			$this->load($this->incPath."class.user.php",'security',true);
+			$this->load($this->incPath."class.modules.php",'security',true);
 
             /*** Load in SESSION var ***/
             $this->iniConfig=new configFile();
@@ -33,7 +34,7 @@
 			
 			/*** if debug is 1, then load de firePHP***/
 			if ($_SESSION['ExtDesk']['debug']=='1'){
-				$this->load($this->libPath."firePHPCore/FirePHP.class.php",'FirePHP',true);
+				$this->load($this->libPath."FirePHPCore/FirePHP.class.php",'FirePHP',true);
 			}
 			$this->load($this->incPath."class.debug.php",'debug',true);
 			$this->debug= new debug;
@@ -41,9 +42,6 @@
 
 		public function process(){
 
-			//var_dump($_GET);
-			$this->debug->log($_SESSION,"Session variable from php");
-			
 			//load de security class
 			$sec= new security;
 
@@ -53,11 +51,11 @@
 				$res=$sec->login($_POST["user"], $_POST["password"]);
 			}
 
-			// verify if we are login
+			// verify if we are login, this check session, and check 
 			$res=$sec->loged();
 
 			if ($res["success"]){
-				
+	
 				//check te action we need	
 				switch ($_GET["action"]) {
 					case "load_user":
@@ -72,7 +70,7 @@
 						$json=$json.'"strings":'.$languaje.",";
 		
 						// we print the modules, we need change this part.... dirty way to test
-						$json=$json.'"modules"          : [
+						/*$json=$json.'"modules"          : [
 						        {"js" : "Notepad", 			"name" : "Notepad",				"iconCls":"notepad-shortcut",		"module" : "notepad",		"shorcut":true, 	"qLaunch":true, 	"iconLaunch" :"icon-notepad"},
 						        {"js" : "AccordionWindow",	"name" : "Accordion Window",	"iconCls":"accordion-shortcut",		"module" : "acc-win",		"shorcut":true, 	"qLaunch":true, 	"iconLaunch" :"icon-accordion"},
 						        {"js" : "GridWindow",		"name" : "Grid Window",			"iconCls":"grid-shortcut",			"module" : "grid-win",  	"shorcut":true, 	"qLaunch":true, 	"iconLaunch" :"icon-grid"},
@@ -84,15 +82,20 @@
 						        					    ]
 							}
 							] }';
-		
+						*/
 						//OutPut Json
+												
+						$modules= new modules;
+						$moduleStr=$modules->getUserModules();
+						$json=$json.'"modules": '.$moduleStr.' }  ]}';
 						echo $json;
 						break;
+
 					case "other":
 						break;
 					
-				}
-			}else{
+				}//<--end case
+			}else {
 				// we are not logged
 				// just send de languaje strings...
 				$languaje =json_encode($this->lang["languaje"]);
@@ -102,6 +105,6 @@
 
 				//OutPut Json
 				echo $json;
-			}
-		}
+			}//<-- end if ($res["success"])
+		}//<-- end function process
    }

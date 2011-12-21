@@ -90,7 +90,7 @@ Ext.define('MyDesktop.ExtDesk', {
 		//*** we create a string with the shorcuts" of apps in store with shorcut=true***
 			var cad="";
 			this.userStore.modules().each(function(module) {
-				if (module.get("shorcut")){
+				if (module.get("shorcut")=="1"){
 					cad = cad+" { name : '" + module.get('name') + "',";
 					cad = cad+" iconCls : '" + module.get('iconCls')+"',";
 					cad = cad+" module : '" + module.get('module')+"'},";
@@ -157,7 +157,7 @@ Ext.define('MyDesktop.ExtDesk', {
 		//*** we create a string with the shorcuts" of apps in store with shorcut=true***
 			var cad="";
 			this.userStore.modules().each(function(module) {
-				if (module.get("qLaunch")){
+				if (module.get("qLaunch")=='1'){
 					cad = cad+" { name : '" + module.get('name') + "',";
 					cad = cad+" iconCls : '" + module.get('iconLaunch')+"',";
 					cad = cad+" module : '" + module.get('module')+"'},";
