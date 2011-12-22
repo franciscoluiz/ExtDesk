@@ -19,11 +19,11 @@
             $this->incLang = 'client/languajes/';
 
             /*** Loading libraries ***/
-            $this->load($this->incPath."class.configFile.php",'configFile',true);
-            $this->load($this->incPath."class.utils.php",'utils',true);
-			$this->load($this->incPath."class.security.php",'Settings',true);
-			$this->load($this->incPath."class.user.php",'security',true);
-			$this->load($this->incPath."class.modules.php",'security',true);
+            $this->load($this->incPath.'class.configFile.php','configFile',true);
+            $this->load($this->incPath.'class.utils.php','utils',true);
+			$this->load($this->incPath.'class.security.php','Settings',true);
+			$this->load($this->incPath.'class.user.php','security',true);
+			$this->load($this->incPath.'class.modules.php','security',true);
 
             /*** Load in SESSION var ***/
             $this->iniConfig=new configFile();
@@ -91,6 +91,8 @@
 						echo $json;
 						break;
 
+						
+					
 					case "other":
 						break;
 					

@@ -93,6 +93,10 @@ Ext.define('Ext.ux.desktop.Desktop', {
     taskbarConfig: null,
 
     windowMenu: null,
+    
+    msgCt:null,
+    msgId:'',
+    m:null,
 
     initComponent: function () {
         var me = this;
@@ -253,6 +257,7 @@ Ext.define('Ext.ux.desktop.Desktop', {
         if (win) {
             me.restoreWindow(win);
         }
+        
     },
 
     onWindowClose: function(win) {
@@ -274,7 +279,6 @@ Ext.define('Ext.ux.desktop.Desktop', {
 
     onWindowMenuClose: function () {
         var me = this, win = me.windowMenu.theWin;
-
         win.close();
     },
 
@@ -343,6 +347,7 @@ Ext.define('Ext.ux.desktop.Desktop', {
     },
 
     createWindow: function(config, cls) {
+        
         var me = this, win, cfg = Ext.applyIf(config || {}, {
                 stateful: false,
                 isWindow: true,
@@ -350,7 +355,8 @@ Ext.define('Ext.ux.desktop.Desktop', {
                 minimizable: true,
                 maximizable: true
             });
-
+		me.notification("Ejecutando",config.title);
+                        
         cls = cls || Ext.window.Window;
         win = me.add(new cls(cfg));
 
@@ -393,7 +399,8 @@ Ext.define('Ext.ux.desktop.Desktop', {
                 }
             });
         };
-
+		//console.log(config);
+		
         return win;
     },
 
@@ -488,6 +495,24 @@ Ext.define('Ext.ux.desktop.Desktop', {
         }
 
         me.taskbar.setActiveButton(activeWindow && activeWindow.taskButton);
-    }
-});
+    },
 
+	createBox : function(t, s){
+	   return '<div class="msg"><h3>' + t + '</h3><p>' + s + '</p></div>';
+	},
+	
+	notification:function(title,msg){
+		
+		//*** some probles in two notifications at the same time...:( need fix it;
+
+        if(!this.msgCt){
+            this.msgCt = Ext.core.DomHelper.insertFirst(document.body, {id:'msg-div'}, true);
+        }
+        //var s = Ext.String.format.apply(String, Array.prototype.slice.call(arguments, 1));
+        var m = Ext.core.DomHelper.append(this.msgCt, this.createBox(title, msg), true);
+		m.hide();
+		m.slideIn('b').ghost("b", { delay: 700, remove: true});
+			  
+	}
+	
+});
