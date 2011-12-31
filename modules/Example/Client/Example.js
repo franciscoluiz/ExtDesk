@@ -15,7 +15,7 @@ This file may be used under the terms of the GNU General Public License version 
 Ext.define('MyDesktop.Modules.Example.Client.Example', {			// 1.- Steep One define the name of the module
     extend: 'Ext.ux.desktop.Module',
 
-    id:'example-win',												// 2.- Define the ide of window of the module
+    id:'example-win',												// 2.- Define the id of window of the module
 
     init : function(){
         this.launcher = {

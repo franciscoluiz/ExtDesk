@@ -236,8 +236,37 @@ Ext.define('MyDesktop.Settings', {
 			me.tabShortcutForm= Ext.create('Ext.form.Panel', {
 				id : 'preferTabShortcutsForm',
 				title : 'Shortcuts',
-				closable:true
-				/*header:true*/							
+				closable:true,
+				/*header:true*/	
+				
+				dockedItems: [
+                    {
+                        xtype: 'toolbar',
+                        dock: 'bottom',
+                        statusAlign: 'right',
+                        items: [
+                            '->',
+                            {
+                                // FIXME : ExtDesk/Settings : Cambiar por una cadena literal.
+                                xtype: 'button',
+                                text: 'Guardar',
+                                handler: me.onOkShortCut, 
+                                scope: me
+                            },
+                            {
+                                // FIXME : ExtDesk/Settings : Cambiar por una cadena literal.
+                                xtype: 'button',
+                                text: 'Cancelar',
+                                handler:me.close, 
+                                scope: me
+                            }
+                        ]
+                    }
+                ]
+				
+				
+				
+										
 			});
 									
 			this.userStore.modules().each(function(module) {
@@ -261,7 +290,7 @@ Ext.define('MyDesktop.Settings', {
 			});
 			
 			var sp = Ext.getCmp('settingsTabPanel');
-			var ts = Ext.getCmp('preferTabShortcutsForm')
+			var ts = Ext.getCmp('preferTabShortcutsForm');
 			sp.add(ts);
 			
 		}
@@ -282,7 +311,34 @@ Ext.define('MyDesktop.Settings', {
 				closable : true,
 				header:false,
 				//html: '<p>Panel to admin quickLaunch.</p>',
-				border:false						
+				border:false,
+				dockedItems: [
+                    {
+                        xtype: 'toolbar',
+                        dock: 'bottom',
+                        statusAlign: 'right',
+                        items: [
+                            '->',
+                            {
+                                // FIXME : ExtDesk/Settings : Cambiar por una cadena literal.
+                                xtype: 'button',
+                                text: 'Guardar',
+                                handler: me.onOkQuickLaunch, 
+                                scope: me
+                            },
+                            {
+                                // FIXME : ExtDesk/Settings : Cambiar por una cadena literal.
+                                xtype: 'button',
+                                text: 'Cancelar',
+                                handler:me.close, 
+                                scope: me
+                            }
+                        ]
+                    }
+                ]
+				
+				
+										
 			});
 
 			this.userStore.modules().each(function(module) {
@@ -319,7 +375,6 @@ Ext.define('MyDesktop.Settings', {
 
 		//old
 		//var selectTheme=Ext.getDom('idTheme').href.replace("http://127.0.0.1/extdesk/extjs/resources/css/ext-all-", "", "gi");
-		
 		//new
 		var getPath = location.href.substring(0,location.href.lastIndexOf("/")+1);		
 		var selectTheme=Ext.getDom('idTheme').href.replace(getPath + "/extjs/resources/css/ext-all-", "", "gi");
@@ -466,11 +521,51 @@ Ext.define('MyDesktop.Settings', {
     },
 	
     onOkWallpaper: function () {
+    
         var me = this;
+        
         if (me.selected) {
-            me.desktop.setWallpaper(me.selected, me.stretch);
-        }
-        me.destroy();
+        	
+  			wp=me.getTextOfIcoWallpaper(me.selected);        	
+        	
+			Ext.MessageBox.show({
+				msg: 'Saving your data, please wait...',
+				progressText: 'Saving...',
+				width:300,
+				wait:true,
+				waitConfig: {interval:100},
+			});    	
+        	
+        	//save in the server
+        	Ext.Ajax.request({
+				url: 'ExtDesk.php',
+    			method:'GET',
+    			params: { 
+    				Module: 'Settings',
+    				option: 'Wallpaper',
+    				action:'save',
+    				p1:wp,				
+    				p2:me.stretch
+    			},
+    			success: function(r){
+        			var resp=Ext.decode(r.responseText,true);	//decode respond 
+        			if (resp){
+	        			if (resp.success){
+							me.desktop.setWallpaper(me.selected, me.stretch);        	
+	        				me.destroy();
+	        				Ext.MessageBox.hide();     				
+	        			}else{
+	        				Ext.MessageBox.hide();
+	        				Ext.MessageBox.alert('Settigs|Wallpaper',resp.msg);
+	        			}
+        			}else{
+        				Ext.MessageBox.hide();
+        				Ext.MessageBox.alert('Settigs|Wallpaper',"La respuesta del servidor no es adecuada, por favor consulte a su administrador");
+        				
+        			}
+    			}//sucess
+			})//Ajax;	
+        }//if
     },
 
     onSelectWallpaper: function (tree, record) {
@@ -552,11 +647,14 @@ Ext.define('MyDesktop.Settings', {
        		// save the state of this shorcut...
 			module.set('qLaunch',true);
 		}   	
+		console.log(this);
 		// we need some more simple here
     	//myDesktopApp.init();
-		myDesktopApp.desktop.app.init();
-    	
-    	
+		//myDesktopApp.desktop.app.init();
+    	//myDesktopApp
+    	//console.log(myDesktopApp);
+    	//console.log(MyExtDesk);
+    	//MyExtDesk.desktop.app.init();	
     
     },	
 	
@@ -618,7 +716,7 @@ Ext.define('MyDesktop.Settings', {
 		
 	},
 
-   getTextOfIcoTheme: function (path) {
+    getTextOfIcoTheme: function (path) {
         var text = path, slash = path.lastIndexOf('/');
         if (slash >= 0) {
             text = text.substring(slash+1);
@@ -630,7 +728,7 @@ Ext.define('MyDesktop.Settings', {
 		return text;
     },
    
-   onSelectTheme : function (tree, record) {
+    onSelectTheme : function (tree, record) {
        //console.log(record.data.text.toLowerCase());
        
         var me = this;

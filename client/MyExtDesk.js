@@ -10,7 +10,7 @@
 			],
 			proxy: {
 				type: 'rest',
-				url: 'ExtDesk.php?action=load_user',
+				url: 'ExtDesk.php?Module=Main&action=load_user',
 				reader: {
 					type: 'json',
 					root: 'user',
@@ -27,7 +27,7 @@
 
 			proxy: {
 				type: 'rest',
-				url : 'ExtDesk.php?action=load_user',
+				url : 'ExtDesk.php?Module=Main&action=load_user',
 				reader: {
 					type: 'json',
 					root: 'strings'
@@ -43,7 +43,7 @@
 
 			proxy: {
 				type: 'rest',
-				url : 'ExtDesk.php?action=load_user',
+				url : 'ExtDesk.php?Module=Main&action=load_user',
 				reader: {
 					type: 'json',
 					root: 'modules'
@@ -107,7 +107,7 @@
 						
 						var form = Ext.create('Ext.form.Panel', {
 							layout: 'absolute',
-							url: 'ExtDesk.php?action=load_user',
+							url: 'ExtDesk.php?Module=Main&action=load_user',
 							defaultType: 'textfield',
 							border: false,
 							defaults:{

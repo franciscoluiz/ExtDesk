@@ -57,46 +57,72 @@
 			if ($res["success"]){
 	
 				//check te action we need	
-				switch ($_GET["action"]) {
-					case "load_user":
-						// we get the languaje strings
-						$languaje =json_encode($this->lang["languaje"]);
-		
-						// send a ok signal
-						$json= '{	"success" : true, "login": true,';
+				$this->debug->log($_GET);
+				
+				switch ($_GET["Module"]) {
+					
+					case "Main" :
+								switch ($_GET["action"]) {
+									case "load_user":
+										// we get the languaje strings
+										$languaje =json_encode($this->lang["languaje"]);
 						
-						// we print user data
-						$json=$json.'"user" : [{'.$sec->print_user();
-						$json=$json.'"strings":'.$languaje.",";
-		
-						// we print the modules, we need change this part.... dirty way to test
-						/*$json=$json.'"modules"          : [
-						        {"js" : "Notepad", 			"name" : "Notepad",				"iconCls":"notepad-shortcut",		"module" : "notepad",		"shorcut":true, 	"qLaunch":true, 	"iconLaunch" :"icon-notepad"},
-						        {"js" : "AccordionWindow",	"name" : "Accordion Window",	"iconCls":"accordion-shortcut",		"module" : "acc-win",		"shorcut":true, 	"qLaunch":true, 	"iconLaunch" :"icon-accordion"},
-						        {"js" : "GridWindow",		"name" : "Grid Window",			"iconCls":"grid-shortcut",			"module" : "grid-win",  	"shorcut":true, 	"qLaunch":true, 	"iconLaunch" :"icon-grid"},
-						        {"js" : "SystemStatus",		"name" : "System Status",		"iconCls":"systemStatus-shortcut",	"module" : "systemstatus",	"shorcut":true, 	"qLaunch":true,		"iconLaunch" :"icon-systemStatus"},
-						        {"js" : "TabWindow",		"name" : "Tab Window",			"iconCls":"tab-shortcut",			"module" : "tab-win",  		"shorcut":true,		"qLaunch":false, 	"iconLaunch" :"icon-tab"},
-						        {"js" : "BogusModule",		"name" : "Bogus Module",		"iconCls":"bugus-shortcut",			"module" : "bogus-menu",  	"shorcut":false,	"qLaunch":false, 	"iconLaunch" :""},
-						        {"js" : "BogusMenuModule",	"name" : "Bogus Menu Module",	"iconCls":"bugus-shortcut",			"module" : "bogus-menu",  	"shorcut":false,	"qLaunch":false, 	"iconLaunch" :"icon-bugus"},
-						        {"js" : "Example",			"name" : "Example",				"iconCls":"example-shortcut",		"module" : "example-win",  	"shorcut":true, 	"qLaunch":true, 	"iconLaunch" :"icon-example"},
-						        					    ]
-							}
-							] }';
-						*/
-						//OutPut Json
+										// send a ok signal
+										$json= '{	"success" : true, "login": true,';
+										
+										// we print user data
+										$json=$json.'"user" : [{'.$sec->print_user();
+										$json=$json.'"strings":'.$languaje.",";
+										$modules= new modules;
+										$moduleStr=$modules->getUserModules();
+										$json=$json.'"modules": '.$moduleStr.' }  ]}';
+										echo $json;
+										break;
+								}//<--end case action
+								break;
+					default:
+								//first check the user permision
+								//this is a generic function
+								$modules= new modules;
+								$permision=$modules->checkPermision();
+								
+								//$this->debug->log(var_dump($permision));
+								if ($permision==1){
+									
+									switch ($_GET['Module']) {
+										case 'Settings':
+											switch ($_GET['option']) {
+												case 'Wallpaper': 
+															if ($_GET['action']="save"){
+																$isSet=$modules->saveWallpaper();
+																if (!$isSet){
+																	echo '{success:false, msg:"No se realizaron los cambios en el servidor"}';
+																}else{
+																	echo '{success:true, msg:"Guardado"}';
+																}	
+															}
+															
+															
+															break;
 												
-						$modules= new modules;
-						$moduleStr=$modules->getUserModules();
-						$json=$json.'"modules": '.$moduleStr.' }  ]}';
-						echo $json;
-						break;
-
-						
-					
-					case "other":
-						break;
-					
-				}//<--end case
+											}//<--end case option
+											
+											break;										
+										default:											
+											break;
+									}//<--end case Module
+																		
+								}else{
+									//you can in
+									
+									echo '{success:false, msg:"No tienes los permisos necesarios<br/><br/>Por favor conulta con tu administrador"}';
+									
+								}//end if permision
+									
+							break;
+					}//end case Module
+				
+			
 			}else {
 				// we are not logged
 				// just send de languaje strings...
