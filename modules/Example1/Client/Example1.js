@@ -12,14 +12,14 @@ This file may be used under the terms of the GNU General Public License version 
  * http://www.sencha.com/license
  */
 
-Ext.define('MyDesktop.Modules.Example.Client.Example', {			// 1.- Steep One define the name of the module
+Ext.define('MyDesktop.Modules.Example1.Client.Example1', {			// 1.- Steep One define the name of the module
     extend: 'Ext.ux.desktop.Module',
 
-    id:'example-win',												// 2.- Define the id of window of the module
+    id:'example1-win',												// 2.- Define the id of window of the module
 
     init : function(){
         this.launcher = {
-            text: 'Example Module',									// 3.- The name of the shortcut aka launcher
+            text: 'Example Module 1',								// 3.- The name of the shortcut aka launcher
             iconCls:'icon-example',									// 4.- Changes the icon of the module
             handler : this.createWindow,
             scope: this
@@ -28,11 +28,11 @@ Ext.define('MyDesktop.Modules.Example.Client.Example', {			// 1.- Steep One defi
 
     createWindow : function(){
         var desktop = this.app.getDesktop();
-        var win = desktop.getWindow('example-win');					// 5.- We obtain the id of win,
+        var win = desktop.getWindow('example1-win');				// 5.- We obtain the id of win,
         if(!win){
             win = desktop.createWindow({							
-                id: 'example-win',									// 6.- if the win don't exist, we create this
-                title:'Example Window',								// 7.- the title of win
+                id: 'example1-win',									// 6.- if the win don't exist, we create this
+                title:'Example Window 1',								// 7.- the title of win
                 width:300,											// 8.- the win's width
                 height:300,											// 9.- the win's height
                 iconCls: 'icon-example',							//10.- the win's icon
