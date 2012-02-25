@@ -57,7 +57,7 @@
 			if ($res["success"]){
 	
 				//check te action we need	
-				$this->debug->log($_GET);
+				//$this->debug->log($_GET);
 				
 				switch ($_GET["Module"]) {
 					
@@ -81,10 +81,13 @@
 								}//<--end case action
 								break;
 					default:
-								//first check the user permision
+								//first check the user permisión
 								//this is a generic function
 								$modules= new modules;
 								$permision=$modules->checkPermision();
+								
+								//KILL THIS FUCKING LINE IS JUST TO TEST
+								//$permision=1;
 								
 								//$this->debug->log(var_dump($permision));
 								if ($permision==1){
@@ -101,22 +104,42 @@
 																	echo '{success:true, msg:"Guardado"}';
 																}	
 															}
-															
-															
 															break;
-												
 											}//<--end case option
-											
 											break;										
-										default:											
+										default:
+											
+											// if we have access,
+											// 1.- Load the class, we create the path for you
+											// 2.- We inicialize the class for you
+											// 3.- We call the method for you...
+
+											$Module = $_GET["Module"];
+											$option = $_GET["option"];
+											$action = $_GET["action"];
+											$lower= strtolower($Module);
+											$Path="modules/$Module/Server/$Module.php";
+											
+											$initClass="$".$lower."= new $Module;";
+											$Function="$"."$lower->$option"."_$action();";
+											$this->load($Path,'configFile',true);
+											if ( class_exists($Module)){
+													eval($initClass);
+													$variable=$lower;													
+													$method=$option."_$action";
+													if (method_exists(($lower),$method)){
+														eval($Function);	
+													}else{
+														die('{"success" : false,msg:"The method does not exist."}');														
+													}
+											}else{
+												die('{"success" : true,msg:"saved"}');
+											}
 											break;
 									}//<--end case Module
-																		
 								}else{
 									//you can in
-									
 									echo '{success:false, msg:"No tienes los permisos necesarios<br/><br/>Por favor conulta con tu administrador"}';
-									
 								}//end if permision
 									
 							break;

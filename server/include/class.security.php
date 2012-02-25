@@ -141,8 +141,8 @@ class login extends Registration {
      */
     function CheckLogin(){
         
-        $stmt = $this->dbh->prepare("SELECT username, password, wallPaper, wpStretch,extrainfo1,extrainfo2,extrainfo3,active FROM users
-        WHERE username = :username AND password =  :password ");
+        $stmt = $this->dbh->prepare("SELECT P_id,username, password, wallPaper, wpStretch,extrainfo1,extrainfo2,extrainfo3,active FROM users
+        WHERE username = :username AND password =  :password and active=1");
         $stmt->bindParam(':username', $this->Username);
         $stmt->bindParam(':password', $this->Password);
         $stmt->execute();
@@ -152,13 +152,16 @@ class login extends Registration {
             $result=$stmt->fetch(PDO::FETCH_ASSOC);
         	//var_dump($result);
             //$_SESSION['username'] = $this->Username;
+			$_SESSION['ExtDeskSession']['id']=$result["P_id"];
 			$_SESSION['ExtDeskSession']['username']=$result["username"];            
 			$_SESSION['ExtDeskSession']['wallPaper']=$result["wallPaper"];
 			$_SESSION['ExtDeskSession']['wpStretch']=$result["wpStretch"];
 			$_SESSION['ExtDeskSession']['extrainfo1']=$result["extrainfo1"];
 			$_SESSION['ExtDeskSession']['extrainfo2']=$result["extrainfo2"];
 			$_SESSION['ExtDeskSession']['extrainfo3']=$result["extrainfo3"];
-			$_SESSION['ExtDeskSession']['active']=$result["active"];
+			$_SESSION['ExtDeskSession']['bactive']=$result["active"];
+
+			
         }
         else
         {

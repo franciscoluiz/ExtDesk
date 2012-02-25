@@ -1,0 +1,63 @@
+/*
+ * 12.- the shortcut image 
+ * */
+
+.admin-shortcut {
+    background-image: url(./images/admin_48x48.png);
+}
+
+.x-ie6 .admin-shortcut {
+    background-image: none;
+    filter: progid DXImageTransform.Microsoft.AlphaImageLoader(src='./images/admin_48x48.png', sizingMethod='scale');
+}
+/*
+ * 13.- the shortcut in start menu. 
+ */
+
+.icon-admin {
+    background-image:url(./images/admin_16x16.png) !important;
+}
+
+/*
+ * icons to panels 
+ */
+
+.icon-admin-users {
+    background-image:url(./images/admin_16x16.png) !important;
+}
+
+
+.icon-admin-users {
+    background-image:url(./images/system-users_16x16.png) !important;
+}
+
+.icon-admin-modules {
+    background-image:url(./images/modules_16x16.png) !important;
+}
+
+.icon-admin-actions {
+    background-image:url(./images/actions_16x16.png) !important;
+}
+
+.icon-admin-groups {
+    background-image:url(./images/groups_16x16.png) !important;
+}
+
+
+.icon-admin-add {
+    background-image:url(./images/add.gif) !important;
+}
+
+.icon-admin-delete {
+    background-image:url(./images/delete.gif) !important;
+}
+
+.icon-admin-save {
+    background-image:url(./images/save.gif) !important;
+}
+
+.icon-admin-refresh {
+    background-image:url(./images/refresh.gif) !important;
+}
+
+
