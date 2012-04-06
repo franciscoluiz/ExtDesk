@@ -28,9 +28,7 @@ Ext.define('MyDesktop.Settings', {
         'Ext.form.field.Checkbox',
         'Ext.layout.container.Anchor',
         'Ext.layout.container.Border',
-
         'Ext.ux.desktop.Wallpaper',
-
         'MyDesktop.WallpaperModel'
     ],
 
@@ -46,19 +44,28 @@ Ext.define('MyDesktop.Settings', {
         var me = this;
 		
         /**Languaje**/
-        this.lang["wallpaper"]			= userStore.strings().findRecord("alias","wallpaper").data.string;
-        this.lang["wallpaper_label"]	= userStore.strings().findRecord("alias","wallpaper_label").data.string;
-        this.lang["selectImage"]		= userStore.strings().findRecord("alias","selectImage").data.string;
-        this.lang["stretch"]			= userStore.strings().findRecord("alias","stretch").data.string;        
-        this.lang["preview"]			= userStore.strings().findRecord("alias","preview").data.string;        
-        this.lang["shortcut"]			= userStore.strings().findRecord("alias","shortcut").data.string;
-        this.lang["shortcut_label"]		= userStore.strings().findRecord("alias","shortcut_label").data.string;
-        this.lang["quicklaunch"]		= userStore.strings().findRecord("alias","quicklaunch").data.string;
-        this.lang["quicklaunch_label"]	= userStore.strings().findRecord("alias","quicklaunch_label").data.string;
+        this.lang["wallpaper"]			= userStore.strings().findRecord("alias","set_wallpaper").data.string;
+        this.lang["wallpaper_label"]	= userStore.strings().findRecord("alias","set_wallpaper_label").data.string;
+        this.lang["selectImage"]		= userStore.strings().findRecord("alias","set_selectImage").data.string;
+        this.lang["stretch"]			= userStore.strings().findRecord("alias","set_stretch").data.string;        
+        this.lang["preview"]			= userStore.strings().findRecord("alias","set_preview").data.string;        
+        this.lang["shortcut"]			= userStore.strings().findRecord("alias","set_shortcut").data.string;
+        this.lang["shortcut_label"]		= userStore.strings().findRecord("alias","set_shortcut_label").data.string;
+        this.lang["quicklaunch"]		= userStore.strings().findRecord("alias","set_quicklaunch").data.string;
+        this.lang["quicklaunch_label"]	= userStore.strings().findRecord("alias","set_quicklaunch_label").data.string;
         this.lang["settings"]			= userStore.strings().findRecord("alias","settings").data.string;
-		this.lang["themes"]				= userStore.strings().findRecord("alias","themes").data.string;
-		this.lang["themes_label"]		= userStore.strings().findRecord("alias","themes_label").data.string;
+		this.lang["themes"]				= userStore.strings().findRecord("alias","set_themes").data.string;
+		this.lang["themes_label"]		= userStore.strings().findRecord("alias","set_themes_label").data.string;
+		this.lang["selectTheme"]		= userStore.strings().findRecord("alias","set_selectTheme").data.string;
+		this.lang["none"]				= userStore.strings().findRecord("alias","set_none").data.string;		
+		
+		this.lang["save"]				= userStore.strings().findRecord("alias","common_save").data.string;
+        this.lang["cancel"]				= userStore.strings().findRecord("alias","common_cancel").data.string;
+
+		// FIXME: 01 HERE HERE
         
+        
+		
         
 		/**
 		* Define de top Menu :)
@@ -77,8 +84,8 @@ Ext.define('MyDesktop.Settings', {
 			model: 'Image',
 			data: [
 				{id : 'wallpaper', src:'resources/images/tango/preferences-desktop-wallpaper_48x48.png', 	title :this.lang["wallpaper"],	caption : this.lang["wallpaper_label"]},
-				{id : 'shortcut',  src:'resources/images/tango/preferences-desktop-shorcut_48x48.png',		title : this.lang["shortcut"],		caption : this.lang["shortcut_label"]},
-				{id : 'qLaunch', src:'resources/images/tango/preferences-desktop-quick-launch_48x48.png', 	title : this.lang["quicklaunch"],		caption : this.lang["quicklaunch_label"]},
+				{id : 'shortcut',  src:'resources/images/tango/preferences-desktop-shorcut_48x48.png',		title :this.lang["shortcut"],		caption : this.lang["shortcut_label"]},
+				{id : 'qLaunch', src:'resources/images/tango/preferences-desktop-quick-launch_48x48.png', 	title :this.lang["quicklaunch"],		caption : this.lang["quicklaunch_label"]},
 				{id : 'themes', src:'resources/images/tango/preferences-desktop-wallpaper_48x48.png', 		title :this.lang["themes"],	caption : this.lang["themes_label"]}
 				]
 		});
@@ -200,16 +207,14 @@ Ext.define('MyDesktop.Settings', {
                         items: [
                             '->',
                             {
-                                // FIXME : ExtDesk/Settings : Cambiar por una cadena literal.
-                                xtype: 'button',
-                                text: 'Guardar',
+                                xtype: 'button',                        
+                                text: this.lang["save"],
                                 handler: me.onOkWallpaper, 
                                 scope: me
                             },
                             {
-                                // FIXME : ExtDesk/Settings : Cambiar por una cadena literal.
                                 xtype: 'button',
-                                text: 'Cancelar',
+                                text: this.lang["cancel"],
                                 handler:me.close, 
                                 scope: me
                             }
@@ -235,10 +240,8 @@ Ext.define('MyDesktop.Settings', {
 		if (ts==undefined){
 			me.tabShortcutForm= Ext.create('Ext.form.Panel', {
 				id : 'preferTabShortcutsForm',
-				title : 'Shortcuts',
+				title : this.lang["shortcut"],
 				closable:true,
-				/*header:true*/	
-				
 				dockedItems: [
                     {
                         xtype: 'toolbar',
@@ -247,16 +250,14 @@ Ext.define('MyDesktop.Settings', {
                         items: [
                             '->',
                             {
-                                // FIXME : ExtDesk/Settings : Cambiar por una cadena literal.
                                 xtype: 'button',
-                                text: 'Guardar',
+                                text: this.lang['save'],
                                 handler: me.onOkShortCut, 
                                 scope: me
                             },
                             {
-                                // FIXME : ExtDesk/Settings : Cambiar por una cadena literal.
                                 xtype: 'button',
-                                text: 'Cancelar',
+                                text: this.lang['cancel'],
                                 handler:me.close, 
                                 scope: me
                             }
@@ -305,12 +306,11 @@ Ext.define('MyDesktop.Settings', {
 		me.userStore=userStore;
 		
 		if (tq==undefined){
-			me.tabQLaunchForm= Ext.create('Ext.form.Panel', {	//tabs 2
+			me.tabQLaunchForm= Ext.create('Ext.form.Panel', {
 				id : 'preferTabQuickLaunchForm',
-				title : 'QuickLaunch',
+				title : this.lang["quicklaunch"],
 				closable : true,
 				header:false,
-				//html: '<p>Panel to admin quickLaunch.</p>',
 				border:false,
 				dockedItems: [
                     {
@@ -320,16 +320,14 @@ Ext.define('MyDesktop.Settings', {
                         items: [
                             '->',
                             {
-                                // FIXME : ExtDesk/Settings : Cambiar por una cadena literal.
                                 xtype: 'button',
-                                text: 'Guardar',
+                                text: this.lang['save'],
                                 handler: me.onOkQuickLaunch, 
                                 scope: me
                             },
                             {
-                                // FIXME : ExtDesk/Settings : Cambiar por una cadena literal.
                                 xtype: 'button',
-                                text: 'Cancelar',
+                                text: this.lang['cancel'],
                                 handler:me.close, 
                                 scope: me
                             }
@@ -373,13 +371,11 @@ Ext.define('MyDesktop.Settings', {
 		
 		var me = this;
 
-		//old
-		//var selectTheme=Ext.getDom('idTheme').href.replace("http://127.0.0.1/extdesk/extjs/resources/css/ext-all-", "", "gi");
-		//new
-		var getPath = location.href.substring(0,location.href.lastIndexOf("/")+1);		
-		var selectTheme=Ext.getDom('idTheme').href.replace(getPath + "/extjs/resources/css/ext-all-", "", "gi");
+		var getPath = location.href.substring(0,location.href.lastIndexOf("/"));		
+		var selectTheme=Ext.getDom('idTheme').href.replace(getPath + "/extjs/resources/css/ext-all-", "", "");
+		selectTheme='resources/themes/'+selectTheme.replace(".css",".jpg");
 		
-        me.previewTheme = Ext.create('widget.wallpaper');
+		me.previewTheme = Ext.create('widget.wallpaper');
         me.previewTheme.setWallpaper(selectTheme);
         
         me.treeTheme = me.createTreeTheme();
@@ -389,9 +385,7 @@ Ext.define('MyDesktop.Settings', {
 			
 			me.tabTheme= Ext.create('Ext.Panel', {
 				id : 'preferTabTheme',
-				// FIXME : remplace for a lenguaje string...
-				//title: this.lang["wallpaper"],  
-				title: 'Temas',
+				title: this.lang["themes"],
 				closable : true,
 				header:false,
 				border:false,
@@ -421,16 +415,14 @@ Ext.define('MyDesktop.Settings', {
                         items: [
                             '->',
                             {
-                                // FIXME : ExtDesk/Settings : Cambiar por una cadena literal.
                                 xtype: 'button',
-                                text: 'Guardar',
+								text: this.lang['save'],				
                                 handler: me.onOkTheme, 
                                 scope: me
                             },
                             {
-                                // FIXME : ExtDesk/Settings : Cambiar por una cadena literal.
                                 xtype: 'button',
-                                text: 'Cancelar',
+								text: this.lang['cancel'],
                                 handler:me.close, 
                                 scope: me
                             }
@@ -476,10 +468,10 @@ Ext.define('MyDesktop.Settings', {
             store: new Ext.data.TreeStore({
                 model: 'MyDesktop.WallpaperModel',
                 root: {
-                    text:'Wallpaper',
+                    text:this.lang['wallpaper'],
                     expanded: true,
                     children:[
-                        { text: "None", iconCls: 'ico-None', leaf: true },
+                        { text: this.lang["none"], iconCls: 'ico-None', leaf: true },
                         child('Blue-Sencha.jpg'),
                         child('Dark-Sencha.jpg'),
                         child('Wood-Sencha.jpg'),
@@ -647,7 +639,7 @@ Ext.define('MyDesktop.Settings', {
        		// save the state of this shorcut...
 			module.set('qLaunch',true);
 		}   	
-		console.log(this);
+		//console.log(this);
 		// we need some more simple here
     	//myDesktopApp.init();
 		//myDesktopApp.desktop.app.init();
@@ -667,9 +659,7 @@ Ext.define('MyDesktop.Settings', {
         }
 
         var tree = new Ext.tree.Panel({
-            //
-            //title: this.lang['selectImage'],
-            title: 'Seleccione un tema',
+            title: this.lang["selectTheme"],
             rootVisible: false,
             lines: false,
             autoScroll: true,
@@ -710,7 +700,7 @@ Ext.define('MyDesktop.Settings', {
 		
 		//new
 		var getPath = location.href.substring(0,location.href.lastIndexOf("/")+1);
-		Ext.getDom('idTheme').href= getPath + "/extjs/resources/css/ext-all-"+text+".css";
+		Ext.getDom('idTheme').href= getPath + "extjs/resources/css/ext-all-"+text+".css";
 		
 		//me.destroy();
 		
@@ -729,8 +719,6 @@ Ext.define('MyDesktop.Settings', {
     },
    
     onSelectTheme : function (tree, record) {
-       //console.log(record.data.text.toLowerCase());
-       
         var me = this;
 
         if (record.data.img) {
@@ -739,9 +727,10 @@ Ext.define('MyDesktop.Settings', {
             me.selectedTheme = Ext.BLANK_IMAGE_URL;
         }
 
+        console.log(me.selectedTheme);
         me.previewTheme.setWallpaper(me.selectedTheme);
         
-    },
+    }
 
 
 });

@@ -40,9 +40,9 @@ Ext.define('MyDesktop.Modules.Admin.Client.Admin', {			// 1.- Steep One define t
     ],
 	
 	extend: 'Ext.ux.desktop.Module',
-
-    id:'admin-win',												// 2.- Define the id of window of the module
-
+    id:'admin-win',												// 2.- Define the id of window of the module/
+	lang:Array,
+    
     loadCss : function(filename){
 		file=filename+'.css';
 		var fileref=document.createElement("link");
@@ -55,6 +55,53 @@ Ext.define('MyDesktop.Modules.Admin.Client.Admin', {			// 1.- Steep One define t
     init : function(){
         var me = this;
         
+        //this.lang["wallpaper"]= userStore.strings().findRecord("alias","wallpaper").data.string;
+       	this.lang["menu"] 			= userStore.strings().findRecord("alias","admin_menu").data.string;
+       	this.lang["userCaption"] 	= userStore.strings().findRecord("alias","admin_userCaption").data.string;
+        this.lang["userLegend"] 	= userStore.strings().findRecord("alias","admin_userLegend").data.string;
+        this.lang["modulesCaption"] = userStore.strings().findRecord("alias","admin_modulesCaption").data.string;
+        this.lang["modulesLegend"]	= userStore.strings().findRecord("alias","admin_modulesLegend").data.string;
+        this.lang["groupsCaption"]  = userStore.strings().findRecord("alias","admin_groupsCaption").data.string;
+        this.lang["groupsLegend"]   = userStore.strings().findRecord("alias","admin_groupsLegend").data.string;
+
+		//this.lang[""]=userStore.strings().findRecord("alias","").data.string;
+		this.lang["add"]			= userStore.strings().findRecord("alias","common_add").data.string;
+		this.lang["delete"]			= userStore.strings().findRecord("alias","common_delete").data.string;
+		this.lang["save"]			= userStore.strings().findRecord("alias","common_save").data.string;
+		this.lang["refresh"]		= userStore.strings().findRecord("alias","common_refresh").data.string;
+		
+		this.lang["id"]				= userStore.strings().findRecord("alias","admin_id").data.string;
+		this.lang["user"]			= userStore.strings().findRecord("alias","admin_user").data.string;
+		this.lang["password"]		= userStore.strings().findRecord("alias","admin_password").data.string;
+		this.lang["email"]			= userStore.strings().findRecord("alias","admin_email").data.string;
+		this.lang["extrainfo1"]		= userStore.strings().findRecord("alias","admin_extrainfo1").data.string;
+		this.lang["extrainfo2"]		= userStore.strings().findRecord("alias","admin_extrainfo2").data.string;
+		this.lang["extrainfo3"]		= userStore.strings().findRecord("alias","admin_extrainfo3").data.string;
+		this.lang["active"]			= userStore.strings().findRecord("alias","admin_active").data.string;
+		
+		this.lang["groupsingle"]	= userStore.strings().findRecord("alias","admin_groupsingle").data.string;
+		this.lang["actions"]		= userStore.strings().findRecord("alias","admin_actions").data.string;
+		this.lang["modulesingle"]	= userStore.strings().findRecord("alias","admin_modulesingle").data.string;
+		this.lang["option"] 		= userStore.strings().findRecord("alias","admin_option").data.string;
+		this.lang["action"]			= userStore.strings().findRecord("alias","admin_action").data.string;
+		this.lang["description"]	= userStore.strings().findRecord("alias","admin_description").data.string;
+		this.lang["selected_mod"]	= userStore.strings().findRecord("alias","admin_selected_mods").data.string;
+		this.lang["selected_actions"]= userStore.strings().findRecord("alias","admin_selected_actions").data.string;
+		this.lang["parent"]= userStore.strings().findRecord("alias","admin_parent").data.string;
+		
+		this.lang["saving_data"] =	userStore.strings().findRecord("alias","common_saving_data").data.string;
+		this.lang["saving"] =		userStore.strings().findRecord("alias","common_saving_single").data.string;		
+		this.lang["server_error"] =	userStore.strings().findRecord("alias","common_server_error").data.string;
+		this.lang["deleting"] =		userStore.strings().findRecord("alias","common_deleting").data.string;
+		this.lang["delete_confirm_action"] = userStore.strings().findRecord("alias","admin_delete_confirm_action").data.string;
+		this.lang["delete_confirm_group"]  = userStore.strings().findRecord("alias","admin_delete_confirm_group").data.string;		
+		this.lang["delete_confirm_user"]   = userStore.strings().findRecord("alias","admin_delete_confirm_user").data.string;		
+		this.lang["delete_confirm_module"] = userStore.strings().findRecord("alias","admin_delete_confirm_module").data.string;		
+		this.lang["no_changes"]=		userStore.strings().findRecord("alias","common_no_changes").data.string;
+		
+		this.lang["delete_please_select"] =		userStore.strings().findRecord("alias","admin_delete_please_select").data.string;
+		
+		
         this.launcher = {
             text: 'Admin',											// 3.- The name of the shortcut aka launcher/
             iconCls:'icon-admin',									// 4.- Changes the icon of the module
@@ -180,10 +227,9 @@ Ext.define('MyDesktop.Modules.Admin.Client.Admin', {			// 1.- Steep One define t
 			id:'imagesStore',
 			model: 'ImageAdmin',
 			data: [
-				{id : 'option1ex', src:'modules/Admin/Client/Resources/images/system-users_48x48.png', 	title : "Usuarios",	caption : "Administra a los usuarios."},
-				{id : 'option1ex', src:'modules/Admin/Client/Resources/images/modules_48x48.png', 	title : "Modules",	caption : "Administra los modulos."},
-				//{id : 'option1ex', src:'modules/Admin/Client/Resources/images/actions_48x48.png', 	title : "Acciones",	caption : "Administra las acciones."},
-				{id : 'option1ex', src:'modules/Admin/Client/Resources/images/groups_48x48.png', 	title : "Grupos",	caption : "Administra los grupos."}
+				{id : 'option1ex', src:'modules/Admin/Client/Resources/images/system-users_48x48.png', 	title : this.lang["userCaption"] ,	caption : this.lang["userLegend"] },
+				{id : 'option1ex', src:'modules/Admin/Client/Resources/images/modules_48x48.png', 	title : this.lang["modulesCaption"],	caption : this.lang["modulesLegend"]},
+				{id : 'option1ex', src:'modules/Admin/Client/Resources/images/groups_48x48.png', 	title : this.lang["groupsCaption"],	caption : this.lang["groupsLegend"]}
 				]
 		});
 
@@ -379,7 +425,7 @@ Ext.define('MyDesktop.Modules.Admin.Client.Admin', {			// 1.- Steep One define t
 					items :[		
 						{				
 							id : 'adminTab0',
-							title: "Menu",
+							title: this.lang["menu"],
 							header:false,
 							border:false,
 							layout:'anchor',
@@ -426,7 +472,8 @@ Ext.define('MyDesktop.Modules.Admin.Client.Admin', {			// 1.- Steep One define t
 		//Obtain the store
 		var store = grid.getStore();
 		//Create a cool mask    	
-    	Ext.MessageBox.show({msg: 'Saving your data, please wait...',progressText: 'Saving...',	width:300,wait:true,waitConfig: {interval:50},modal:true});    			
+    	    	    	
+    	Ext.MessageBox.show({msg: this.lang["saving_data"],progressText: this.lang["saving"],	width:300,wait:true,waitConfig: {interval:50},modal:true});    			
 		//Obtain modified and updates record..!!;		
 		var modified = store.getNewRecords();
 		var updates = store.getUpdatedRecords();		
@@ -467,11 +514,11 @@ Ext.define('MyDesktop.Modules.Admin.Client.Admin', {			// 1.- Steep One define t
 				        	}
 				        	
 				        }else{
-				        	Ext.Msg.alert(module, 'Exist an error in th server : <b>'+resp.msg+'</b>')
+				        	Ext.Msg.alert(module, this.lang["server_error"]+'<b>'+resp.msg+'</b>')
 				        }			       		
 			       	}else{
 					    Ext.MessageBox.hide();
-					    Ext.Msg.alert(module, 'Exist an error in th server<br/>')
+					    Ext.Msg.alert(module, this.lang["server_error"])
 			       	}		        
 			        			        
 			    }
@@ -479,7 +526,7 @@ Ext.define('MyDesktop.Modules.Admin.Client.Admin', {			// 1.- Steep One define t
 			
 		}else{
 			Ext.MessageBox.hide();
-			Ext.Msg.alert(module, 'Not Changes to save');			
+			Ext.Msg.alert(module, this.lang["no_changes"]);			
 		}
     	
     },
@@ -508,7 +555,7 @@ Ext.define('MyDesktop.Modules.Admin.Client.Admin', {			// 1.- Steep One define t
 		//if we have a selectión active
     	if (selection) {
     		//Create a cool mask
-    		Ext.MessageBox.show({msg: 'Saving your data, please wait...',progressText: 'Saving...',	width:300,wait:true,waitConfig: {interval:50}});
+    		Ext.MessageBox.show({msg: this.lang["saving_data"],progressText: this.lang["saving"],	width:300,wait:true,waitConfig: {interval:50}});
 			//send the id to the server to kill
 			Ext.Ajax.request({
 			    url: url,
@@ -527,14 +574,14 @@ Ext.define('MyDesktop.Modules.Admin.Client.Admin', {			// 1.- Steep One define t
 			        	grid.getStore().remove(selection)	
 			        }else{
 			        	Ext.MessageBox.hide();
-			        	Ext.Msg.alert(module, 'Exist an error in th server :<b>'+resp.msg+'</b>')
+			        	Ext.Msg.alert(module, this.lang["server_error"]+'<b>'+resp.msg+'</b>')
 			        }
 			        		        
 			    }
 			});
         }else{
         	Ext.MessageBox.hide();
-        	Ext.Msg.alert(module, 'You must select a item to delete.')        	
+        	Ext.Msg.alert(module, this.lang["delete_please_select"])        	
         }
     	
     },
@@ -550,7 +597,7 @@ Ext.define('MyDesktop.Modules.Admin.Client.Admin', {			// 1.- Steep One define t
 		    });
 			me.tab1= Ext.create('Ext.Panel', {
 					id : 'adminTab1',
-					title : 'Usuarios',
+					title : this.lang["userCaption"],
 					iconCls:'icon-admin-users',
 					closable:true,
 					layout: 'border',
@@ -566,14 +613,14 @@ Ext.define('MyDesktop.Modules.Admin.Client.Admin', {			// 1.- Steep One define t
                                 {
                                     xtype : 'numbercolumn',
                                     dataIndex : 'id',
-                                    text : 'Id',
+                                    text : this.lang["id"],
                                     width : 40,
                                     hidden:true
                                 },
                                 {
                                     xtype : 'gridcolumn',
                                     dataIndex : 'username',
-                                    text : 'User',
+                                    text : this.lang["user"],
                                     width : 75,
                                     field: {
 										xtype: 'textfield',
@@ -583,7 +630,7 @@ Ext.define('MyDesktop.Modules.Admin.Client.Admin', {			// 1.- Steep One define t
                                 {
                                     xtype: 'gridcolumn',
                                     dataIndex: 'password',
-                                    text: 'Password',
+                                    text: this.lang["password"],
                                     width : 75,
                                     field: {
 										xtype: 'textfield',
@@ -593,7 +640,7 @@ Ext.define('MyDesktop.Modules.Admin.Client.Admin', {			// 1.- Steep One define t
                                 {
                                     xtype: 'gridcolumn',
                                     dataIndex: 'email',
-                                    text: 'Email',
+                                    text: this.lang["email"],
 									width : 140,
 									field: {
 										xtype: 'textfield',
@@ -605,7 +652,7 @@ Ext.define('MyDesktop.Modules.Admin.Client.Admin', {			// 1.- Steep One define t
                                 {
                                     xtype: 'gridcolumn',
                                     dataIndex: 'extrainfo1',
-                                    text: 'Extra Info1',
+                                    text: this.lang['extrainfo1'],
                                     width : 80,
 									hidden:true,
                                     field: {
@@ -616,7 +663,7 @@ Ext.define('MyDesktop.Modules.Admin.Client.Admin', {			// 1.- Steep One define t
                                 {
                                     xtype: 'gridcolumn',
                                     dataIndex: 'extrainfo2',
-                                    text: 'Extra Info 2',
+                                    text: this.lang['extrainfo2'],
                                     width : 80,
 									hidden:true,                                    
                                     field: {
@@ -627,7 +674,7 @@ Ext.define('MyDesktop.Modules.Admin.Client.Admin', {			// 1.- Steep One define t
                                 {
                                     xtype: 'gridcolumn',
                                     dataIndex: 'extrainfo3',
-                                    text: 'Extra Info3',
+                                    text: this.lang['extrainfo3'],
 									hidden:true,                                    
                                     width : 80,
                                     field: {
@@ -639,7 +686,7 @@ Ext.define('MyDesktop.Modules.Admin.Client.Admin', {			// 1.- Steep One define t
                                     xtype: 'checkcolumn',
                                     width: 50,
                                     dataIndex: 'active',
-                                    text: 'Active',
+                                    text: this.lang['active'],
                                     editor: {
                 									xtype: 'checkbox',
                 									cls: 'x-grid-checkheader-editor'
@@ -653,45 +700,34 @@ Ext.define('MyDesktop.Modules.Admin.Client.Admin', {			// 1.- Steep One define t
                                     items: [
                                         {
                                             xtype : 'button',
-                                            text : 'Add',
+                                            text : this.lang["add"],
                                             iconCls:'icon-admin-add',
                                             handler: me.addUser,
                                             scope:this                                            
                                         },
                                         {
                                             xtype : 'button',
-                                            text : 'Delete',
+                                            text : this.lang["delete"],
                                             iconCls:'icon-admin-delete',
                                             handler: me.deleteUser,
                                             scope : this
                                         },
                                         {
                                             xtype : 'button',
-                                            text : 'Save',
+                                            text : this.lang["save"],
                                             iconCls:'icon-admin-save',
                                             handler : me.saveUsers,
                                             scope : this
                                         },
                                         {
                                             xtype: 'button',
-                                            text: 'Update',
+                                            text: this.lang["refresh"],
                                             iconCls:'icon-admin-refresh',
                                             handler : me.updateUsers,
                                             scope : this
                                         }
                                     ]
-                                }/*,
-                                {
-                                    xtype: 'toolbar',
-                                    dock: 'bottom',
-                                    items: [
-                                        {
-                                            xtype: 'button',
-                                            text: 'Add'
-                                        }
-									]
                                 }
-                                */
                             ]
                         },
                         {
@@ -699,7 +735,7 @@ Ext.define('MyDesktop.Modules.Admin.Client.Admin', {			// 1.- Steep One define t
 		                    id: 'idPanelGropusinUser',
 		                    collapsed: true,
 		                    collapsible: true,
-		                    title: 'Groups',
+		                    title: this.lang["groupsCaption"],
 		                    iconCls : 'icon-admin-groups',
 		                    layout:'fit',
 		                    width:'250',
@@ -714,28 +750,28 @@ Ext.define('MyDesktop.Modules.Admin.Client.Admin', {			// 1.- Steep One define t
 											{
 		                    					xtype : 'numbercolumn',
 		                    					dataIndex : 'id',
-		                    					text : 'Id',
+		                    					text : this.lang['id'],
 		                    					width : 40,
 		                    					hidden:true
 		                    				},
 		                    				{
 		                    					xtype : 'numbercolumn',
 		                    					dataIndex : 'user',
-		                    					text : 'User',
+		                    					text : this.lang['user'],
 		                    					width : 40,
 		                    					hidden:true
 		                    				},
 		                    				{
 			                                    xtype : 'gridcolumn',
 			                                    dataIndex : 'group',
-			                                    text : 'Group	',
+			                                    text : this.lang['groupsingle'],
 			                                    width : 130
 		                                    },
 		                                    {
 		                        				id :'adminCheckModulesinGroups',
 		                        				xtype: 'checkcolumn',
 			                                    dataIndex : 'selected',
-			                                    text : 'Active',
+			                                    text : this.lang['active'],
 			                                    width : 40,
 			                                    editor: {
 		    										xtype: 'checkbox',
@@ -801,9 +837,10 @@ Ext.define('MyDesktop.Modules.Admin.Client.Admin', {			// 1.- Steep One define t
     
     deleteUser : function(){
     	var me=this;
-    	Ext.Msg.show({
-     		title :'Deleting user?',
-     		msg : 'Are you sure do you wan delete this user?',
+	
+	   	Ext.Msg.show({
+     		title : this.lang["deleting"],
+     		msg : this.lang["delete_confirm_user"],
      		buttons : Ext.Msg.YESNOCANCEL,
      		icon : Ext.Msg.QUESTION,
      		fn : function(btn, text){
@@ -848,14 +885,13 @@ Ext.define('MyDesktop.Modules.Admin.Client.Admin', {			// 1.- Steep One define t
 		    
 			me.tab2= Ext.create('Ext.Panel', {
 					id : 'adminTab2',
-					title : 'Modules',
+					title : this.lang["modulesCaption"],
 					iconCls : 'icon-admin-modules',
 					closable : true,
 					layout : 'border',
 					items: [
                         {
                     		xtype: 'panel',
-                    		title: 'Modulos',
                     		iconCls : 'icon-admin-modules',
                     		region: 'center',
 	                        layout:'fit',
@@ -876,7 +912,7 @@ Ext.define('MyDesktop.Modules.Admin.Client.Admin', {			// 1.- Steep One define t
 		                                {
 		                                    xtype : 'gridcolumn',
 		                                    dataIndex : 'js',
-		                                    text : 'Javascript',
+											text : 'Javascript',
 		                                    width : 85,
 		                                    field: {
 												xtype: 'textfield',
@@ -932,28 +968,28 @@ Ext.define('MyDesktop.Modules.Admin.Client.Admin', {			// 1.- Steep One define t
 		                                    items: [
 		                                        {
 		                                            xtype : 'button',
-		                                            text : 'Add',
+		                                            text : this.lang["add"],//'Add',
 		                                            iconCls:'icon-admin-add',
 		                                            handler: me.addModules,
 		                                            scope:this                                            
 		                                        },
 		                                        {
 		                                            xtype : 'button',
-		                                            text : 'Delete',
+		                                            text : this.lang["delete"],//'Delete',
 		                                            iconCls:'icon-admin-delete',
 		                                            handler: me.deleteModule,
 		                                            scope : this
 		                                        },
 		                                        {
 		                                            xtype : 'button',
-		                                            text : 'Save',
+		                                            text : this.lang["save"],//'Save',
 		                                            iconCls:'icon-admin-save',
 		                                            handler : me.saveModules,
 		                                            scope : this
 		                                        },
 		                                        {
 		                                            xtype: 'button',
-		                                            text: 'Update',
+		                                            text: this.lang["refresh"],//'Update',
 		                                            iconCls:'icon-admin-refresh',
 		                                            handler : me.updateModules,
 		                                            scope : this
@@ -970,7 +1006,7 @@ Ext.define('MyDesktop.Modules.Admin.Client.Admin', {			// 1.- Steep One define t
 		                    id: 'idPanelActions',
 		                    collapsed: true,
 		                    collapsible: true,
-		                    title: 'Acciones',
+		                    title: this.lang["actions"],//'Acciones',
 		                    iconCls : 'icon-admin-actions',
 		                    layout:'fit',
 		                    width:'300',
@@ -986,19 +1022,19 @@ Ext.define('MyDesktop.Modules.Admin.Client.Admin', {			// 1.- Steep One define t
 		                                {
 		                                    xtype : 'numbercolumn',
 		                                    dataIndex : 'id',
-		                                    text : 'Id',
+		                                    text : this.lang["id"],
 		                                    width : 40
 		                                },
 		                                {
 		                                    xtype : 'gridcolumn',
 		                                    dataIndex : 'module',
-		                                    text : 'Module',
+		                                    text : this.lang["modulesingle"],
 		                                    width : 85		                                    
 		                                },
 		                                {
 		                                    xtype : 'gridcolumn',
 		                                    dataIndex : 'option',
-		                                    text : 'Option',
+		                                    text : this.lang["option"],
 		                                    width : 85,
 		                                    field: {
 												xtype: 'textfield',
@@ -1008,7 +1044,7 @@ Ext.define('MyDesktop.Modules.Admin.Client.Admin', {			// 1.- Steep One define t
    		                                {
 		                                    xtype : 'gridcolumn',
 		                                    dataIndex : 'action',
-		                                    text : 'Action',
+		                                    text : this.lang["action"],
 		                                    width : 85,
 		                                    field: {
 												xtype: 'textfield',
@@ -1025,28 +1061,28 @@ Ext.define('MyDesktop.Modules.Admin.Client.Admin', {			// 1.- Steep One define t
 		                                    items: [
 		                                        {
 		                                            xtype : 'button',
-		                                            text : 'Add',
+		                                            text : this.lang['add'],
 		                                            iconCls:'icon-admin-add',
 		                                            handler: me.addActions,
 		                                            scope:this                                            
 		                                        },
 		                                        {
 		                                            xtype : 'button',
-		                                            text : 'Delete',
+		                                            text : this.lang['delete'],
 		                                            iconCls:'icon-admin-delete',
 		                                            handler: me.deleteActions,
 		                                            scope : this
 		                                        },
 		                                        {
 		                                            xtype : 'button',
-		                                            text : 'Save',
+		                                            text : this.lang['save'],
 		                                            iconCls:'icon-admin-save',
 		                                            handler : me.saveActions,
 		                                            scope : this
 		                                        },
 		                                        {
 		                                            xtype: 'button',
-		                                            text: 'Update',
+		                                            text: this.lang['refresh'],
 		                                            iconCls:'icon-admin-refresh',
 		                                            handler : me.updateActions,
 		                                            scope : this
@@ -1101,8 +1137,8 @@ Ext.define('MyDesktop.Modules.Admin.Client.Admin', {			// 1.- Steep One define t
     deleteModule:function(){
        	var me=this;
     	Ext.Msg.show({
-     		title :'Deleting Module?',
-     		msg : 'Are you sure do you wan delete this module?',
+     		title : this.lang["deleting"],
+     		msg : this.lang["delete_confirm_module"],
      		buttons : Ext.Msg.YESNO,
      		icon : Ext.Msg.QUESTION,
      		fn : function(btn, text){
@@ -1154,8 +1190,8 @@ Ext.define('MyDesktop.Modules.Admin.Client.Admin', {			// 1.- Steep One define t
     deleteActions:function(){
       	var me=this;
     	Ext.Msg.show({
-     		title :'Deleting this Action?',
-     		msg : 'Are you sure do you wan delete this action?',
+     		title :this.lang["deleting"],
+     		msg : this.lang["delete_confirm_action"],
      		buttons : Ext.Msg.YESNO,
      		icon : Ext.Msg.QUESTION,
      		fn : function(btn, text){
@@ -1178,7 +1214,7 @@ Ext.define('MyDesktop.Modules.Admin.Client.Admin', {			// 1.- Steep One define t
 		    });			
 			me.tab3= Ext.create('Ext.Panel', {
 					id : 'adminTab3',
-					title : 'Grupos',
+					title : this.lang['groupsCaption'],
 					iconCls:'icon-admin-groups',
 					closable:true,
 					layout:'border',
@@ -1197,13 +1233,13 @@ Ext.define('MyDesktop.Modules.Admin.Client.Admin', {			// 1.- Steep One define t
 				                            	{
                                 					xtype : 'numbercolumn',
                                 					dataIndex : 'id',
-                                					text : 'Id',
+                                					text : this.lang['id'],
                                 					width : 40
                                 				},
                                 				{
 				                                    xtype : 'gridcolumn',
 				                                    dataIndex : 'group',
-				                                    text : 'Group',
+				                                    text : this.lang['groupsingle'],
 				                                    width : 130,
 				                                    field: {
 														xtype: 'textfield',
@@ -1213,7 +1249,7 @@ Ext.define('MyDesktop.Modules.Admin.Client.Admin', {			// 1.- Steep One define t
 			                                    {
 			                                    	xtype : 'gridcolumn',
 				                                    dataIndex : 'description',
-				                                    text : 'Description',
+				                                    text : this.lang['description'],
 				                                    width : 300,
 				                                    field: {
 														xtype: 'textfield',
@@ -1223,7 +1259,7 @@ Ext.define('MyDesktop.Modules.Admin.Client.Admin', {			// 1.- Steep One define t
 			                                    {
                                     				xtype: 'checkcolumn',
 				                                    dataIndex : 'active',
-				                                    text : 'Active',
+				                                    text : this.lang['active'],
 				                                    width : 40,
 				                                    editor: {
                 										xtype: 'checkbox',
@@ -1239,14 +1275,14 @@ Ext.define('MyDesktop.Modules.Admin.Client.Admin', {			// 1.- Steep One define t
 		                                    items: [
 		                                        {
 		                                            xtype: 'button',
-		                                            text: 'Add',
+		                                            text: this.lang['add'],
 		                                            iconCls:'icon-admin-add',
 		                                            handler: me.addGroups,
 		                                            scope:this                                            
 		                                          },
 		                                        {
 		                                            xtype: 'button',
-		                                            text: 'Delete',
+		                                            text: this.lang['delete'],
 		                                            iconCls:'icon-admin-delete',
 		                                            handler: me.deleteGroups,
 		                                            scope:this                     
@@ -1254,14 +1290,14 @@ Ext.define('MyDesktop.Modules.Admin.Client.Admin', {			// 1.- Steep One define t
 												},
 		                                        {
 		                                            xtype: 'button',
-		                                            text: 'Save',
+		                                            text: this.lang['save'],
 		                                            iconCls:'icon-admin-save',
 		                                            handler: me.saveGroups,
 		                                            scope:this                                            
 		                                        },
 		                                        {
 		                                            xtype: 'button',
-		                                            text: 'Update',
+		                                            text: this.lang['refresh'],
 		                                            iconCls:'icon-admin-refresh',
 		                                            handler: me.updateGroups,
 		                                            scope:this                                            
@@ -1287,7 +1323,7 @@ Ext.define('MyDesktop.Modules.Admin.Client.Admin', {			// 1.- Steep One define t
 								{	
 									xtype:'panel',
 									region:'west',
-									title:'Modulos Seleccionadoss',
+									title:this.lang['selected_mod'],
 									width:300,
 									autoScroll:true,
 									items:[
@@ -1300,28 +1336,28 @@ Ext.define('MyDesktop.Modules.Admin.Client.Admin', {			// 1.- Steep One define t
 			                            	{
 		                    					xtype : 'numbercolumn',
 		                    					dataIndex : 'parent',
-		                    					text : 'Parent',
+		                    					text : this.lang['parent'],
 		                    					width : 40,
 		                    					hidden:true
 		                    				},			                            
 			                            	{
 		                    					xtype : 'numbercolumn',
 		                    					dataIndex : 'id',
-		                    					text : 'Id',
+		                    					text : this.lang['id'],
 		                    					width : 40,
 		                    					hidden:true
 		                    				},
 		                    				{
 			                                    xtype : 'gridcolumn',
 			                                    dataIndex : 'js',
-			                                    text : 'Module',
+		                    					text : this.lang['modulesingle'],
 			                                    width : 130
 		                                    },
 		                                    {
 		                        				id :'adminCheckModulesinGroups',
 		                        				xtype: 'checkcolumn',
 			                                    dataIndex : 'selected',
-			                                    text : 'Active',
+		                    					text : this.lang['active'],
 			                                    width : 40,
 			                                    editor: {
 		    										xtype: 'checkbox',
@@ -1331,28 +1367,11 @@ Ext.define('MyDesktop.Modules.Admin.Client.Admin', {			// 1.- Steep One define t
 										]
 										}
 									]
-									/* Now we have autosave, cool..!;
-									 * dockedItems: [
-		                                {
-		                                    xtype: 'toolbar',
-		                                    dock: 'top',
-		                                    items: [
-		                                        {
-		                                            xtype: 'button',
-		                                            text: 'Save',
-		                                            iconCls:'icon-admin-save',
-		                                            handler: me.saveModulesinGroup,
-		                                            scope:this                                            
-		                                          }
-                                          	]
-		                                }
-	                                ]*/
-
 								},
 								{	
 									xtype:'panel',
 									region:'center',
-									title:'Actions',
+									title:this.lang['selected_actions'],
 									layout:'fit',
 									height:400,
 									items :[
@@ -1365,34 +1384,34 @@ Ext.define('MyDesktop.Modules.Admin.Client.Admin', {			// 1.- Steep One define t
 												{
 			                    					xtype : 'numbercolumn',
 			                    					dataIndex : 'parent',
-			                    					text : 'Parent',
+		                    						text : this.lang['parent'],
 			                    					width : 40,
 			                    					hidden:true
 			                    				},			                            
 				                            	{
 			                    					xtype : 'numbercolumn',
 			                    					dataIndex : 'id',
-			                    					text : 'Id',
+		                    						text : this.lang['id'],
 			                    					width : 40,
 			                    					hidden:true
 			                    				},
 			                    				{
 				                                    xtype : 'gridcolumn',
 				                                    dataIndex : 'opt',
-				                                    text : 'Option',
+		                    						text : this.lang['option'],
 				                                    width : 130
 			                                    },
 			                    				{
 				                                    xtype : 'gridcolumn',
 				                                    dataIndex : 'action',
-				                                    text : 'Action',
+		                    						text : this.lang['action'],
 				                                    width : 130
 			                                    },
 			                                    {
 			                        				id:'adminCheckActionsinGroups',
 			                        				xtype: 'checkcolumn',
 				                                    dataIndex : 'selected',
-				                                    text : 'Active',
+		                    						text : this.lang['active'],
 				                                    width : 40,
 				                                    editor: {
 			    										xtype: 'checkbox',
@@ -1402,23 +1421,7 @@ Ext.define('MyDesktop.Modules.Admin.Client.Admin', {			// 1.- Steep One define t
 												
 											]
 										}
-									]/*,
-									Now we have autosave
-									dockedItems: [
-		                                {
-		                                    xtype: 'toolbar',
-		                                    dock: 'top',
-		                                    items: [
-		                                        {
-		                                            xtype: 'button',
-		                                            text: 'Save',
-		                                            iconCls:'icon-admin-save',
-		                                            handler: me.saveActionsinGroup,
-		                                            scope:this                                            
-		                                          }
-                                          	]
-		                                }
-	                                ]*/
+									]
 								}
                             ]
 		                }
@@ -1471,8 +1474,8 @@ Ext.define('MyDesktop.Modules.Admin.Client.Admin', {			// 1.- Steep One define t
     deleteGroups : function(opt){
     	var me=this;
     	Ext.Msg.show({
-     		title :'Deleting this Action?',
-     		msg : 'Are you sure do you wan delete this group?',
+     		title :this.lang["deleting"],
+     		msg : this.lang["delete_confirm_group"],
      		buttons : Ext.Msg.YESNO,
      		icon : Ext.Msg.QUESTION,
      		fn : function(btn, text){
@@ -1485,7 +1488,7 @@ Ext.define('MyDesktop.Modules.Admin.Client.Admin', {			// 1.- Steep One define t
     	
     },
     
-    //*** Modules in Groups ***/
+    /*** Modules in Groups ***/
     
     updateModulesinGroup : function(opt){
     	

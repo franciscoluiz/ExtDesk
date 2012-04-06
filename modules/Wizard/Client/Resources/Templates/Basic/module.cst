@@ -1,0 +1,20 @@
+/*
+ * 12.- the shortcut image 
+ * */
+
+.<!-ICON-!>{
+    background-image: url(./images/<!-IMG48-!>);
+}
+
+.x-ie6 .<!-ICON-!>{
+    background-image: none;
+    filter: progid DXImageTransform.Microsoft.AlphaImageLoader(src='./images/<!-IMG48-!>', sizingMethod='scale');
+}
+/*
+ * 13.- the shortcut in start menu. 
+ */
+
+.<!-ICONLAUNCH-!>{
+    background-image:url(./images/<!-IMG16-!>) !important;
+}
+

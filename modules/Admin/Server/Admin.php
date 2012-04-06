@@ -1,7 +1,5 @@
 <?php
-
 	class Admin{
-		
 		/*
 		 * Simple conection with de database
 		 */
@@ -269,34 +267,52 @@
 			$post=json_decode($_GET["jsonp"]);
 	   		$count_saved=0;
 			foreach ($post as $key) {
-				//var_dump($key);
+
+				$adminGroup=FALSE;
+					
 				$vg = $key->parent;
 				$vm = $key->id;
-				$iduser = $_SESSION['ExtDeskSession']['id'];
-
-				if ($key->selected){
-					$query="
-						INSERT INTO groups_modules( idgroups, idmodules)
-						SELECT $vg,$vm
-						FROM dual
-						WHERE NOT EXISTS (SELECT idgroups,idmodules FROM groups_modules WHERE idgroups = $vg and idModules=$vm)
-					";					
-				}else{
-					$query="
-						Delete from groups_modules
-						where idgroups=$vg and idModules=$vm
-					";
-				}
-				$this->query=$this->dbh->prepare($query);
-				if ($this->dbh->query($query)) {
-		    		$count_saved++;
-		    	}
+			
+				if($vg!=1){
+			
+					$iduser = $_SESSION['ExtDeskSession']['id'];
+	
+					if ($key->selected){
+						$query="
+							INSERT INTO groups_modules( idgroups, idmodules)
+							SELECT $vg,$vm
+							FROM dual
+							WHERE NOT EXISTS (SELECT idgroups,idmodules FROM groups_modules WHERE idgroups = $vg and idModules=$vm)
+						";					
+					}else{
+						$query="
+							Delete from groups_modules
+							where idgroups=$vg and idModules=$vm
+						";
+					}
+					$this->query=$this->dbh->prepare($query);
+					if ($this->dbh->query($query)) {
+			    		$count_saved++;
+			    	}
+			   }else{
+			   		$adminGroup=TRUE;				
+			   }
 			}
 			if ($count_saved!=0){
 				echo '{"success" : true,msg:"Saved  '.$count_saved.'."}';	
 			}else{
-				$lastError=(implode(",",$this->dbh->errorInfo()));	
-				echo '{"success" : false,msg:"No data was saved, mysql says : <i>\''.$lastError.'\'</i>"}';
+				
+				if($adminGroup){
+					$lastError=(implode(",",$this->dbh->errorInfo()));	
+					echo '{"success" : false,msg:"The Default Group can\'t be changed."}';
+					
+				}else{
+					$lastError=(implode(",",$this->dbh->errorInfo()));	
+					echo '{"success" : false,msg:"No data was saved, mysql says : <i>\''.$lastError.'\'</i>"}';
+					
+				}
+					
+				
 			}			
 
 		}
@@ -335,35 +351,49 @@
 			$post=json_decode($_GET["jsonp"]);
 	   		$count_saved=0;
 			
+			$adminGroup=FALSE;
+			
 			foreach ($post as $key) {
 				//var_dump($key);
 				$vg=$key->parent;
 				$vm=$key->id;
 
-				if ($key->selected){
-					
-					$query="
-						INSERT INTO groups_actions (idgroups,idactions)
-						SELECT $vg,$vm
-						FROM dual
-						WHERE NOT EXISTS (SELECT idgroups,idactions FROM groups_actions WHERE idgroups = $vg and idactions=$vm)
-					";					
-				}else{
-					$query="
-						Delete from groups_actions
-						where idgroups=$vg and idactions=$vm
-					";										
-				}
-				$this->query=$this->dbh->prepare($query);
-				if ($this->dbh->query($query)) {
-		    		$count_saved++;
+				if($vg!=1){
+					if ($key->selected){
+						
+						$query="
+							INSERT INTO groups_actions (idgroups,idactions)
+							SELECT $vg,$vm
+							FROM dual
+							WHERE NOT EXISTS (SELECT idgroups,idactions FROM groups_actions WHERE idgroups = $vg and idactions=$vm)
+						";					
+					}else{
+						$query="
+							Delete from groups_actions
+							where idgroups=$vg and idactions=$vm
+						";										
+					}
+					$this->query=$this->dbh->prepare($query);
+					if ($this->dbh->query($query)) {
+			    		$count_saved++;
+			    	}
+		    	}else{
+		    		$adminGroup=TRUE;
 		    	}
 			}
 			if ($count_saved!=0){
 				echo '{"success" : true,msg:"Saved  '.$count_saved.'."}';	
 			}else{
-				$lastError=(implode(",",$this->dbh->errorInfo()));	
-				echo '{"success" : false,msg:"No data was saved, mysql says : <i>\''.$lastError.'\'</i>"}';
+				
+				if($adminGroup){
+					echo '{"success" : false,msg:"Default Group, can\'t be changed."}';
+					
+				}else{
+					$lastError=(implode(",",$this->dbh->errorInfo()));	
+					echo '{"success" : false,msg:"No data was saved, mysql says : <i>\''.$lastError.'\'</i>"}';
+				}
+				
+				
 			}			
 		}
 
@@ -390,38 +420,49 @@
 		function GroupsinUser_Save(){
 			$post=json_decode($_GET["jsonp"]);
 	   		$count_saved=0;
-			
+
+			$adminUser=false;
+						
 			foreach ($post as $key) {
 				//var_dump($key);
 				$vg=$key->user;
 				$vm=$key->id;
 
-				if ($key->selected){
-					
-					$query="
-						INSERT INTO user_groups (iduser,idgroup)
-						SELECT $vg,$vm
-						FROM dual
-						WHERE NOT EXISTS (SELECT iduser,idgroup FROM user_groups WHERE iduser = $vg and idgroup=$vm)
-					";
-					$this->addPreferences($vg,$vm);				
+				if ($vg!=1){
+					if ($key->selected){
+						
+						$query="
+							INSERT INTO user_groups (iduser,idgroup)
+							SELECT $vg,$vm
+							FROM dual
+							WHERE NOT EXISTS (SELECT iduser,idgroup FROM user_groups WHERE iduser = $vg and idgroup=$vm)
+						";
+						$this->addPreferences($vg,$vm);				
+					}else{
+						$query="
+							Delete from user_groups
+							where iduser=$vg and idgroup=$vm
+						";
+						$this->deletePreferences($vg,$vm);
+					}
+					$this->query=$this->dbh->prepare($query);
+					if ($this->dbh->query($query)) {
+			    		$count_saved++;
+			    	}
 				}else{
-					$query="
-						Delete from user_groups
-						where iduser=$vg and idgroup=$vm
-					";
-					$this->deletePreferences($vg,$vm);
+					$adminUser=TRUE;		
+					
 				}
-				$this->query=$this->dbh->prepare($query);
-				if ($this->dbh->query($query)) {
-		    		$count_saved++;
-		    	}
 			}
 			if ($count_saved!=0){
 				echo '{"success" : true,msg:"Saved  '.$count_saved.'."}';	
 			}else{
-				$lastError=(implode(",",$this->dbh->errorInfo()));	
-				echo '{"success" : false,msg:"No data was saved, mysql says : <i>\''.$lastError.'\'</i>"}';
+				if ($adminUser){
+					echo '{"success" : false,msg:"Default user can\'t be chenged."}';
+				}else{
+					$lastError=(implode(",",$this->dbh->errorInfo()));	
+					echo '{"success" : false,msg:"No data was saved, mysql says : <i>\''.$lastError.'\'</i>"}';
+				}
 			}			
 		}
 		
