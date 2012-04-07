@@ -38,6 +38,7 @@ var Desktop = {
         { 'group': 'settigs',   'alias': 'set_themes_label' ,	  'string': 'L->Elija el tema de escritorio.'},
         { 'group': 'settigs',   'alias': 'set_selectTheme' , 	  'string': 'L->Selecione un tema'},
         { 'group': 'settigs',   'alias': 'set_none' ,		 	  'string': 'L->Ninguno'},
+        { 'group': 'settigs',   'alias': 'set_update_to_see' , 	  'string': 'L->¿Desea actualizar la pagina para ver sus cambios?'},
      
         { 'group': 'admin',   'alias': 'admin_menu' , 		 	'string': 'L->Menu'},        
         { 'group': 'admin',   'alias': 'admin_userCaption' , 	'string': 'L->Usuarios'},

@@ -132,7 +132,6 @@
 				WHERE username=:user";
 			
 			$result = $this->dbh->prepare($sql);
-			// test is all ok...:D			
 			if ($result->execute(array(':wp' => $wp, ':stretch' => $stretch, ':user' => $user))) {
     			$res =TRUE;
 			} else {
@@ -141,8 +140,7 @@
 			return $res;		
 		}
 		
-		function saveShortcuts(){
-			
+		function saveShortcuts(){			
 			$id=$_SESSION["ExtDeskSession"]["id"];
 			$post=json_decode($_GET["jsonp"]);
 			$c=0;
@@ -158,6 +156,24 @@
 			}else{
 				return TRUE;
 			}
-		}		
+		}
+		function saveQLaunchs(){
+				
+			$id=$_SESSION["ExtDeskSession"]["id"];
+			$post=json_decode($_GET["jsonp"]);
+			$c=0;
+			foreach ($post as $key) {
+				$idmodule=$key->id;
+				$qLaunch=$key->qLaunch;
+				$sql="UPDATE user_preferences SET qLaunch=$qLaunch WHERE idUser='$id' and idModule='$idmodule';";
+				$stmt = $this->dbh->prepare($sql);
+			    $c =$stmt->execute();
+			}
+			if ($c==0){
+				return FALSE;				
+			}else{
+				return TRUE;
+			}
+		}
 	}
 ?>

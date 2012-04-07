@@ -115,6 +115,16 @@
 																}
 																
 															}
+												case "QLaunchs":
+															if ($_GET['action']="save"){
+																$isSet=$modules->saveQLaunchs();
+																if (!$isSet){
+																	echo '{success:false, msg:"No se realizaron los cambios en el servidor"}';																	
+																}else{
+																	echo '{success:true, msg:"Guardado"}';																	
+																}
+																
+															}
 														
 											}//<--end case option
 											break;										

@@ -64,6 +64,7 @@ Ext.define('MyDesktop.Settings', {
 		this.lang["saving"] 			= userStore.strings().findRecord("alias","common_saving_single").data.string;		
 		this.lang["server_error"] 		= userStore.strings().findRecord("alias","common_server_error").data.string;
 		this.lang["no_changes"]			= userStore.strings().findRecord("alias","common_no_changes").data.string;
+		this.lang["update_to_see"]	= userStore.strings().findRecord("alias","set_update_to_see").data.string;		
 
         
         /**
@@ -158,7 +159,6 @@ Ext.define('MyDesktop.Settings', {
 
         me.preview = Ext.create('widget.wallpaper');
         me.preview.setWallpaper(me.selected);
-        //console.log(me.selected);
         me.tree = me.createTreeWallpaper();
 		
 		var tw=Ext.getCmp('preferTabWallpaper');
@@ -325,7 +325,7 @@ Ext.define('MyDesktop.Settings', {
                             {
                                 xtype: 'button',
                                 text: this.lang['save'],
-                                handler: me.onOkQuickLaunch, 
+                                handler: me.onOkQLaunch, 
                                 scope: me
                             },
                             {
@@ -343,7 +343,7 @@ Ext.define('MyDesktop.Settings', {
 			});
 
 			this.userStore.modules().each(function(module) {
-				if (module.get("qLaunch")){
+				if (module.get("qLaunch")==1){
 					var checked=true;
 				}else{
 					var checked=false;				
@@ -593,15 +593,13 @@ Ext.define('MyDesktop.Settings', {
 	//*** Other Methods ***/
 
     onOkShortcuts : function(){
-    	var me = this;
-    	
+    	var me = this;    	
     	var params = [];
     	var updates=userStore.modules().getUpdatedRecords();
     	Ext.each(updates,function(upd,i){
 			params.push(upd.data);	
 		});
 		Ext.MessageBox.show({msg: this.lang["saving_data"],progressText: this.lang["saving"],	width:300,wait:true,waitConfig: {interval:50},modal:true});
-		//console.log(params.lenght);
 		// If exist changes...
 		if (params.length >0){
 			// transform to Json
@@ -637,6 +635,60 @@ Ext.define('MyDesktop.Settings', {
 			Ext.Msg.alert(module, this.lang["no_changes"]);			
 		}    	
     },
+
+	onOkQLaunch : function(){
+    	//FIXME : workin now.
+    	var me = this;    	
+    	var params = [];
+    	var updates=userStore.modules().getUpdatedRecords();
+    	    	
+    	Ext.each(updates,function(upd,i){
+			params.push(upd.data);	
+		});
+		Ext.MessageBox.show({msg: this.lang["saving_data"],progressText: this.lang["saving"],	width:300,wait:true,waitConfig: {interval:50},modal:true});
+		// If exist changes...
+		if (params.length >0){
+			// transform to Json
+			var json=Ext.encode(params);
+			//call Ajax
+			Ext.Ajax.request({
+			    url: 'ExtDesk.php',
+			    method:'GET',
+			    params: {
+			    	Module : 'Settings',
+			    	option : 'QLaunchs',
+			    	action : 'Save',
+			    	jsonp  : json
+			    },
+			    success: function(response){
+					var text = response.responseText;
+			       	if (text!=""){
+			       		Ext.MessageBox.hide();
+				        var resp=Ext.decode(text);
+				        if(resp.success){				        	
+				        	Ext.Msg.confirm('QLaunch Guardados',me.lang["update_to_see"],function(res){
+				        		if (res=="yes"){
+				        			window.location.reload();
+				        		}else{
+				        			me.destroy();				        			
+				        		}				        		
+				        	});
+				        }else{
+				        	Ext.Msg.alert(me.lang["settings"]+" > "+me.lang["quicklaunch"]+ " Error", me.lang["server_error"]+'<b>'+resp.msg+'</b>')
+				        }			       		
+			       	}else{
+					    Ext.MessageBox.hide();
+					    Ext.Msg.alert(me.lang["settings"]+" > "+me.lang["quicklaunch"]+ " Error", me.lang["server_error"])
+			       	}
+			    }
+	       	});
+		}else{
+			Ext.MessageBox.hide();
+			Ext.Msg.alert(module, this.lang["no_changes"]);			
+		}
+		
+		
+	},
 
 	clickOnShortcut: function(e){
     	// Checkbox is checked..?
@@ -675,21 +727,12 @@ Ext.define('MyDesktop.Settings', {
     	// delete qlaunch, the user doesn't want see this shortcut....
     	if (!checked){				
     		// save the state of this shorcut...
-    		module.set('qLaunch',false); 
+    		module.set('qLaunch',0); 
        	// add qlaunch, please sorry i want this shortcut       	
        	}else{				
        		// save the state of this shorcut...
-			module.set('qLaunch',true);
+			module.set('qLaunch',1);
 		}   	
-		//console.log(this);
-		// we need some more simple here
-    	//myDesktopApp.init();
-		//myDesktopApp.desktop.app.init();
-    	//myDesktopApp
-    	//console.log(myDesktopApp);
-    	//console.log(MyExtDesk);
-    	//MyExtDesk.desktop.app.init();	
-    
     },	
 	
 	//*** Themes Metodos ***/
@@ -769,7 +812,6 @@ Ext.define('MyDesktop.Settings', {
             me.selectedTheme = Ext.BLANK_IMAGE_URL;
         }
 
-        console.log(me.selectedTheme);
         me.previewTheme.setWallpaper(me.selectedTheme);
         
     }

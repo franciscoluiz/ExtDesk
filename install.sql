@@ -147,7 +147,7 @@ CREATE TABLE `actions` (
   `option` varchar(45) DEFAULT NULL,
   `action` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -156,7 +156,7 @@ CREATE TABLE `actions` (
 
 LOCK TABLES `actions` WRITE;
 /*!40000 ALTER TABLE `actions` DISABLE KEYS */;
-INSERT INTO `actions` VALUES (1,'Settings','Wallpaper','Save'),(2,'Admin','Users','List'),(3,'Admin','Users','Save'),(4,'Admin','Users','Delete'),(5,'Admin','Modules','List'),(6,'Admin','Modules','Save'),(7,'Admin ','Modules','Delete'),(8,'Admin','Actions','List'),(9,'Admin','Actions','Save'),(10,'Admin','Actions','Delete'),(11,'Admin','Groups','List'),(12,'Admin','Groups','Save'),(13,'Admin','Groups','Delete'),(14,'Admin','ModulesinGroups','List'),(15,'Admin','ModulesinGroups','Save'),(16,'Admin','ActionsinGroups','List'),(17,'Admin','ActionsinGroups','Save'),(18,'Admin','GroupsinUser','List'),(19,'Admin','GroupsinUser','Save');
+INSERT INTO `actions` VALUES (1,'Settings','Wallpaper','Save'),(2,'Admin','Users','List'),(3,'Admin','Users','Save'),(4,'Admin','Users','Delete'),(5,'Admin','Modules','List'),(6,'Admin','Modules','Save'),(7,'Admin ','Modules','Delete'),(8,'Admin','Actions','List'),(9,'Admin','Actions','Save'),(10,'Admin','Actions','Delete'),(11,'Admin','Groups','List'),(12,'Admin','Groups','Save'),(13,'Admin','Groups','Delete'),(14,'Admin','ModulesinGroups','List'),(15,'Admin','ModulesinGroups','Save'),(16,'Admin','ActionsinGroups','List'),(17,'Admin','ActionsinGroups','Save'),(18,'Admin','GroupsinUser','List'),(19,'Admin','GroupsinUser','Save'),(20,'Settings','Shortcuts','Save'),(21,'Settings','QLaunchs','');
 /*!40000 ALTER TABLE `actions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -237,6 +237,14 @@ LOCK TABLES `groups_modules` WRITE;
 INSERT INTO `groups_modules` VALUES (1,1,2),(3,2,2),(4,2,3),(5,2,4),(6,2,5),(7,2,6),(8,2,7),(9,2,8),(10,2,9),(11,2,10),(12,2,11),(96,2,1);
 /*!40000 ALTER TABLE `groups_modules` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Dumping events for database 'extdesk'
+--
+
+--
+-- Dumping routines for database 'extdesk'
+--
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -247,4 +255,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-03-01 19:10:57
+-- Dump completed on 2012-04-07 15:16:51

@@ -38,7 +38,8 @@ var Desktop = {
 		{ 'group': 'settigs',   'alias': 'set_themes_label' ,	   'string': 'L->Change the theme'},
 		{ 'group': 'settigs',   'alias': 'set_selectTheme' , 	  'string': 'L->Select a theme'},
 		{ 'group': 'settigs',   'alias': 'set_none' ,		 	  'string': 'L->None'},
-		              
+        { 'group': 'settigs',   'alias': 'set_update_to_see' , 	  'string': 'L->Do you want to refresh the page to see your changes?'},
+        		              
         { 'group': 'admin',   'alias': 'admin_menu' , 		 	'string': 'L->Menu'},        
         { 'group': 'admin',   'alias': 'admin_userCaption' , 	'string': 'L->User'},
         { 'group': 'admin',   'alias': 'admin_userLegend' , 	'string': 'L->Manages users'},
