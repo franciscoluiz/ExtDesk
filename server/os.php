@@ -56,7 +56,7 @@
 
 			if ($res["success"]){
 	
-				//check te action we need	
+				//check the action we need	
 				//$this->debug->log($_GET);
 				
 				switch ($_GET["Module"]) {
@@ -105,6 +105,17 @@
 																}	
 															}
 															break;
+												case "Shortcuts":
+															if ($_GET['action']="save"){
+																$isSet=$modules->saveShortcuts();
+																if (!$isSet){
+																	echo '{success:false, msg:"No se realizaron los cambios en el servidor"}';																	
+																}else{
+																	echo '{success:true, msg:"Guardado"}';																	
+																}
+																
+															}
+														
 											}//<--end case option
 											break;										
 										default:

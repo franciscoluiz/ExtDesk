@@ -139,6 +139,25 @@
     			$res =FALSE;	
 			}			
 			return $res;		
-		}	
+		}
+		
+		function saveShortcuts(){
+			
+			$id=$_SESSION["ExtDeskSession"]["id"];
+			$post=json_decode($_GET["jsonp"]);
+			$c=0;
+			foreach ($post as $key) {
+				$idmodule=$key->id;
+				$shortcut=$key->shorcut;
+				$sql="UPDATE user_preferences SET shorcut=$shortcut WHERE idUser='$id' and idModule='$idmodule';";
+				$stmt = $this->dbh->prepare($sql);
+			    $c =$stmt->execute();
+			}
+			if ($c==0){
+				return FALSE;				
+			}else{
+				return TRUE;
+			}
+		}		
 	}
 ?>
