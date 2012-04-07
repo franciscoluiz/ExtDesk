@@ -58,16 +58,15 @@ Ext.define('MyDesktop.Settings', {
 		this.lang["themes_label"]		= userStore.strings().findRecord("alias","set_themes_label").data.string;
 		this.lang["selectTheme"]		= userStore.strings().findRecord("alias","set_selectTheme").data.string;
 		this.lang["none"]				= userStore.strings().findRecord("alias","set_none").data.string;		
-		
 		this.lang["save"]				= userStore.strings().findRecord("alias","common_save").data.string;
         this.lang["cancel"]				= userStore.strings().findRecord("alias","common_cancel").data.string;
+		this.lang["saving_data"] 		= userStore.strings().findRecord("alias","common_saving_data").data.string;
+		this.lang["saving"] 			= userStore.strings().findRecord("alias","common_saving_single").data.string;		
+		this.lang["server_error"] 		= userStore.strings().findRecord("alias","common_server_error").data.string;
+		this.lang["no_changes"]			= userStore.strings().findRecord("alias","common_no_changes").data.string;
 
-		// FIXME: 01 HERE HERE
         
-        
-		
-        
-		/**
+        /**
 		* Define de top Menu :)
 		**/
 		Ext.regModel('Image', {
@@ -83,10 +82,10 @@ Ext.define('MyDesktop.Settings', {
 			id:'imagesStore',
 			model: 'Image',
 			data: [
-				{id : 'wallpaper', src:'resources/images/tango/preferences-desktop-wallpaper_48x48.png', 	title :this.lang["wallpaper"],	caption : this.lang["wallpaper_label"]},
-				{id : 'shortcut',  src:'resources/images/tango/preferences-desktop-shorcut_48x48.png',		title :this.lang["shortcut"],		caption : this.lang["shortcut_label"]},
-				{id : 'qLaunch', src:'resources/images/tango/preferences-desktop-quick-launch_48x48.png', 	title :this.lang["quicklaunch"],		caption : this.lang["quicklaunch_label"]},
-				{id : 'themes', src:'resources/images/tango/preferences-desktop-theme_48x48.png', 		title :this.lang["themes"],	caption : this.lang["themes_label"]}
+				{id : 'wallpaper', 	src:'resources/images/tango/preferences-desktop-wallpaper_48x48.png', 	title :this.lang["wallpaper"],		caption : this.lang["wallpaper_label"]},
+				{id : 'shortcut',  	src:'resources/images/tango/preferences-desktop-shorcut_48x48.png',		title :this.lang["shortcut"],		caption : this.lang["shortcut_label"]},
+				{id : 'qLaunch', 	src:'resources/images/tango/preferences-desktop-quick-launch_48x48.png',title :this.lang["quicklaunch"],	caption : this.lang["quicklaunch_label"]},
+				{id : 'themes', 	src:'resources/images/tango/preferences-desktop-theme_48x48.png', 		title :this.lang["themes"],			caption : this.lang["themes_label"]}
 				]
 		});
 
@@ -255,7 +254,7 @@ Ext.define('MyDesktop.Settings', {
                             {
                                 xtype: 'button',
                                 text: this.lang['save'],
-                                handler: me.onOkShortCut, 
+                                handler: me.onOkShortcuts, 
                                 scope: me
                             },
                             {
@@ -274,22 +273,22 @@ Ext.define('MyDesktop.Settings', {
 			});
 									
 			this.userStore.modules().each(function(module) {
-				if (module.get("shorcut")){
+				if (module.get("shorcut")==1){
 					var checked=true;
 				}else{
 					var checked=false;				
 				}
-					var id="id_check_sc_"+module.get("module");
-					me.tabShortcutForm.add({
-	 						id : id,
-	 						xtype: 'checkboxfield',
-	    					fieldLabel: '',
-	    					boxLabel: module.get("name"),
-	    					anchor: '100%',
-	    					checked: checked,
-	    					handler: me.clickOnShortcut
-						}					
-					);
+				var id="id_check_sc_"+module.get("module");
+				me.tabShortcutForm.add({
+ 						id : id,
+ 						xtype: 'checkboxfield',
+    					fieldLabel: '',
+    					boxLabel: module.get("name"),
+    					anchor: '100%',
+    					checked: checked,
+    					handler: me.clickOnShortcut
+					}					
+				);
 				
 			});
 			
@@ -443,12 +442,10 @@ Ext.define('MyDesktop.Settings', {
 		}
 		tt.show();
 	},
-
 	
 /*
  * Wallpaer methods
  */
-	
 	createTreeWallpaper : function() {
         var me = this;
 
@@ -553,11 +550,11 @@ Ext.define('MyDesktop.Settings', {
 	        				Ext.MessageBox.hide();     				
 	        			}else{
 	        				Ext.MessageBox.hide();
-	        				Ext.MessageBox.alert('Settigs|Wallpaper',resp.msg);
+	        				Ext.MessageBox.alert(me.lang["settings"]+" > "+me.lang["wallpaper"]+ " Error ",resp.msg);
 	        			}
         			}else{
         				Ext.MessageBox.hide();
-        				Ext.MessageBox.alert('Settigs|Wallpaper',"La respuesta del servidor no es adecuada, por favor consulte a su administrador");
+        				Ext.MessageBox.alert(me.lang["settings"]+" > "+me.lang["wallpaper"]+ " Error", me.lang["server_error"]);
         				
         			}
     			}//sucess
@@ -593,30 +590,70 @@ Ext.define('MyDesktop.Settings', {
         }
     },
 
+	//*** Other Methods ***/
 
-/*
- * Other Methods
- * */
-	
-    clickOnShortcut: function(e){
+    onOkShortcuts : function(){
+    	var me = this;
     	
+    	var params = [];
+    	var updates=userStore.modules().getUpdatedRecords();
+    	Ext.each(updates,function(upd,i){
+			params.push(upd.data);	
+		});
+		Ext.MessageBox.show({msg: this.lang["saving_data"],progressText: this.lang["saving"],	width:300,wait:true,waitConfig: {interval:50},modal:true});
+		//console.log(params.lenght);
+		// If exist changes...
+		if (params.length >0){
+			// transform to Json
+			var json=Ext.encode(params);
+			//call Ajax
+			Ext.Ajax.request({
+			    url: 'ExtDesk.php',
+			    method:'GET',
+			    params: {
+			    	Module : 'Settings',
+			    	option : 'Shortcuts',
+			    	action : 'Save',
+			    	jsonp  : json
+			    },
+			    success: function(response){
+					var text = response.responseText;
+			       	if (text!=""){
+			       		Ext.MessageBox.hide();
+				        var resp=Ext.decode(text);
+				        if(resp.success){				        	
+				        	me.destroy();
+				        }else{
+				        	Ext.Msg.alert(me.lang["settings"]+" > "+me.lang["shortcut"]+ " Error", me.lang["server_error"]+'<b>'+resp.msg+'</b>')
+				        }			       		
+			       	}else{
+					    Ext.MessageBox.hide();
+					    Ext.Msg.alert(me.lang["settings"]+" > "+me.lang["shortcut"]+ " Error", me.lang["server_error"])
+			       	}
+			    }
+	       	});
+		}else{
+			Ext.MessageBox.hide();
+			Ext.Msg.alert(module, this.lang["no_changes"]);			
+		}    	
+    },
+
+	clickOnShortcut: function(e){
     	// Checkbox is checked..?
     	var checked=Ext.getCmp(e.id).getValue();
     	// Find in the user store, the module was clicked 
     	var module=userStore.modules().findRecord("name",e.boxLabel);
-    	    	
     	if (!checked){	// delete shortcut, the user doesn't want see this shortcut....
-			
     		// save the state of this shorcut...
-    		module.set('shorcut',false); 
+    		module.set('shorcut',0); 
     		// find and delete the shorcut of the dataview...
     		var record=Ext.data.StoreManager.lookup('id-shortcutsstore').findRecord("name",e.boxLabel);
 			Ext.data.StoreManager.lookup('id-shortcutsstore').remove(record);
     		
-    	}else{			// add shortcut, please sorry i want this shortcut
-
+    	}else{
+    		// add shortcut, please sorry i want this shortcut
 			// save the state of this shorcut...
-			module.set('shorcut',true);
+			module.set('shorcut',1);
 			// add the shortcut to de dateview.... 
     		Ext.data.StoreManager.lookup('id-shortcutsstore').add(
     			{

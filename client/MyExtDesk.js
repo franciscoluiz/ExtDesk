@@ -39,7 +39,7 @@
 
 		Ext.define('Modules', {
 			extend: 'Ext.data.Model',
-			fields: ['js','name','iconCls','module','shorcut','qLaunch','iconLaunch'],
+			fields: ['id','js','name','iconCls','module','shorcut','qLaunch','iconLaunch'],
 
 			proxy: {
 				type: 'rest',
