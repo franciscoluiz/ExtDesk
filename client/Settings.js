@@ -31,7 +31,7 @@ Ext.define('MyDesktop.Settings', {
         'Ext.ux.desktop.Wallpaper',
         'MyDesktop.WallpaperModel'
     ],
-
+	iconCls:'settings',
     layout: 'fit',
     title: userStore.strings().findRecord("alias","changeSettings").data.string,
     modal: true,
@@ -86,7 +86,7 @@ Ext.define('MyDesktop.Settings', {
 				{id : 'wallpaper', src:'resources/images/tango/preferences-desktop-wallpaper_48x48.png', 	title :this.lang["wallpaper"],	caption : this.lang["wallpaper_label"]},
 				{id : 'shortcut',  src:'resources/images/tango/preferences-desktop-shorcut_48x48.png',		title :this.lang["shortcut"],		caption : this.lang["shortcut_label"]},
 				{id : 'qLaunch', src:'resources/images/tango/preferences-desktop-quick-launch_48x48.png', 	title :this.lang["quicklaunch"],		caption : this.lang["quicklaunch_label"]},
-				{id : 'themes', src:'resources/images/tango/preferences-desktop-wallpaper_48x48.png', 		title :this.lang["themes"],	caption : this.lang["themes_label"]}
+				{id : 'themes', src:'resources/images/tango/preferences-desktop-theme_48x48.png', 		title :this.lang["themes"],	caption : this.lang["themes_label"]}
 				]
 		});
 
@@ -109,6 +109,7 @@ Ext.define('MyDesktop.Settings', {
                 layout:'border',				
 				items:[
 						{	// Settings Tab
+							iconCls:'settings',
 							id : 'SettingsTab',
 							title: this.lang["settings"],
 							header:false,
@@ -165,6 +166,7 @@ Ext.define('MyDesktop.Settings', {
 		if (tw==undefined){
 			
 			me.tabWallpaper= Ext.create('Ext.Panel', {
+				iconCls:'preferences-wallpaper',
 				id : 'preferTabWallpaper',
 				title: this.lang["wallpaper"],
 				closable : true,
@@ -239,6 +241,7 @@ Ext.define('MyDesktop.Settings', {
 		
 		if (ts==undefined){
 			me.tabShortcutForm= Ext.create('Ext.form.Panel', {
+				iconCls:'preferences-shorcut',
 				id : 'preferTabShortcutsForm',
 				title : this.lang["shortcut"],
 				closable:true,
@@ -307,6 +310,7 @@ Ext.define('MyDesktop.Settings', {
 		
 		if (tq==undefined){
 			me.tabQLaunchForm= Ext.create('Ext.form.Panel', {
+				iconCls:'preferences-quick-launch',
 				id : 'preferTabQuickLaunchForm',
 				title : this.lang["quicklaunch"],
 				closable : true,
@@ -384,6 +388,7 @@ Ext.define('MyDesktop.Settings', {
 		if (tt==undefined){
 			
 			me.tabTheme= Ext.create('Ext.Panel', {
+				iconCls:'preferences-theme',
 				id : 'preferTabTheme',
 				title: this.lang["themes"],
 				closable : true,

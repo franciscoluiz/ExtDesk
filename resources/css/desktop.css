@@ -264,6 +264,10 @@
 .ico-Desktop{
 	background-image: url( ../wallpapers/ico_desktop.jpg ) !important;
 }
+.ico-Desktop1{
+	background-image: url( ../wallpapers/ico_desktop1.jpg ) !important;
+}
+
 
 .ico-Desktop2{
 	background-image: url( ../wallpapers/ico_desktop2.jpg ) !important;
@@ -355,11 +359,6 @@ div.thumb-wrap:hover span.title{
 
 }
 
-/*
- * msg... 
- * */
-	
-
 .msg .x-box-mc {
     font-size:14px;
 }
@@ -387,4 +386,22 @@ div.thumb-wrap:hover span.title{
 #msg-div .msg p {
     margin: 0;
 }
+
+/* Preferenes....*/
+.preferences-quick-launch{
+    background-image: url( ../images/tango/preferences-desktop-quick-launch_16x16.png ) !important;
+}
+
+.preferences-shorcut{
+    background-image: url( ../images/tango/preferences-desktop-shorcut_16x16.png ) !important;
+}
+
+.preferences-wallpaper{
+    background-image: url( ../images/tango/preferences-desktop-wallpaper_16x16.png ) !important;
+}
+.preferences-theme{
+    background-image: url( ../images/tango/preferences-desktop-theme_16x16.png ) !important;
+}
+
+
 
