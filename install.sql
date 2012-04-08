@@ -40,7 +40,7 @@ CREATE TABLE `user_preferences` (
 
 LOCK TABLES `user_preferences` WRITE;
 /*!40000 ALTER TABLE `user_preferences` DISABLE KEYS */;
-INSERT INTO `user_preferences` VALUES (1,1,1,0,0),(2,1,2,1,1),(3,2,1,1,1),(4,2,2,1,1),(5,2,3,1,1),(6,2,4,1,1),(7,2,5,1,1),(8,2,6,1,1),(9,2,7,1,1),(10,2,8,0,0),(11,2,9,0,0),(12,2,10,1,1),(13,2,11,1,1);
+INSERT INTO `user_preferences` VALUES (1,1,1,0,0),(2,1,2,1,1),(3,2,1,1,1),(4,2,2,1,1),(5,2,3,1,1),(6,2,4,1,1),(7,2,5,1,1),(8,2,6,1,1),(9,2,7,1,1),(10,2,8,0,0),(11,2,9,0,0),(12,2,10,1,0),(13,2,11,1,0);
 /*!40000 ALTER TABLE `user_preferences` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -60,6 +60,7 @@ CREATE TABLE `users` (
   `CpassReqDate` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `voucher` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `wallPaper` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `theme` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
   `wpStretch` tinyint(1) DEFAULT NULL,
   `extrainfo1` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
   `extrainfo2` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -77,7 +78,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Xcape','0944024e99eae16d3a062e03c745bae4b03a1a4c','xcape@extdesk.net','1316496013','','','Blue',1,'','','',1),(2,'Francisco','0944024e99eae16d3a062e03c745bae4b03a1a4c','francisco@extdesk.net','1316495884','','','Blue',1,'','','',1),(4,'Arion','0944024e99eae16d3a062e03c745bae4b03a1a4c','arion@extdesk.net','1316495884','','','Desk',1,'','','',1),(5,'test','050b77b6a25c24b1a5b3f87644d3e51f03a0450b','test@hotmail.com','','','',NULL,NULL,'','','',1);
+INSERT INTO `users` VALUES (1,'Xcape','0944024e99eae16d3a062e03c745bae4b03a1a4c','xcape@extdesk.net','1316496013','','','Blue','blue',1,'','','',1),(2,'Francisco','0944024e99eae16d3a062e03c745bae4b03a1a4c','francisco@extdesk.net','1316495884','','','Dark-Sencha','gray',1,'','','',1),(4,'Arion','0944024e99eae16d3a062e03c745bae4b03a1a4c','arion@extdesk.net','1316495884','','','Desk','green',1,'','','',1),(5,'test','050b77b6a25c24b1a5b3f87644d3e51f03a0450b','test@hotmail.com','','','',NULL,'blue',NULL,'','','',1);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -93,7 +94,7 @@ CREATE TABLE `groups_actions` (
   `idGroups` int(11) DEFAULT NULL,
   `idActions` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -102,7 +103,7 @@ CREATE TABLE `groups_actions` (
 
 LOCK TABLES `groups_actions` WRITE;
 /*!40000 ALTER TABLE `groups_actions` DISABLE KEYS */;
-INSERT INTO `groups_actions` VALUES (2,1,2),(3,1,3),(4,1,4),(5,1,5),(6,1,6),(7,1,7),(8,1,8),(9,1,9),(10,1,10),(11,1,11),(12,1,12),(13,1,13),(14,1,14),(15,1,15),(16,1,16),(17,1,17),(18,1,18),(19,1,19),(20,2,1),(21,2,2),(22,2,3),(23,2,4),(24,2,5),(25,2,6),(26,2,7),(27,2,8),(28,2,9),(29,2,10),(30,2,11),(31,2,12),(32,2,13),(33,2,14),(34,2,15),(35,2,16),(36,2,17),(37,2,18),(38,2,19);
+INSERT INTO `groups_actions` VALUES (2,1,2),(3,1,3),(4,1,4),(5,1,5),(6,1,6),(7,1,7),(8,1,8),(9,1,9),(10,1,10),(11,1,11),(12,1,12),(13,1,13),(14,1,14),(15,1,15),(16,1,16),(17,1,17),(18,1,18),(19,1,19),(20,2,1),(21,2,2),(22,2,3),(23,2,4),(24,2,5),(25,2,6),(26,2,7),(27,2,8),(28,2,9),(29,2,10),(30,2,11),(31,2,12),(32,2,13),(33,2,14),(34,2,15),(35,2,16),(36,2,17),(37,2,18),(38,2,19),(39,2,20),(40,2,21),(41,2,22);
 /*!40000 ALTER TABLE `groups_actions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -147,7 +148,7 @@ CREATE TABLE `actions` (
   `option` varchar(45) DEFAULT NULL,
   `action` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -156,7 +157,7 @@ CREATE TABLE `actions` (
 
 LOCK TABLES `actions` WRITE;
 /*!40000 ALTER TABLE `actions` DISABLE KEYS */;
-INSERT INTO `actions` VALUES (1,'Settings','Wallpaper','Save'),(2,'Admin','Users','List'),(3,'Admin','Users','Save'),(4,'Admin','Users','Delete'),(5,'Admin','Modules','List'),(6,'Admin','Modules','Save'),(7,'Admin ','Modules','Delete'),(8,'Admin','Actions','List'),(9,'Admin','Actions','Save'),(10,'Admin','Actions','Delete'),(11,'Admin','Groups','List'),(12,'Admin','Groups','Save'),(13,'Admin','Groups','Delete'),(14,'Admin','ModulesinGroups','List'),(15,'Admin','ModulesinGroups','Save'),(16,'Admin','ActionsinGroups','List'),(17,'Admin','ActionsinGroups','Save'),(18,'Admin','GroupsinUser','List'),(19,'Admin','GroupsinUser','Save'),(20,'Settings','Shortcuts','Save'),(21,'Settings','QLaunchs','');
+INSERT INTO `actions` VALUES (1,'Settings','Wallpaper','Save'),(2,'Admin','Users','List'),(3,'Admin','Users','Save'),(4,'Admin','Users','Delete'),(5,'Admin','Modules','List'),(6,'Admin','Modules','Save'),(7,'Admin ','Modules','Delete'),(8,'Admin','Actions','List'),(9,'Admin','Actions','Save'),(10,'Admin','Actions','Delete'),(11,'Admin','Groups','List'),(12,'Admin','Groups','Save'),(13,'Admin','Groups','Delete'),(14,'Admin','ModulesinGroups','List'),(15,'Admin','ModulesinGroups','Save'),(16,'Admin','ActionsinGroups','List'),(17,'Admin','ActionsinGroups','Save'),(18,'Admin','GroupsinUser','List'),(19,'Admin','GroupsinUser','Save'),(20,'Settings','Shortcuts','Save'),(21,'Settings','QLaunchs','Save'),(22,'Settings','Theme','Save');
 /*!40000 ALTER TABLE `actions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -255,4 +256,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-04-07 15:16:51
+-- Dump completed on 2012-04-07 22:02:28
