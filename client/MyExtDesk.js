@@ -5,8 +5,8 @@
 				{name: 'id', type: 'int'},
 				{name: 'name', type: 'string'},
 				{name: 'wallPaper', type: 'string'},
-				{name: 'wallpaperStretch', type: 'boolean'}
-				
+				{name: 'wallpaperStretch', type: 'boolean'},
+				{name: 'theme', type: 'string'}
 			],
 			proxy: {
 				type: 'rest',
@@ -62,8 +62,10 @@
 						success : function(user,options) {
 							userStore = user;
 							this.user=user;
-							//console.log(options);
-
+							//***<load personal theme :D>
+							var getPath = location.href.substring(0,location.href.lastIndexOf("/")+1);
+							Ext.getDom('idTheme').href= getPath + "extjs/resources/css/ext-all-"+this.user.get('theme')+".css";
+							//***<(8D>
 							apps.push('Ext.window.MessageBox');
 							apps.push('Ext.ux.desktop.ShortcutModel');							
 							userStore.modules().each(function(module) {

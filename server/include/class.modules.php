@@ -175,5 +175,32 @@
 				return TRUE;
 			}
 		}
+		
+		function saveTheme(){
+			// get the params
+			$user =$_SESSION["ExtDeskSession"]["username"];			
+			$theme=$_GET["theme"];
+			
+			// create de sql
+			$sql="UPDATE users 
+				SET 
+				theme='$theme' 
+				WHERE username='$user'";
+			
+			
+			$result = $this->dbh->prepare($sql);
+			
+			$d=new debug;
+			$d->log($sql);
+			
+			if ($result->execute()) {
+    			$res =TRUE;
+			} else {
+    			$res =FALSE;	
+			}			
+			return $res;		
+		}
+		
+		
 	}
 ?>

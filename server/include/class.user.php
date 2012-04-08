@@ -89,13 +89,15 @@ class security{
 		}else {
 			$wallpaperStretch="false";				
 		}
-		$user=$_SESSION['ExtDeskSession']['username'];
-		$wp=$_SESSION['ExtDeskSession']['wallPaper'];
+		$user = $_SESSION['ExtDeskSession']['username'];
+		$wp = $_SESSION['ExtDeskSession']['wallPaper'];
+		$theme = $_SESSION['ExtDeskSession']['theme'];
 		
 		$string='			
 			"id" : "1",
 			"name" :"'.$user.'",'.
 			'"wallPaper": "'.$wp.'",'.
+			'"theme": "'.$theme.'",'.
 			'"wallpaperStretch" : '.$wallpaperStretch.',';
 		
 		return $string;

@@ -1,17 +1,12 @@
 /*
-
 This file is part of Ext JS 4
-
 Copyright (c) 2011 Sencha Inc
-
 Contact:  http://www.sencha.com/contact
-
 GNU General Public License Usage
 This file may be used under the terms of the GNU General Public License version 3.0 as published by the Free Software Foundation and appearing in the file LICENSE included in the packaging of this file.  Please review the following information to ensure the GNU General Public License version 3.0 requirements will be met: http://www.gnu.org/copyleft/gpl.html.
-
 If you are unsure which license is appropriate for your use, please contact the sales department at http://www.sencha.com/contact.
-
 */
+
 /*!
  * Ext JS Library 4.0
  * Copyright(c) 2006-2011 Sencha Inc.
@@ -64,9 +59,8 @@ Ext.define('MyDesktop.Settings', {
 		this.lang["saving"] 			= userStore.strings().findRecord("alias","common_saving_single").data.string;		
 		this.lang["server_error"] 		= userStore.strings().findRecord("alias","common_server_error").data.string;
 		this.lang["no_changes"]			= userStore.strings().findRecord("alias","common_no_changes").data.string;
-		this.lang["update_to_see"]	= userStore.strings().findRecord("alias","set_update_to_see").data.string;		
+		this.lang["update_to_see"]		= userStore.strings().findRecord("alias","set_update_to_see").data.string;		
 
-        
         /**
 		* Define de top Menu :)
 		**/
@@ -521,10 +515,10 @@ Ext.define('MyDesktop.Settings', {
         if (me.selected) {
         	
   			wp=me.getTextOfIcoWallpaper(me.selected);        	
-        	
+        	//FIXME : LANG
 			Ext.MessageBox.show({
-				msg: 'Saving your data, please wait...',
-				progressText: 'Saving...',
+				msg: me.lang["saving_data"],
+				progressText: me.lang["saving_data"],
 				width:300,
 				wait:true,
 				waitConfig: {interval:100},
@@ -637,7 +631,6 @@ Ext.define('MyDesktop.Settings', {
     },
 
 	onOkQLaunch : function(){
-    	//FIXME : workin now.
     	var me = this;    	
     	var params = [];
     	var updates=userStore.modules().getUpdatedRecords();
@@ -776,19 +769,55 @@ Ext.define('MyDesktop.Settings', {
 
 	onOkTheme : function(){
 		var me = this;
-
-		var text= me.getTextOfWallpaper(me.selectedTheme);
-		text=text.toLowerCase();
-
-		//old
-		//Ext.getDom('idTheme').href="http://127.0.0.1/extdesk/extjs/resources/css/ext-all-"+text+".css";
+		var theme= me.getTextOfWallpaper(me.selectedTheme);
+		theme=theme.toLowerCase();
 		
-		//new
 		var getPath = location.href.substring(0,location.href.lastIndexOf("/")+1);
-		Ext.getDom('idTheme').href= getPath + "extjs/resources/css/ext-all-"+text+".css";
+		Ext.getDom('idTheme').href= getPath + "extjs/resources/css/ext-all-"+theme+".css";
+		// FIXME: workin here.
 		
-		//me.destroy();
+			Ext.MessageBox.show({
+				msg: me.lang["saving_data"],
+				progressText: me.lang["saving_data"],
+				width:300,
+				wait:true,
+				waitConfig: {interval:100},
+			});    	
+        	
+        	//save in the server
+        	Ext.Ajax.request({
+				url: 'ExtDesk.php',
+    			method:'GET',
+    			params: { 
+    				Module : 'Settings',
+    				option : 'Theme',
+    				action :'save',
+    				theme : theme,				
+    			},
+    			success: function(r){
+        			var resp=Ext.decode(r.responseText,true);	//decode respond 
+        			if (resp){
+	        			if (resp.success){
+							//me.desktop.setWallpaper(me.selected, me.stretch);        	
+	        				me.destroy();
+	        				Ext.MessageBox.hide();     				
+	        			}else{
+	        				Ext.MessageBox.hide();
+	        				Ext.MessageBox.alert(me.lang["settings"]+" > "+me.lang["themes"]+ " Error ",resp.msg);
+	        			}
+        			}else{
+        				Ext.MessageBox.hide();
+        				Ext.MessageBox.alert(me.lang["settings"]+" > "+me.lang["themes"]+ " Error", me.lang["server_error"]);
+        				
+        			}
+    			}//sucess
+			})//Ajax;	
+
 		
+		
+		
+		
+	
 	},
 
     getTextOfIcoTheme: function (path) {

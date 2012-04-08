@@ -125,6 +125,17 @@
 																}
 																
 															}
+												case 'Theme': 
+															if ($_GET['action']="save"){
+																$isSet=$modules->saveTheme();
+																if (!$isSet){
+																	echo '{success:false, msg:"No se realizaron los cambios en el servidor"}';
+																}else{
+																	echo '{success:true, msg:"Guardado"}';
+																}	
+															}
+															break;
+																														
 														
 											}//<--end case option
 											break;										
@@ -160,7 +171,7 @@
 									}//<--end case Module
 								}else{
 									//you can in
-									echo '{success:false, msg:"No tienes los permisos necesarios<br/><br/>Por favor conulta con tu administrador"}';
+									echo '{success:false, msg:"No tienes los permisos necesarios<br/><br/>Por favor consulta con tu administrador"}';
 								}//end if permision
 									
 							break;
