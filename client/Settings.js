@@ -64,18 +64,20 @@ Ext.define('MyDesktop.Settings', {
         /**
 		* Define de top Menu :)
 		**/
-		Ext.regModel('Image', {
-		Fields: [
-				{ name : 'id', 	type : 'string'},
-				{ name : 'src', 	type : 'string'},
-				{ name : 'title', 	type : 'string'},
-				{ name : 'caption',	type : 'string'}
-			]
-		});
+		if (! Ext.ClassManager.isCreated('set_mod_image')) {
+			Ext.regModel('set_mod_image', {
+			Fields: [
+					{ name : 'id', 	type : 'string'},
+					{ name : 'src', 	type : 'string'},
+					{ name : 'title', 	type : 'string'},
+					{ name : 'caption',	type : 'string'}
+				]
+			});
+		}
 
 		me.store=Ext.create('Ext.data.Store', {
 			id:'imagesStore',
-			model: 'Image',
+			model: 'set_mod_image',
 			data: [
 				{id : 'wallpaper', 	src:'resources/images/tango/preferences-desktop-wallpaper_48x48.png', 	title :this.lang["wallpaper"],		caption : this.lang["wallpaper_label"]},
 				{id : 'shortcut',  	src:'resources/images/tango/preferences-desktop-shorcut_48x48.png',		title :this.lang["shortcut"],		caption : this.lang["shortcut_label"]},
@@ -755,10 +757,17 @@ Ext.define('MyDesktop.Settings', {
                 root: {
                     text:'Tema',
                     expanded: true,
+                    //TODO: add themes here... and desktop.csss
                     children:[
+                        child('access.jpg'),		
                         child('blue.jpg'),
+                        child('cyma.jpg'),
                         child('gray.jpg'),
                         child('green.jpg'),
+                        child('numetal.jpg'),
+                        child('pop.jpg'),
+                        child('sabina.jpg'),
+                        child('shunkti.jpg'),
                     ]
                 }
             })

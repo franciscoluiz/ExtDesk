@@ -282,8 +282,14 @@
 }
 
 /*themes*/
+.ico-theme-Access{
+	background-image: url( ../themes/ico-theme-access.jpg ) !important;
+}
 .ico-theme-Blue{
 	background-image: url( ../themes/ico-theme-blue.jpg ) !important;
+}
+.ico-theme-Cyma{
+	background-image: url( ../themes/ico-theme-cyma.jpg ) !important;
 }
 .ico-theme-Gray{
 	background-image: url( ../themes/ico-theme-gray.jpg ) !important;
@@ -291,6 +297,20 @@
 .ico-theme-Green{
 	background-image: url( ../themes/ico-theme-green.jpg ) !important;
 }
+.ico-theme-Numetal{
+	background-image: url( ../themes/ico-theme-numetal.jpg ) !important;
+}
+.ico-theme-Pop{
+	background-image: url( ../themes/ico-theme-pop.jpg ) !important;
+}
+.ico-theme-Sabina{
+	background-image: url( ../themes/ico-theme-sabina.jpg ) !important;
+}
+.ico-theme-Shunkti{
+	background-image: url( ../themes/ico-theme-shunkti.jpg ) !important;
+}
+
+
 
 
 /*aditional*/
