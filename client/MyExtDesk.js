@@ -88,172 +88,187 @@
 				},
 			
 				login : function(e,c){
-				    
-				    var win=Ext.getCmp('idWinLogin');
-					
-					if(win==undefined){
-						var jsonData=c.request.scope.reader.jsonData;
-						var strings=jsonData.user[0].strings;
-										
-						var lan=Array;
-						lan["login"] 	= strings[0].string;
-						lan["user"] 	= strings[1].string;
-						lan["pswd"] 	= strings[2].string;
-						lan["r_user"]	= strings[3].string;
-						lan["r_psd"] 	= strings[4].string;
-						lan["enter"] 	= strings[5].string;
-						lan["cancel"] 	= strings[6].string;
-						lan["error"]	= strings[8].string;
-						lan["bad_login"]= strings[9].string;
 
+					var jsonData=c.request.scope.reader.jsonData;				    
+				    
+				    //console.log(jsonData.success==false &&jsonData.error==1);
+				    
+				    
+				    if (jsonData.success==false &&jsonData.error==1){
+							//console.log(jsonData);
+							//console.log(window);
+							window.location ="install/install.html";
+					}else{
+
+					    var win=Ext.getCmp('idWinLogin');
 						
-						var form = Ext.create('Ext.form.Panel', {
-							layout: 'absolute',
-							url: 'ExtDesk.php?Module=Main&action=load_user',
-							defaultType: 'textfield',
-							border: false,
-							defaults:{
-							  enableKeyEvents:true,
-							  listeners:{
-								specialKey: function(field, el)
-								{
-								  if(el.getKey() == Ext.EventObject.ENTER)
-								  {
-									Ext.getCmp('btnEnter').handler.call(Ext.getCmp('btnEnter').scope);
+						if(win==undefined){
+							var strings=jsonData.user[0].strings;
+											
+							var lan=Array;
+							lan["login"] 	= strings[0].string;
+							lan["user"] 	= strings[1].string;
+							lan["pswd"] 	= strings[2].string;
+							lan["r_user"]	= strings[3].string;
+							lan["r_psd"] 	= strings[4].string;
+							lan["enter"] 	= strings[5].string;
+							lan["cancel"] 	= strings[6].string;
+							lan["error"]	= strings[8].string;
+							lan["bad_login"]= strings[9].string;
+	
+						
+							var form = Ext.create('Ext.form.Panel', {
+								layout: 'absolute',
+								url: 'ExtDesk.php?Module=Main&action=load_user',
+								defaultType: 'textfield',
+								border: false,
+								defaults:{
+								  enableKeyEvents:true,
+								  listeners:{
+									specialKey: function(field, el)
+									{
+									  if(el.getKey() == Ext.EventObject.ENTER)
+									  {
+										Ext.getCmp('btnEnter').handler.call(Ext.getCmp('btnEnter').scope);
+									  }
+									}
 								  }
-								}
-							  }
-							},
-							//bodyStyle: "background-image:url(blue.jpg) !important",
-							items: [
-								{
-									id:"idLoginUser",
-									fieldLabel: lan["user"],
-									fieldWidth: 60,
-									msgTarget: 'side',
-									allowBlank: false,
-									x: 5,
-									y: 5,
-									name: 'user',
-									anchor: '-5'
 								},
-								{
-									id:"idLoginPswd",
-									inputType: 'password',
-									fieldLabel: lan["pswd"],
-									fieldWidth: 60,
-									x: 5,
-									y: 35,
-									name: 'password',
-									anchor: '-5'
-								},
-								{
-									id: 'idRememberUser',
-									xtype: 'checkboxfield',		
-									name: 'recordarUsuario',
-									x: 110,
-									y: 55,								
-									hideLabel: true,
-									style: 'margin-top:15px',
-									boxLabel: lan["r_user"]
-								},
-								{
-									id: 'idRememberPswd',
-									xtype: 'checkboxfield',		
-									name: 'recordarUsuario',
-									x: 110,
-									y: 85,								
-									hideLabel: true,
-									style: 'margin-top:15px',
-									boxLabel: lan["r_psd"]
-								}
+								//bodyStyle: "background-image:url(blue.jpg) !important",
+								items: [
+									{
+										id:"idLoginUser",
+										fieldLabel: lan["user"],
+										fieldWidth: 60,
+										msgTarget: 'side',
+										allowBlank: false,
+										x: 5,
+										y: 5,
+										name: 'user',
+										anchor: '-5'
+									},
+									{
+										id:"idLoginPswd",
+										inputType: 'password',
+										fieldLabel: lan["pswd"],
+										fieldWidth: 60,
+										x: 5,
+										y: 35,
+										name: 'password',
+										anchor: '-5'
+									},
+									{
+										id: 'idRememberUser',
+										xtype: 'checkboxfield',		
+										name: 'recordarUsuario',
+										x: 110,
+										y: 55,								
+										hideLabel: true,
+										style: 'margin-top:15px',
+										boxLabel: lan["r_user"]
+									},
+									{
+										id: 'idRememberPswd',
+										xtype: 'checkboxfield',		
+										name: 'recordarUsuario',
+										x: 110,
+										y: 85,								
+										hideLabel: true,
+										style: 'margin-top:15px',
+										boxLabel: lan["r_psd"]
+									}
+								
+								]
+							});
 							
-							]
-						});
-						
-						var win = Ext.create('Ext.window.Window', {
-							id : 'idWinLogin',
-							title: lan["login"],
-							width: 350,
-							height: 200,
-							minWidth: 350,
-							minHeight:200,
-							layout: 'fit',
-							plain:true,
-							closable:false,
-							items: form,
-		
-							buttons: [{
-								id: 'btnEnter',
-								text: lan["enter"],
-								handler: function() {
-									form.submit({
-										success: function(form,action){
-											//remember user
-											if(Ext.getCmp('idRememberUser').getValue()){
-												Ext.util.Cookies.set("rem_user",Ext.getCmp('idLoginUser').getValue(""));																								
-											}else{
-												Ext.util.Cookies.clear("rem_user");												
-											}
-											//remember pswd
-											if(Ext.getCmp('idRememberPswd').getValue()){
-												Ext.util.Cookies.set("rem_pswd",Ext.getCmp('idLoginPswd').getValue(""));																								
-											}else{
-												Ext.util.Cookies.clear("rem_pswd");												
-											}
-											
-											win.close();
-											MyExtDesk.load();
-										
-										},
-										failure: function(form, action) {
-											
-											Ext.Msg.confirm(lan["error"],lan["bad_login"],
-												function(btn, text){
-												if (btn == 'yes'){
-													Ext.getCmp('idLoginUser').setValue("");
-													Ext.getCmp('idLoginPswd').setValue("");	
-													Ext.getCmp('idLoginUser').focus('', 200);
-												} else {
-													var url = window.location.href;
-													var nohttp = url.split('//')[1];
-													var hostPort = nohttp.split('/')[0]
-													window.location = 'http://' + hostPort;															
+							var win = Ext.create('Ext.window.Window', {
+								id : 'idWinLogin',
+								title: lan["login"],
+								width: 350,
+								height: 200,
+								minWidth: 350,
+								minHeight:200,
+								layout: 'fit',
+								plain:true,
+								closable:false,
+								items: form,
+			
+								buttons: [{
+									id: 'btnEnter',
+									text: lan["enter"],
+									handler: function() {
+										form.submit({
+											success: function(form,action){
+												//remember user
+												if(Ext.getCmp('idRememberUser').getValue()){
+													Ext.util.Cookies.set("rem_user",Ext.getCmp('idLoginUser').getValue(""));																								
+												}else{
+													Ext.util.Cookies.clear("rem_user");												
+												}
+												//remember pswd
+												if(Ext.getCmp('idRememberPswd').getValue()){
+													Ext.util.Cookies.set("rem_pswd",Ext.getCmp('idLoginPswd').getValue(""));																								
+												}else{
+													Ext.util.Cookies.clear("rem_pswd");												
 												}
 												
-											},this);
-											//MyExtDesk.login(); //Ext.Msg.alert('Failed', action.result.msg); 
-										}
-
-									})
-
-								}
-
-							},{
-								text: lan["cancel"]
-							}]
-						},this);
-					}else{
-						Ext.getCmp('idLoginUser').setValue("");
-						Ext.getCmp('idLoginPswd').setValue("");						
-					}
-					// fill with the cookies
-					if (Ext.util.Cookies.get("rem_user")!=null){
-						Ext.getCmp('idLoginUser').setValue(Ext.util.Cookies.get("rem_user"));
-						Ext.getCmp('idRememberUser').setValue(true);
-					}
-					if (Ext.util.Cookies.get("rem_pswd")!=null){
-						Ext.getCmp('idLoginPswd').setValue(Ext.util.Cookies.get("rem_pswd"));
-						Ext.getCmp('idRememberPswd').setValue(true);
-					}
+												win.close();
+												MyExtDesk.load();
+											
+											},
+											failure: function(form, action) {
+												
+												Ext.Msg.confirm(lan["error"],lan["bad_login"],
+													function(btn, text){
+													if (btn == 'yes'){
+														Ext.getCmp('idLoginUser').setValue("");
+														Ext.getCmp('idLoginPswd').setValue("");	
+														Ext.getCmp('idLoginUser').focus('', 200);
+													} else {
+														var url = window.location.href;
+														var nohttp = url.split('//')[1];
+														var hostPort = nohttp.split('/')[0]
+														window.location = 'http://' + hostPort;															
+													}
+													
+												},this);
+												//MyExtDesk.login(); //Ext.Msg.alert('Failed', action.result.msg); 
+											}
+	
+										})
+	
+									}
+	
+								},{
+									text: lan["cancel"]
+								}]
+							},this);
 							
+						
+						}else{
+							Ext.getCmp('idLoginUser').setValue("");
+							Ext.getCmp('idLoginPswd').setValue("");						
+						}
+						// fill with the cookies
+						if (Ext.util.Cookies.get("rem_user")!=null){
+							Ext.getCmp('idLoginUser').setValue(Ext.util.Cookies.get("rem_user"));
+							Ext.getCmp('idRememberUser').setValue(true);
+						}
+						if (Ext.util.Cookies.get("rem_pswd")!=null){
+							Ext.getCmp('idLoginPswd').setValue(Ext.util.Cookies.get("rem_pswd"));
+							Ext.getCmp('idRememberPswd').setValue(true);
+						}
+	
+						win.show();
+									
 
-					
-					win.show();
-								
+							
+							
+					}
+				    
 				
 				}
 			
 			
-			});
+		});
 			

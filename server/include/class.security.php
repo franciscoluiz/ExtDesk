@@ -18,11 +18,7 @@ class Settings	{
 	    
 		} catch (PDOException $e) {
 	    	$result=array('success'=>false,'error'=>'0','msg'=>$e->getMessage());
-			
 			die (json_encode($result));
-			
-							
-	    	//die( 'Connection failed: ' . $e->getMessage());
 		}
 	}
 }
@@ -109,24 +105,19 @@ class Registration extends Settings{
     function InsertUserToSql()
     {
         $error = $this->Validate();
-        if(count($error) > 0 )
-        {
+        if(count($error) > 0 ){
                 return $error;    
-        }
-        else
-        {
-
-        $stmt = $this->dbh->prepare("INSERT INTO users (username, password, email, regdate) VALUES (:username,    
-        :password, :email, :regdate)");
-        
-        $stmt->bindParam(':username', $this->Username);
-        $stmt->bindParam(':password', $this->Password);
-        $stmt->bindParam(':email', $this->Email);
-        $stmt->bindParam(':regdate', time());
-        $stmt->execute();
-        $arr = array();
-        $arr = $stmt->errorInfo();
-        return $arr;
+        }else{
+	        $stmt = $this->dbh->prepare("INSERT INTO users (username, password, email, regdate) VALUES (:username,    
+    	    :password, :email, :regdate)");
+	        $stmt->bindParam(':username', $this->Username);
+	        $stmt->bindParam(':password', $this->Password);
+	        $stmt->bindParam(':email', $this->Email);
+	        $stmt->bindParam(':regdate', time());
+	        $stmt->execute();
+	        $arr = array();
+	        $arr = $stmt->errorInfo();
+	        return $arr;
         
         }
         

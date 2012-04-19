@@ -38,6 +38,11 @@
 			}
 			$this->load($this->incPath."class.debug.php",'debug',true);
 			$this->debug= new debug;
+
+
+
+
+
         }
 
 		public function process(){

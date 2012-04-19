@@ -1,5 +1,6 @@
-CREATE DATABASE  IF NOT EXISTS `extdesk` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `extdesk`;
+--CREATE DATABASE  IF NOT EXISTS `extdesk` /*!40100 DEFAULT CHARACTER SET latin1 */;
+--USE `extdesk`;
+
 -- MySQL dump 10.13  Distrib 5.5.16, for Win32 (x86)
 --
 -- Host: 127.0.0.1    Database: extdesk
@@ -40,7 +41,21 @@ CREATE TABLE `user_preferences` (
 
 LOCK TABLES `user_preferences` WRITE;
 /*!40000 ALTER TABLE `user_preferences` DISABLE KEYS */;
-INSERT INTO `user_preferences` VALUES (1,1,1,0,0),(2,1,2,1,1),(3,2,1,1,1),(4,2,2,1,1),(5,2,3,1,1),(6,2,4,1,1),(7,2,5,1,1),(8,2,6,1,1),(9,2,7,1,1),(10,2,8,0,0),(11,2,9,0,0),(12,2,10,1,0),(13,2,11,1,0);
+INSERT INTO `user_preferences` 
+VALUES 
+(1,1,1,0,0),
+(2,1,2,1,1),
+(3,2,1,1,1),
+(4,2,2,1,1),
+(5,2,3,1,1),
+(6,2,4,1,1),
+(7,2,5,1,1),
+(8,2,6,1,1),
+(9,2,7,1,1),
+(10,2,8,0,0),
+(11,2,9,0,0),
+(12,2,10,1,0),
+(13,2,11,1,0);
 /*!40000 ALTER TABLE `user_preferences` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -59,8 +74,8 @@ CREATE TABLE `users` (
   `regdate` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `CpassReqDate` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `voucher` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
-  `wallPaper` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `theme` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `wallPaper` varchar(45) COLLATE utf8_unicode_ci DEFAULT 'Desk',
+  `theme` varchar(45) COLLATE utf8_unicode_ci DEFAULT 'blue',
   `wpStretch` tinyint(1) DEFAULT NULL,
   `extrainfo1` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
   `extrainfo2` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -78,7 +93,11 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Xcape','0944024e99eae16d3a062e03c745bae4b03a1a4c','xcape@extdesk.net','1316496013','','','Blue','blue',1,'','','',1),(2,'Francisco','0944024e99eae16d3a062e03c745bae4b03a1a4c','francisco@extdesk.net','1316495884','','','Dark-Sencha','gray',1,'','','',1),(4,'Arion','0944024e99eae16d3a062e03c745bae4b03a1a4c','arion@extdesk.net','1316495884','','','Desk','green',1,'','','',1),(5,'test','050b77b6a25c24b1a5b3f87644d3e51f03a0450b','test@hotmail.com','','','',NULL,'blue',NULL,'','','',1);
+INSERT INTO `users` VALUES 
+(1,'Xcape','0944024e99eae16d3a062e03c745bae4b03a1a4c','xcape@extdesk.net','1316496013','','','Blue','blue',1,'','','',1),
+(2,'Francisco','0944024e99eae16d3a062e03c745bae4b03a1a4c','francisco@extdesk.net','1316495884','','','Dark-Sencha','gray',1,'','','',1),
+(4,'Arion','0944024e99eae16d3a062e03c745bae4b03a1a4c','arion@extdesk.net','1316495884','','','Desk','green',1,'','','',1),
+(5,'test','050b77b6a25c24b1a5b3f87644d3e51f03a0450b','test@hotmail.com','','','',NULL,'blue',NULL,'','','',1);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -95,6 +114,7 @@ CREATE TABLE `groups_actions` (
   `idActions` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=latin1;
+
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -103,7 +123,15 @@ CREATE TABLE `groups_actions` (
 
 LOCK TABLES `groups_actions` WRITE;
 /*!40000 ALTER TABLE `groups_actions` DISABLE KEYS */;
-INSERT INTO `groups_actions` VALUES (2,1,2),(3,1,3),(4,1,4),(5,1,5),(6,1,6),(7,1,7),(8,1,8),(9,1,9),(10,1,10),(11,1,11),(12,1,12),(13,1,13),(14,1,14),(15,1,15),(16,1,16),(17,1,17),(18,1,18),(19,1,19),(20,2,1),(21,2,2),(22,2,3),(23,2,4),(24,2,5),(25,2,6),(26,2,7),(27,2,8),(28,2,9),(29,2,10),(30,2,11),(31,2,12),(32,2,13),(33,2,14),(34,2,15),(35,2,16),(36,2,17),(37,2,18),(38,2,19),(39,2,20),(40,2,21),(41,2,22);
+INSERT INTO `groups_actions` VALUES 
+(2,1,2),(3,1,3),(4,1,4),(5,1,5),(6,1,6),
+(7,1,7),(8,1,8),(9,1,9),(10,1,10),(11,1,11),
+(12,1,12),(13,1,13),(14,1,14),(15,1,15),(16,1,16),
+(17,1,17),(18,1,18),(19,1,19),(20,2,1),(21,2,2),
+(22,2,3),(23,2,4),(24,2,5),(25,2,6),(26,2,7),(27,2,8),
+(28,2,9),(29,2,10),(30,2,11),(31,2,12),(32,2,13),(33,2,14),
+(34,2,15),(35,2,16),(36,2,17),(37,2,18),(38,2,19),(39,2,20),
+(40,2,21),(41,2,22);
 /*!40000 ALTER TABLE `groups_actions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -256,4 +284,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-04-07 22:02:28
+-- Dump completed on 2012-04-12 19:09:44

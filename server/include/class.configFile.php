@@ -8,14 +8,16 @@ class configFile {
     function __construct($fileName = "server/include/config.ini"){
         //graba en la session los datos de los drivers
 
-        //if (empty($_SESSION)){
-        //	session_start();
-        //}
+		if (file_exists("$fileName")){
+	        //echo $fileName;
+    	   	$this->datosIni = parse_ini_file($fileName,true);
+	    	$_SESSION["ExtDesk"]=$this->datosIni["ExtDesk"];
+        	$_SESSION["drivers"]=$this->datosIni["drivers"];
+        //session_write_close();			
+		}else{
+			
+			die ( "{success:false, error:1,msg:'No existe el fichero de configuración'}");
+		}
 
-        //echo $fileName;
-        $this->datosIni = parse_ini_file($fileName,true);
-        $_SESSION["ExtDesk"]=$this->datosIni["ExtDesk"];
-        $_SESSION["drivers"]=$this->datosIni["drivers"];
-        //session_write_close();
     }
 }
