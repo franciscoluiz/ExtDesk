@@ -8,13 +8,13 @@
 	$bd1      = 'mysql';
 	$user1    = $_POST['user'];
 	$pswd1    = $_POST['password'];
-	$schema1  = $_POST['table'];
+	$schema1  = $_POST['database'];
 
 	$server2  = $_POST['mysql_server']; 
 	$bd2      = 'mysql';
 	$user2    = $_POST['user'];
 	$pswd2    = $_POST['password'];
-	$schema2  = $_POST['table'];
+	$schema2  = $_POST['database'];
 
 	//echo $lang.$server1.$bd1.$user1.$pswd1.$schema1;
 	/*
@@ -71,7 +71,7 @@
 	 */
 	
 	// we firs conect with mysql default databse;
-	$dsn = "$bd1:dbname=mysql;host=$server1";
+	$dsn = "$bd1:dbname=$schema1;host=$server1";
 	try {
 		$db = new PDO($dsn, $user1, $pswd1);
 	} catch (PDOException $e) {
