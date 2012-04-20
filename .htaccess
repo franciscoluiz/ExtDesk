@@ -37,3 +37,6 @@ Options +FollowSymLinks
 RewriteEngine on
 RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
 RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
+
+# proibe que os arquivos sejam acessados de fora do servidor
+RewriteRule \.(gif|jpg|ini)$ – [F]
