@@ -1,0 +1,39 @@
+Header unset Etag
+FileETag none
+
+# comprimir 
+<ifModule mod_php4.c>
+ php_value zlib.output_compression 16386
+</ifModule>
+
+<ifModule mod_php5.c>
+ php_value zlib.output_compression 16386
+</ifModule>
+
+# expiracao
+ <filesMatch ".(ico|jpg|jpeg|png|gif|swf|css|js)$">
+ Header set Expires "Sun, 30 Apr 2090 20:00:00 GMT"
+ </filesMatch>
+# no server
+# ou header("Expires: ".gmdate('D, d M Y H:i:s', strtotime('+5 minutes'))); 
+
+# proibe acesso a pastas sem index
+Options -Indexes
+
+# compress text, html, javascript, css, xml:
+AddOutputFilterByType DEFLATE text/plain
+AddOutputFilterByType DEFLATE text/html
+AddOutputFilterByType DEFLATE text/xml
+AddOutputFilterByType DEFLATE text/css
+AddOutputFilterByType DEFLATE application/xml
+AddOutputFilterByType DEFLATE application/xhtml+xml
+AddOutputFilterByType DEFLATE application/rss+xml
+AddOutputFilterByType DEFLATE application/javascript
+AddOutputFilterByType DEFLATE application/x-javascript
+
+Options +FollowSymLinks
+
+# no www
+RewriteEngine on
+RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
