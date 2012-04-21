@@ -1,24 +1,3 @@
-Header unset Etag
-FileETag none
-
-# comprimir 
-<ifModule mod_php4.c>
- php_value zlib.output_compression 16386
-</ifModule>
-
-<ifModule mod_php5.c>
- php_value zlib.output_compression 16386
-</ifModule>
-
-# expiracao
- <filesMatch ".(ico|jpg|jpeg|png|gif|swf|css|js)$">
- Header set Expires "Sun, 30 Apr 2090 20:00:00 GMT"
- </filesMatch>
-# no server
-# ou header("Expires: ".gmdate('D, d M Y H:i:s', strtotime('+5 minutes'))); 
-
-# proibe acesso a pastas sem index
-Options -Indexes
 
 # compress text, html, javascript, css, xml:
 AddOutputFilterByType DEFLATE text/plain

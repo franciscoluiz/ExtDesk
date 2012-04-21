@@ -172,17 +172,18 @@
 													}
 												});    	
 												//Ext.Msg.alert(, );
+											}else{
+												Ext.MessageBox.hide();
+												Ext.MessageBox.alert('Error',options.result.msg);		
 											}											
 										},
 										failure : function(data,options){
 											Ext.MessageBox.hide();		
-											if (!options.result.success){
-												
-											}
+											Ext.MessageBox.alert('Error',options.result.msg);
 											
                                         },
 										errors: function(data){
-                                            //console.log("NO jalo");											
+                                            Ext.MessageBox.alert('Error',options.result.msg);											
                                         }
 										
                                     })
