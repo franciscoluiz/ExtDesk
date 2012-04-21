@@ -153,14 +153,35 @@
                             },
                             {
                                 text : 'Install',
+								scope:this,
                                 handler : function(){
+									Ext.MessageBox.show({msg: "Installing..",progressText: "Installing, please wait.",	width:300,wait:true,waitConfig: {interval:50},modal:true});
                                     form.submit({
-                                        success : function(){
-                                            //console.log("jalo");		
-                                            window.location ="../index.html";
+										success : function(data,options){
+											Ext.MessageBox.hide();
+											if (options.result.success){
+												Ext.Msg.show({
+													title : 'Congratulations ExtDesk was Installed',
+													msg : options.result.msg+" Do you want redirect to Extdesk page..?",
+													buttons : Ext.Msg.YESNOCANCEL,
+													icon : Ext.Msg.QUESTION,
+													fn : function(btn, text){
+														if (btn == 'yes'){
+															window.location ="../index.html";    		
+														}
+													}
+												});    	
+												//Ext.Msg.alert(, );
+											}											
+										},
+										failure : function(data,options){
+											Ext.MessageBox.hide();		
+											if (!options.result.success){
+												
+											}
 											
                                         },
-                                        failure : function(){
+										errors: function(data){
                                             //console.log("NO jalo");											
                                         }
 										
