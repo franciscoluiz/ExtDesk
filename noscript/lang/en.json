@@ -1,0 +1,43 @@
+{ 
+  "title": "How to Enable JavaScript",
+  
+  "desc": "The site you are viewing requires JavaScript.  JavaScript is used in a variety of ways to improve the website experience, such as validating and executing form submissions and allowing interactive content.  In order for the website to work as designed, you must enable JavaScript in your browser.   Below, we have provided simple instructions for enabling JavaScript in the most popular web browsers. Click the logo of your browser below to view instructions. If you are using a web browser that is not listed, please consult your software's documentation for further instructions.",
+  
+  "alert1": "To determine your browser version, click on 'Help' in the menu bar of your browser and then select 'About'",
+  
+  "ie7_1": "Click Tools",
+  "ie7_2": "Select 'Internet Options'",
+  "ie7_3": "Go to the 'Security' tab",
+  "ie7_4": "Select 'Custom level...'",
+  "ie7_5": "Scroll down until you see 'Scripting'",
+  "ie7_6": "Under 'Active Scripting', select 'Enabled'",
+  "ie7_7": "Click ok",
+  "ie7_8": "Click 'Yes'",
+  
+  "ie6_1": "Click Tools",
+  "ie6_2": "Select 'Internet Options'",
+  "ie6_3": "Go to the 'Security' tab",
+  "ie6_4": "Select 'Custom level...'",
+  "ie6_5": "Under 'Active Scripting', select 'Enabled'",
+  "ie7_6": "Click 'Ok'",
+  "ie7_7": "Click 'Yes'",
+  
+  "ff_1": "Click Tools",
+  "ff_2": "Select 'Options'",
+  "ff_3": "Go to the 'Content' section",
+  "ff_4": "Select 'Enable JavaScript'",
+  "ff_5": "Click ok",
+  
+  "as_1": "Select 'Preferences' from your Safari menu",
+  "as_2": "Go to the 'security' section",
+  "as_3": "Check 'Enable JavaScript'",
+  "as_4": "Exit the security dialogue",
+  
+  "ob_1": "Click Tools",
+  "ob_2": "Select 'Preferences'",
+  "ob_3": "Go to the 'Advanced' tab",
+  "ob_4": "Select 'Content' on the left",
+  "ob_5": "Check 'Enable JavaScript'",
+  "ob_6": "Click 'Ok'"
+  
+}

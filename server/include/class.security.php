@@ -36,7 +36,7 @@ class Registration extends Settings{
      */
     function SetUsername($username)
     {
-        return $this->Username = mysql_real_escape_string($username);
+        return $this->Username = ($username);
     }
     /**
      * @return username
@@ -53,7 +53,7 @@ class Registration extends Settings{
     {
 	    $salt = sha1("1".$password."1");
     	$password="$salt$password$salt";
-        return $this->Password = sha1(mysql_real_escape_string($password));
+        return $this->Password = sha1(($password));
     }
     /**
      * @param $Email
@@ -61,7 +61,7 @@ class Registration extends Settings{
      */
     function SetEmail($email)
     {
-        return $this->Email = mysql_real_escape_string($email);
+        return $this->Email = ($email);
     }
     /**
      * @return email
