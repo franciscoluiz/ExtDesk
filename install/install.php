@@ -1,7 +1,15 @@
 <?php	
 
+	sleep(2);
+	
 	include_once ('sql_parse.php');
 
+	if(empty($_POST)){
+		die ("{success:false,msg:'Post data don't exist.'}");		
+	}
+	
+	$flag_ini=false;
+	
 	$lang = $_POST['languaje'];		
 	$server1 =$_POST['mysql_server']; 
 	$bd1 = 'mysql';
@@ -9,22 +17,11 @@
 	$pswd1 = $_POST['password'];
 	$schema1 = $_POST['table'];
 
-	$lang = $_POST['languaje'];		
 	$server2 =$_POST['mysql_server']; 
 	$bd2 = 'mysql';
 	$user2 = $_POST['user'];
 	$pswd2 = $_POST['password'];
 	$schema2 = $_POST['table'];
-
-	//echo $lang.$server1.$bd1.$user1.$pswd1.$schema1;
-	/*
-	$server2 = "127.0.0.1";	
-	$bd2 = "mysql";
-	$user2 = "root";
-	$pswd2 = "79513";
-	$schema2 = "mysql";
-	
-	 */
 	
 	$str="[ExtDesk]\n";
 	$str.="lang=\"$lang\"\n";
@@ -49,20 +46,18 @@
 	file_put_contents("config.ini", $str);
  
 	if (!copy('config.ini','../server/include/config.ini')) {
-    	//echo "Archivo Copiado en: $file...\n";
+  		$result=array('success'=>false,'error'=>'0','msg'=>"Config.ini can't be copied");
+		die (json_encode($result));
+		
 	}
+ 	
+ 
+ 
  
 	$sqlfile="installsc.sql";
 	$sql_query = @fread(@fopen($sqlfile, 'r'), @filesize($sqlfile));
 	$sql_query = remove_remarks($sql_query);
 	$sql_query = split_sql_file($sql_query, ";");
-	
-	/*$server1 = "127.0.0.1";
-	$bd1 = "mysql";
-	$user1 = "root";
-	$pswd1 = "79513";
-	$schema1 = "extdesk2";
-	 */
 	
 	// we firs conect with mysql default databse;
 	$dsn = "$bd1:dbname=mysql;host=$server1";
@@ -74,11 +69,7 @@
 	}
 	
 	function runsql($db,$count,$string,$sql){
-			
 		$x=$db->exec($sql);
-		//echo "<p>$sql</p>";
-		//echo "<p>Query $count,$string return $x </p>";
-		
 	}
 
 	/*** step 1 ***/
@@ -89,7 +80,7 @@
 	try {
 		$db = new PDO($dsn, $user1, $pswd1);
 	} catch (PDOException $e) {
-    	$result=array('success'=>false,'error'=>'2','msg'=>$e->getMessage());
+    	$result=array('success'=>false,'error'=>'3','msg'=>$e->getMessage());
 		die (json_encode($result));
 	}
 
