@@ -1,243 +1,230 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-"http://www.w3.org/TR/html4/loose.dtd">
+    "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
         <link rel="stylesheet" type="text/css" href="../extjs/resources/css/ext-all-blue.css" id="idTheme" />
         <link rel="stylesheet" type="text/css" href="../resources/css/desktop.css" />
+        <!--<script type="text/javascript" src="../../builds/ext-core.js"></script>
+        <script type="text/javascript" src="classes.js"></script>-->
         <script type="text/javascript" src="../extjs/ext-all.js"></script>
-		<title>ExtDesk</title>
-		<style type="text/css">
+
+        <title>ExtDesk</title>
+
+
+        <style type="text/css">
+
+            body {    
+                background: none repeat scroll 0 0 #F8F8F8;
+            }
+
+            #loading {
+                height: 240px;
+                left: 50%;
+                margin: -120px 0 0 -160px;
+                position: absolute;
+                top: 50%;
+                width: 320px;
+            }		
+
+
+            #loading .logo{
+                background: url("../resources/images/extdesklogo.gif") no-repeat scroll 0 0 transparent;
+                margin:0 auto;
+                display: block;
+                height: 240px;
+                left: 0px;
+                position: absolute;
+                top: 0px;
+                width: 320px;
+            }
+
+            #loading .title{
+                margin-left: 25%;
+                margin-right: 20%;
+                font-family: Verdana;
+            }
+
+            .install{
+                font-family: Verdana;
+                position: absolute;
+                top: 65%;
+                left: 48%;
+            }
+
+
+        </style>
+
+        <script type="text/javascript">
+            Ext.require([
+                'Ext.window.Window',
+                'Ext.tab.*',
+                'Ext.toolbar.Spacer',
+                'Ext.layout.container.Card',
+                'Ext.layout.container.Border'
+            ]);
 			
-			body {    
-					background: none repeat scroll 0 0 #F8F8F8;
-				}
+            function wininstall(){
 				
-			#loading {
-				height: 240px;
-				left: 50%;
-				margin: -120px 0 0 -160px;
-				position: absolute;
-				top: 50%;
-				width: 320px;
-			}		
-
-
-			#loading .logo{
-				background: url("../resources/images/extdesklogo.gif") no-repeat scroll 0 0 transparent;
-				margin:0 auto;
-				display: block;
-				height: 240px;
-				left: 0px;
-				position: absolute;
-				top: 0px;
-				width: 320px;
-			}
-
-			#loading .title{
-				margin-left: 25%;
-				margin-right: 20%;
-				font-family: Verdana;
-			}
-			
-			.install{
-				font-family: Verdana;
-				position: absolute;
-				top: 65%;
-				left: 48%;
-			}
-
-			
-		</style>
-
-		<script type="text/javascript">
-			Ext.require([
-    			'Ext.window.Window',
-    			'Ext.tab.*',
-    			'Ext.toolbar.Spacer',
-    			'Ext.layout.container.Card',
-    			'Ext.layout.container.Border'
-			]);
-			
-			function wininstall(){
+                //console.log("install");
 				
-				var win=Ext.getCmp('idWinInstall');
+                var win=Ext.getCmp('idWinInstall');
 						
-				if(win==undefined){
+                if(win==undefined){
 					
-					// Define the model for a State
-				    Ext.define('LanguajesModel', {
-				        extend: 'Ext.data.Model',
-				        fields: [
-				            {type: 'string', name: 'value'},
-				            {type: 'string', name: 'lanjuague'}
-				        ]
-				    });				
+                    // Define the model for a State
+                    Ext.define('LanguagesModel', {
+                        extend: 'Ext.data.Model',
+                        fields: [
+                            {type: 'string', name: 'value'},
+                            {type: 'string', name: 'language'}
+                        ]
+                    });				
 					
-					var langs = [
-        				{ "value" : "en",	"lanjuague" : "English"},
-        				{ "value" : "eo",	"lanjuague" : "Esperanto"},        				
-        				{ "value" : "es",	"lanjuague" : "Español"},
-        				{ "value" : "pt-br", "lanjuague" : "Portugues(Brasil)"},        				
-        			]
+                    var langs = [
+                        { "value" : "en",	   "language" : "English"},
+                        { "value" : "eo", 	 "language" : "Esperanto"},        				
+                        { "value" : "es",    "language" : "Español"},
+                        { "value" : "pt-br", "language" : "Portugues (Brasil)"},        				
+                    ]
 					
-				    var storelang = Ext.create('Ext.data.Store', {
-				        model: 'LanguajesModel',
-				        data: langs
-				    });
+                    var storelang = Ext.create('Ext.data.Store', {
+                        model: 'LanguagesModel',
+                        data: langs
+                    });
 
-				 	var langsCombo = Ext.create('Ext.form.field.ComboBox', {
-				        fieldLabel: 'Languaje',
-				        name :'languaje',
-				        displayField: 'lanjuague',
-				        store: storelang,
-				        queryMode: 'local',
-				        typeAhead: true,
-				        anchor:"100%",
-				        valueField:'value',
-				        value:'en',
-				    });
+                    var langsCombo = Ext.create('Ext.form.field.ComboBox', {
+                        fieldLabel: 'Language',
+                        name :'language',
+                        displayField: 'language',
+                        store: storelang,
+                        queryMode: 'local',
+                        typeAhead: true,
+                        anchor:"100%",
+                        valueField:'value',
+                        value:'en',
+                    });
 
-					var form = Ext.create('Ext.form.Panel', {
-						xtype : "form",
-						url : 'install.php', 
-						bodyPadding: 10,
-						region: 'center',
-						items: [
-							{
-			                    xtype: 'textfield',
-			                    name:'mysql_server',
-			                    fieldLabel: 'Mysql Server',
-			                    anchor: '100%',
-								allowBlank: false,							                    
-			                },
-			                {
-			                    xtype : 'textfield',
-			                    name : 'user',
-			                    fieldLabel : 'User',
-			                    anchor : '100%',
-								allowBlank: false,
-			                },
-			                {
-			                    xtype : 'textfield',
-			                    name : 'password',
-                                inputType: 'password',			                    
-			                    fieldLabel : 'Password',
-			                    anchor : '100%',
-								allowBlank : false,
-			                },
-			                {
-			                    xtype: 'textfield',
+                    var form = Ext.create('Ext.form.Panel', {
+                        xtype : "form",
+                        url : 'install.php', 
+                        bodyPadding: 10,
+                        region: 'center',
+                        items: [
+                            {
+                                xtype: 'textfield',
+                                name:'mysql_server',
+                                fieldLabel: 'Mysql Server',
+                                anchor: '100%',
+                                allowBlank: false,							                    
+                            },
+                            {
+                                xtype : 'textfield',
+                                name : 'user',
+                                fieldLabel : 'User',
+                                anchor : '100%',
+                                allowBlank: false,
+                            },
+                            {
+                                xtype : 'textfield',
+                                name : 'password',
+                                inputType: 'password',
+                                fieldLabel : 'Password',
+                                anchor : '100%',
+                                allowBlank : false,
+                            },
+                            {
+                                xtype: 'textfield',
                                 name : 'database',
                                 fieldLabel: 'Database',
-			                    anchor: '100%',
-								allowBlank: false,
-			                },							                
-			                langsCombo
-						],
-						buttons: [
-							{
-								text : "Cancel",
-								handler : function(){
-									win.close();
-								},
-								scope:this
-							},
-							{
-								text : 'Install',
-								scope:this,
-								handler : function(){
-									
-									Ext.MessageBox.show({msg: "Installing..",progressText: "Installing, please wait.",	width:300,wait:true,waitConfig: {interval:50},modal:true});
-									form.submit({
-										success : function(data,options){
-											Ext.MessageBox.hide();
-											if (options.result.success){
+                                anchor: '100%',
+                                allowBlank: false,
+                            },							                
+                            langsCombo
+                        ],
+                        buttons: [
+                            {
+                                text : "Cancel",
+                                handler : function(){
+                                    win.close();
+                                },
+                                scope:this
+                            },
+                            {
+                                text : 'Install',
+                                handler : function(){
+                                    form.submit({
+                                        success : function(){
+                                            //console.log("jalo");		
+                                            window.location ="../index.html";
 											
-												Ext.Msg.show({
-													title : 'Congratulations ExtDesk was Installed',
-													msg : options.result.msg+" Do you want redirect to Extdesk page..?",
-													buttons : Ext.Msg.YESNOCANCEL,
-													icon : Ext.Msg.QUESTION,
-													fn : function(btn, text){
-														if (btn == 'yes'){
-															window.location ="../index.html";    		
-														}
-													}
-												});    	
-												//Ext.Msg.alert(, );
-											}											
-										},
-										failure : function(data,options){
-											Ext.MessageBox.hide();		
-											if (!options.result.success){
-												
-											}
-											
-										},
-										errors: function(data){
-
-										}
+                                        },
+                                        failure : function(){
+                                            //console.log("NO jalo");											
+                                        }
 										
-									})
+                                    })
 									
-								}
+                                }
 								
-							}
+                            }
 						
-						]
+                        ]
 
-					});
+                    });
 					
-					var win = Ext.create('Ext.window.Window', {
-								id : 'idWinInstall',
-								title: "Installatión",
-								url: 'diskeinstall.php',
-								width: 450,
-								height: 220,
-								minWidth: 450,
-								minHeight:200,
-								layout: 'border',
-								plain:true,
-								closable:true,
-								items:[
-							        form
-							        ,
-							        {
-							        	xtype:'panel',
-							        	region:'west',
-							        	//title:'test',
-							        	width:155,
-							        	bodyPadding:12,
-							        	html:'<img src="../resources/images/extdesklogo.png"/>'	
-							         }
+                    var win = Ext.create('Ext.window.Window', {
+                        id : 'idWinInstall',
+                        title: "Installation",
+                        url: 'diskeinstall.php',
+                        width: 450,
+                        height: 220,
+                        minWidth: 450,
+                        minHeight:200,
+                        layout: 'border',
+                        resizable: false,
+                        plain:true,
+                        closable:true,
+                        items:[
+                            form
+                            ,
+                            {
+                                xtype:'panel',
+                                region:'west',
+                                //title:'test',
+                                width:155,
+                                bodyPadding:12,
+                                html:'<img src="../resources/images/extdesklogo.png"/>'	
+                            }
 							    
 							    
-							    ],
+                        ],
 							    
-							},this);
-				}
+                    },this);
+                }
 				
-				win.show();
+                win.show();
 				
-			}
+            }
 			
-			Ext.onReady(function(){
-				wininstall();	
+            Ext.onReady(function(){
+              
+                wininstall();	
 			
-			});
+            });
 			
-		</script>
+        </script>
 
 
-	</head>
-	<body>
+    </head>
+    <body>
         <div id="loading">
             <span class="title">ExtDesk <b>Installer</b></span>
             <span class="logo"> </span>
         </div>
         <a href="#" class="install" onclick="wininstall();">Install</a>
-        
-	</body>
+
+    </body>
 </html>
+<HTML>
