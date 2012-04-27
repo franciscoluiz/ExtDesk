@@ -60,7 +60,19 @@
       unlink($ini_file);
     } 
   
-
+  
+	try {
+		$mysqli = new mysqli($server1, $user1, $pswd1, "mysql");	
+	}catch (mysqli_sql_exception $e) {
+ 	   print "Error Code <br>".$e->getCode();
+    	print "Error Message <br>".$e->getMessage();
+    	print "Strack Trace <br>".nl2br($e->getTraceAsString());
+	}
+	//if ($mysqli->connect_errno) {
+    //	echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+	//}
+	//echo $mysqli->host_info . "\n";
+	
 	$sqlfile   = "installsc.sql";
 	$sql_query = @fread(@fopen($sqlfile, 'r'), @filesize($sqlfile));
 	$sql_query = remove_remarks($sql_query);
@@ -90,7 +102,6 @@
 	runsql($db,1,"Crear bd","CREATE DATABASE  IF NOT EXISTS $schema1");
 	
 	/*** step 2 ***/
-	echo $dsn;
 	$dsn = "$bd1:dbname=$schema1;host=$server1";
 	try {
 		$db = new PDO($dsn, $user1, $pswd1);

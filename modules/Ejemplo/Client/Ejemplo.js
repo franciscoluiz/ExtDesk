@@ -22,7 +22,7 @@ Ext.define('MyDesktop.Modules.Ejemplo.Client.Ejemplo', 	{// 1.- Steep One define
     init : function(){
         this.launcher = {
             text : 'Ejemplo',										// 3.- The name of the shortcut aka launcher
-            iconCls :'ejemplo-shortcut',									// 4.- Changes the icon of the module
+            iconCls :'icon-ejemplo',									// 4.- Changes the icon of the module
             handler : this.createWindow,
             scope : this
         };

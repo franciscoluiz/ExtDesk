@@ -95,7 +95,7 @@
 		$str=str_replace('<!-MODULE-!>',$moduleJs,$str);
 		$str=str_replace('<!-IDWIN-!>',$module,$str);
 		$str=str_replace('<!-NAME-!>',$nameJs,$str);
-		$str=str_replace('<!-ICON-!>',$iconClass,$str);
+		$str=str_replace('<!-ICON-!>',$iconLaunch,$str);
 		fwrite($fp,$str,strlen($str));
 		
 		// "Module".css
