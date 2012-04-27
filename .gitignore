@@ -2,3 +2,4 @@
 .settingsinstall/install - copia.html
 install/install - copia.php
 install/config.ini
+server/include/config.php

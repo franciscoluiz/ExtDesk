@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 require_once('server/os.php');
 
@@ -9,6 +10,6 @@ if (!class_exists('os')) {
 $myOs = new os();
 $myOs->start();
 
-
 $myOs->process();
+
 ?>
