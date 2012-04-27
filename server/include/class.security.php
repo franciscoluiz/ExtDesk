@@ -1,205 +1,190 @@
-<?php
+﻿<?php
+
 // http://www.phpclasses.org/package/5644-PHP-Manage-user-accounts-stored-in-a-database-with-PDO.html
 // author oran - email: oranm23@gmail.com
-class Settings	{
+class Settings {
+
     protected $dbh;
-    function __construct(){
-		//var_dump($_SESSION);
-		$server =  $_SESSION["drivers"]["mysql"]["0"];
-		$driver =  $_SESSION["drivers"]["mysql"]["1"];
-		$user =    $_SESSION["drivers"]["mysql"]["2"];
-		$password= $_SESSION["drivers"]["mysql"]["3"];
-		$dbname=   $_SESSION["drivers"]["mysql"]["4"];
-		
-		$dsn = "$driver:dbname=$dbname;host=$server";
-	
-		try {
-	    	$this->dbh = new PDO($dsn, $user, $password);
-	    
-		} catch (PDOException $e) {
-	    	$result=array('success'=>false,'error'=>'0','msg'=>$e->getMessage());
-			die (json_encode($result));
-		}
-	}
+
+    function __construct() {
+        //var_dump($_SESSION);
+        $server   = _DB_HOST;
+        $driver   = _DB_DRIVER;
+        $user     = _DB_USER;
+        $password = _DB_PASSWORD;
+        $dbname   = _DB_NAME;
+
+        $dsn = "$driver:dbname=$dbname;host=$server";
+
+        try {
+            $this->dbh = new PDO($dsn, $user, $password);
+        } catch (PDOException $e) {
+            $result = array('success' => false, 'error' => '0', 'msg' => $e->getMessage());
+            die(json_encode($result));
+        }
+    }
+
 }
 
-class Registration extends Settings{
-    		
-	protected $Username;
-	protected $Password;
-	protected $Email;
-    
-    
+class Registration extends Settings {
+
+    protected $Username;
+    protected $Password;
+    protected $Email;
+
     /**
      * @param $username
      * @return insert to private var
      */
-    function SetUsername($username)
-    {
+    function SetUsername($username) {
         return $this->Username = ($username);
     }
+
     /**
      * @return username
      */
-    function GetUsername()
-    {
+    function GetUsername() {
         return $this->Username;
     }
+
     /**
      * @param $password
      * @return isnert to private password var
      */
-    function SetPassword($password)
-    {
-	    $salt = sha1("1".$password."1");
-    	$password="$salt$password$salt";
+    function SetPassword($password) {
+        $salt = sha1("1" . $password . "1");
+        $password = "$salt$password$salt";
         return $this->Password = sha1(($password));
     }
+
     /**
      * @param $Email
      * @return insert to private var
      */
-    function SetEmail($email)
-    {
+    function SetEmail($email) {
         return $this->Email = ($email);
     }
+
     /**
      * @return email
      */
-    function GetEmail()
-    {
+    function GetEmail() {
         return $this->Email;
     }
+
     /**
      * @return array of erros if any
      */
-    function Validate()
-    {
-        $errors =  array();
-        
+    function Validate() {
+        $errors = array();
+
         // username must be at list 3 charecters
-        if((strlen($this->Username)) < 3 )
-        {
+        if ((strlen($this->Username)) < 3) {
             $errors[] = "Username must be at list 3 characters";
         }
         // end username check
         // valid mail
-        
-        if(false === filter_var($this->Email, FILTER_VALIDATE_EMAIL))
-        {
+
+        if (false === filter_var($this->Email, FILTER_VALIDATE_EMAIL)) {
             $errors[] = "Email not valid";
-        } 
-        
-        if((strlen($this->Password)) < 5 )
-        {
+        }
+
+        if ((strlen($this->Password)) < 5) {
             $errors[] = "Password must be at list 5 characters";
         }
         //
         return $errors;
-        
     }
+
     /**
      * @return return array of errors if false
      * return true if o.k
      */
-    function InsertUserToSql()
-    {
+    function InsertUserToSql() {
         $error = $this->Validate();
-        if(count($error) > 0 ){
-                return $error;    
-        }else{
-	        $stmt = $this->dbh->prepare("INSERT INTO users (username, password, email, regdate) VALUES (:username,    
+        if (count($error) > 0) {
+            return $error;
+        } else {
+            $stmt = $this->dbh->prepare("INSERT INTO users (username, password, email, regdate) VALUES (:username,    
     	    :password, :email, :regdate)");
-	        $stmt->bindParam(':username', $this->Username);
-	        $stmt->bindParam(':password', $this->Password);
-	        $stmt->bindParam(':email', $this->Email);
-	        $stmt->bindParam(':regdate', time());
-	        $stmt->execute();
-	        $arr = array();
-	        $arr = $stmt->errorInfo();
-	        return $arr;
-        
+            $stmt->bindParam(':username', $this->Username);
+            $stmt->bindParam(':password', $this->Password);
+            $stmt->bindParam(':email', $this->Email);
+            $stmt->bindParam(':regdate', time());
+            $stmt->execute();
+            $arr = array();
+            $arr = $stmt->errorInfo();
+            return $arr;
         }
-        
-    }    
-    
-    
+    }
+
 }
 
 class login extends Registration {
+
     /**
      * @return if falis return false if ok return session 
      */
-    function CheckLogin(){
-        
+    function CheckLogin() {
+
         $stmt = $this->dbh->prepare("SELECT P_id,username, password, wallPaper,theme, wpStretch,extrainfo1,extrainfo2,extrainfo3,active FROM users
         WHERE username = :username AND password =  :password and active=1");
         $stmt->bindParam(':username', $this->Username);
         $stmt->bindParam(':password', $this->Password);
         $stmt->execute();
- 
-        if($stmt->rowCount() > 0 )
-        {    
-            $result=$stmt->fetch(PDO::FETCH_ASSOC);
-			$_SESSION['ExtDeskSession']['id'] 		 = $result["P_id"];
-			$_SESSION['ExtDeskSession']['username']  = $result["username"];            
-			$_SESSION['ExtDeskSession']['wallPaper'] = $result["wallPaper"];
-			$_SESSION['ExtDeskSession']['theme'] 	 = $result["theme"];
-			$_SESSION['ExtDeskSession']['wpStretch'] = $result["wpStretch"];
-			$_SESSION['ExtDeskSession']['extrainfo1']= $result["extrainfo1"];
-			$_SESSION['ExtDeskSession']['extrainfo2']= $result["extrainfo2"];
-			$_SESSION['ExtDeskSession']['extrainfo3']= $result["extrainfo3"];
-			$_SESSION['ExtDeskSession']['bactive']   = $result["active"];
 
-        }
-        else
-        {
+        if ($stmt->rowCount() > 0) {
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            $_SESSION['ExtDeskSession']['id'] = $result["P_id"];
+            $_SESSION['ExtDeskSession']['username'] = $result["username"];
+            $_SESSION['ExtDeskSession']['wallPaper'] = $result["wallPaper"];
+            $_SESSION['ExtDeskSession']['theme'] = $result["theme"];
+            $_SESSION['ExtDeskSession']['wpStretch'] = $result["wpStretch"];
+            $_SESSION['ExtDeskSession']['extrainfo1'] = $result["extrainfo1"];
+            $_SESSION['ExtDeskSession']['extrainfo2'] = $result["extrainfo2"];
+            $_SESSION['ExtDeskSession']['extrainfo3'] = $result["extrainfo3"];
+            $_SESSION['ExtDeskSession']['bactive'] = $result["active"];
+        } else {
             return false;
         }
-        
     }
+
 }
 
-class ChangeSetting extends Registration
-{
-    
+class ChangeSetting extends Registration {
+
     /**
      * @return return true on succsess
      */
-    function ChangeMail()
-    {
-        
+    function ChangeMail() {
+
         $EmailPattren = '/^([a-z0-9])(([-a-z0-9._])*([a-z0-9]))*\@([a-z0-9])' .
-        '(([a-z0-9-])*([a-z0-9]))+' . '(\.([a-z0-9])([-a-z0-9_-])?([a-z0-9])+)+$/i';
-    
-    $IsEmailValid = preg_match($EmailPattren, $this->Email);
-    if($IsEmailValid > 0)
-    {
-        $stmt = $this->dbh->prepare("UPDATE users 
+                '(([a-z0-9-])*([a-z0-9]))+' . '(\.([a-z0-9])([-a-z0-9_-])?([a-z0-9])+)+$/i';
+
+        $IsEmailValid = preg_match($EmailPattren, $this->Email);
+        if ($IsEmailValid > 0) {
+            $stmt = $this->dbh->prepare("UPDATE users 
         SET email = :email WHERE username = :username
         ");
-        $stmt->bindParam(':email', $this->Email);
-        $stmt->bindParam(':username', $_SESSION['ExtDeskSession']['username']);
-        $stmt->execute();
-        return true;
+            $stmt->bindParam(':email', $this->Email);
+            $stmt->bindParam(':username', $_SESSION['ExtDeskSession']['username']);
+            $stmt->execute();
+            return true;
+        } else {
+            return false;
+        }
     }
-    else
-    {
-        return false;
-    }
-    }
-        protected  $oldpass;
-        
-    function SetOldPass($oldpass)
-    {
-        $salt = sha1("1".$oldpass."1");
-		$oldpass="$salt$oldpass$salt";			
+
+    protected $oldpass;
+
+    function SetOldPass($oldpass) {
+        $salt = sha1("1" . $oldpass . "1");
+        $oldpass = "$salt$oldpass$salt";
         return $this->oldpass = sha1($oldpass);
     }
-    
-    function ChangePass()
-    {
-        
+
+    function ChangePass() {
+
         $stmt = $this->dbh->prepare("UPDATE users 
         SET password = :password  WHERE username = :username AND password = :oldpass
         ");
@@ -207,12 +192,10 @@ class ChangeSetting extends Registration
         $stmt->bindParam(':oldpass', $this->oldpass);
         $stmt->bindParam(':username', $_SESSION['ExtDeskSession']['username']);
         $stmt->execute();
-        
-        
     }
-    function SendMailForNewPass()
-    {
-        
+
+    function SendMailForNewPass() {
+
         $voucher = rand() . rand() . rand();
         $stmt = $this->dbh->prepare("UPDATE users 
         SET CpassReqDate = :CpassReqDate, voucher = :voucher WHERE email = :email
@@ -220,63 +203,58 @@ class ChangeSetting extends Registration
         $stmt->bindParam(':CpassReqDate', time());
         $stmt->bindParam(':email', $this->Email);
         $stmt->bindParam(':voucher', $voucher);
-    
+
         $stmt->execute();
-        
-        
-        mail($this->Email,"new pass ","
+
+
+        mail($this->Email, "new pass ", "
         this is link for change pass : <a href='localhost/loginsys/sample.php/?newpassv=$voucher>link</a>'
         ");
     }
-    function SetNewPass()
-    {
-        if(!empty($_GET['newpassv']))
-        {
+
+    function SetNewPass() {
+        if (!empty($_GET['newpassv'])) {
             $voucher = $_GET['newpassv'];
             $d = time() - 1800;
-            
-        $stmt = $this->dbh->prepare("SELECT CpassReqDate, email FROM users WHERE
+
+            $stmt = $this->dbh->prepare("SELECT CpassReqDate, email FROM users WHERE
         voucher = :voucher
         ");
-        
-        $stmt->bindParam(':voucher', $voucher);
-        $stmt->execute();
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        
-        
-        
+
+            $stmt->bindParam(':voucher', $voucher);
+            $stmt->execute();
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
+
             $TimeLimit = $result[0]['CpassReqDate'] - time();
-            if($TimeLimit > 1800)
-            {
+            if ($TimeLimit > 1800) {
                 echo "Voucher Experid";
-            }
-            else
-            {
-                
-        $stmt = $this->dbh->prepare("UPDATE users 
+            } else {
+
+                $stmt = $this->dbh->prepare("UPDATE users 
         SET password = :password WHERE email = :email
         ");
                 $email = $result[0]['email'];
                 $pass = rand() . rand();
                 ;
-        $salt = sha1("1".$pass."1");
-		$pass="$salt$pass$salt";
-		
-        $stmt->bindParam(':password', sha1($pass));
-        $stmt->bindParam(':email', $email);
-        $stmt->execute();
-        mail($email,"your new pass", "the new pass is<b>:  $pass</b>");
-        
+                $salt = sha1("1" . $pass . "1");
+                $pass = "$salt$pass$salt";
+
+                $stmt->bindParam(':password', sha1($pass));
+                $stmt->bindParam(':email', $email);
+                $stmt->execute();
+                mail($email, "your new pass", "the new pass is<b>:  $pass</b>");
             }
         }
-    
-        
     }
-    
-   function Logout()
-   {
-      if (!isset($_SESSION)) session_start();	/**Fix if we have a sessión... ;)**/
-      unset($_SESSION['ExtDeskSession']	);
-  }  
+
+    function Logout() {
+        if (!isset($_SESSION))
+            session_start(); /*             * Fix if we have a sessión... ;)* */
+        unset($_SESSION['ExtDeskSession']);
+    }
+
 }
-?> 
+
+?>
