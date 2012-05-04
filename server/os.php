@@ -113,6 +113,7 @@ class os {
                                                 echo '{success:true, msg:"Guardado"}';
                                             }
                                         }
+                                        break;
                                     case "QLaunchs":
                                         if ($_GET['action'] = "save") {
                                             $isSet = $modules->saveQLaunchs();
@@ -122,6 +123,7 @@ class os {
                                                 echo '{success:true, msg:"Guardado"}';
                                             }
                                         }
+                                        break;
                                     case 'Theme':
                                         if ($_GET['action'] = "save") {
                                             $isSet = $modules->saveTheme();
