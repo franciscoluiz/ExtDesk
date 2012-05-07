@@ -53,7 +53,7 @@
 	fclose($handle);
 	chmod('../server/include/' . 'config.php', 0666);
 	
-	$sqlfile = "installsc.sql";
+	$sqlfile = "install.sql";
 	$sql_query = @fread(@fopen($sqlfile, 'r'), @filesize($sqlfile));
 	$sql_query = remove_remarks($sql_query);
 	$sql_query = split_sql_file($sql_query, ";");
