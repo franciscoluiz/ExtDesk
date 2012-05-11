@@ -1,4 +1,3 @@
-
 DROP TABLE IF EXISTS `user_preferences`;
 CREATE TABLE `user_preferences` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -7,25 +6,22 @@ CREATE TABLE `user_preferences` (
   `shorcut` int(11) DEFAULT NULL,
   `qLaunch` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 LOCK TABLES `user_preferences` WRITE;
 
-INSERT INTO `user_preferences` 
-VALUES 
-(1,1,1,0,0),
+INSERT INTO `user_preferences` VALUES 
+(1,1,1,1,1),
 (2,1,2,1,1),
-(3,2,1,1,1),
-(4,2,2,1,1),
-(5,2,3,1,1),
-(6,2,4,1,1),
-(7,2,5,1,1),
-(8,2,6,1,1),
-(9,2,7,1,1),
-(10,2,8,0,0),
-(11,2,9,0,0),
-(12,2,10,1,0),
-(13,2,11,1,0);
+(3,1,3,1,1),
+(4,1,4,1,1),
+(5,1,5,1,1),
+(6,1,6,1,1),
+(7,1,7,1,1),
+(8,1,8,0,0),
+(9,1,9,0,0),
+(10,1,10,1,0),
+(11,1,11,1,0);
 
 UNLOCK TABLES;
 
@@ -49,40 +45,80 @@ CREATE TABLE `users` (
   PRIMARY KEY (`P_Id`),
   UNIQUE KEY `id` (`P_Id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=MyISAM AUTO_INCREMENT=59 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 LOCK TABLES `users` WRITE;
 
 INSERT INTO `users` VALUES 
-(1,'Xcape','0944024e99eae16d3a062e03c745bae4b03a1a4c','xcape@extdesk.net','1316496013','','','Blue','blue',1,'','','',1),
-(2,'Francisco','0944024e99eae16d3a062e03c745bae4b03a1a4c','francisco@extdesk.net','1316495884','','','Dark-Sencha','gray',1,'','','',1),
-(4,'Arion','0944024e99eae16d3a062e03c745bae4b03a1a4c','arion@extdesk.net','1316495884','','','Desk','green',1,'','','',1),
-(5,'test','050b77b6a25c24b1a5b3f87644d3e51f03a0450b','test@hotmail.com','','','',NULL,'blue',NULL,'','','',1);
+(1,
+'set_admin_user',
+'set_admin_pass',
+'set_admin_email',
+'1316496013','','','Blue','blue',1,'','','',1);
 
 UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `groups_actions`;
-
 
 CREATE TABLE `groups_actions` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `idGroups` int(11) DEFAULT NULL,
   `idActions` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=latin1;
 
 LOCK TABLES `groups_actions` WRITE;
 
 
 INSERT INTO `groups_actions` VALUES 
-(2,1,2),(3,1,3),(4,1,4),(5,1,5),(6,1,6),
-(7,1,7),(8,1,8),(9,1,9),(10,1,10),(11,1,11),
-(12,1,12),(13,1,13),(14,1,14),(15,1,15),(16,1,16),
-(17,1,17),(18,1,18),(19,1,19),(20,2,1),(21,2,2),
-(22,2,3),(23,2,4),(24,2,5),(25,2,6),(26,2,7),(27,2,8),
-(28,2,9),(29,2,10),(30,2,11),(31,2,12),(32,2,13),(33,2,14),
-(34,2,15),(35,2,16),(36,2,17),(37,2,18),(38,2,19),(39,2,20),
-(40,2,21),(41,2,22);
+(1,1,1),
+(2,1,2),
+(3,1,3),
+(4,1,4),
+(5,1,5),
+(6,1,6),
+(7,1,7),
+(8,1,8),
+(9,1,9),
+(10,1,10),
+(11,1,11),
+(12,1,12),
+(13,1,13),
+(14,1,14),
+(15,1,15),
+(16,1,16),
+(17,1,17),
+(18,1,18),
+(19,1,19),
+(20,1,20),
+(21,1,21),
+(22,1,22),
+(23,2,19),
+(24,2,20),
+(25,2,21),
+(26,2,22),
+(27,3,1),
+(28,3,2),
+(29,3,3),
+(30,3,4),
+(31,3,5),
+(32,3,6),
+(33,3,7),
+(34,3,8),
+(35,3,9),
+(36,3,10),
+(37,3,11),
+(38,3,12),
+(39,3,13),
+(40,3,14),
+(41,3,15),
+(42,3,16),
+(43,3,17),
+(44,3,18),
+(45,3,19),
+(46,3,20),
+(47,3,21),
+(48,3,22);
 
 UNLOCK TABLES;
 
@@ -101,8 +137,8 @@ CREATE TABLE `modules` (
 LOCK TABLES `modules` WRITE;
 
 INSERT INTO `modules` VALUES 
-(1,'Settings','Settings',NULL,NULL,NULL),
-(2,'Admin','Admin','admin-shortcut','admin-win','icon-admin'),
+(1,'Admin','Admin','admin-shortcut','admin-win','icon-admin'),
+(2,'Settings','Settings',NULL,NULL,NULL),
 (3,'Notepad','Notepad','notepad-shortcut','notepad','icon-notepad'),
 (4,'AccordionWindow','Accordion Window','accordion-shortcut','acc-win','icon-accordion'),
 (5,'GridWindow','Grid Window','grid-shortcut','grid-win','icon-grid'),
@@ -128,25 +164,25 @@ CREATE TABLE `actions` (
 LOCK TABLES `actions` WRITE;
 
 INSERT INTO `actions` VALUES 
-(1,'Settings','Wallpaper','Save'),
-(2,'Admin','Users','List'),
-(3,'Admin','Users','Save'),
-(4,'Admin','Users','Delete'),
-(5,'Admin','Modules','List'),
-(6,'Admin','Modules','Save'),
-(7,'Admin ','Modules','Delete'),
-(8,'Admin','Actions','List'),
-(9,'Admin','Actions','Save'),
-(10,'Admin','Actions','Delete'),
-(11,'Admin','Groups','List'),
-(12,'Admin','Groups','Save'),
-(13,'Admin','Groups','Delete'),
-(14,'Admin','ModulesinGroups','List'),
-(15,'Admin','ModulesinGroups','Save'),
-(16,'Admin','ActionsinGroups','List'),
-(17,'Admin','ActionsinGroups','Save'),
-(18,'Admin','GroupsinUser','List'),
-(19,'Admin','GroupsinUser','Save'),
+(1,'Admin','Users','List'),
+(2,'Admin','Users','Save'),
+(3,'Admin','Users','Delete'),
+(4,'Admin','Modules','List'),
+(5,'Admin','Modules','Save'),
+(6,'Admin','Modules','Delete'),
+(7,'Admin','Actions','List'),
+(8,'Admin','Actions','Save'),
+(9,'Admin','Actions','Delete'),
+(10,'Admin','Groups','List'),
+(11,'Admin','Groups','Save'),
+(12,'Admin','Groups','Delete'),
+(13,'Admin','ModulesinGroups','List'),
+(14,'Admin','ModulesinGroups','Save'),
+(15,'Admin','ActionsinGroups','List'),
+(16,'Admin','ActionsinGroups','Save'),
+(17,'Admin','GroupsinUser','List'),
+(18,'Admin','GroupsinUser','Save'),
+(19,'Settings','Wallpaper','Save'),
 (20,'Settings','Shortcuts','Save'),
 (21,'Settings','QLaunchs','Save'),
 (22,'Settings','Theme','Save');
@@ -160,11 +196,14 @@ CREATE TABLE `user_groups` (
   `idUser` int(11) DEFAULT NULL,
   `idGroup` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 LOCK TABLES `user_groups` WRITE;
 
-INSERT INTO `user_groups` VALUES (1,1,1),(2,1,2),(3,2,1),(4,2,2),(5,3,2);
+INSERT INTO `user_groups` VALUES 
+(1,1,1),
+(2,1,2),
+(3,1,3);
 
 UNLOCK TABLES;
 
@@ -177,13 +216,14 @@ CREATE TABLE `groups` (
   `active` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `group_UNIQUE` (`group`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 LOCK TABLES `groups` WRITE;
 
 INSERT INTO `groups` VALUES 
-(1,'Administrator','Full User',1),
-(2,'DemoGroup','Only can save wallpaper',1);
+(1,'Administrator','Can access only admin modules',1),
+(2,'DemoGroup','Only can save wallpaper',1),
+(3,'Full Access','Can access all modules with all actions', 1 );
 
 
 UNLOCK TABLES;
@@ -196,13 +236,24 @@ CREATE TABLE `groups_modules` (
   `idModules` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `idgroups` (`idGroups`)
-) ENGINE=InnoDB AUTO_INCREMENT=97 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 
 LOCK TABLES `groups_modules` WRITE;
 
 INSERT INTO `groups_modules` VALUES 
-(1,1,2),(3,2,2),(4,2,3),(5,2,4),(6,2,5),
-(7,2,6),(8,2,7),(9,2,8),(10,2,9),(11,2,10),
-(12,2,11),(96,2,1);
+(1,1,1),
+(2,1,2),
+(3,2,2),
+(4,3,1),
+(5,3,2),
+(6,3,3),
+(7,3,4),
+(8,3,5),
+(9,3,6),
+(10,3,7),
+(11,3,8),
+(12,3,9),
+(13,3,10),
+(14,3,11);
 
 UNLOCK TABLES;

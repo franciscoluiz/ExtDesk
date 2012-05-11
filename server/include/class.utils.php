@@ -19,4 +19,14 @@ class utils {
 
         return $res;
     }
+    
+    function makePass($pass) {
+
+        $salt = sha1("1". $pass ."1");
+        $password="$salt$pass$salt";
+        $senha_codificada = sha1(($password));
+        
+        return $senha_codificada;
+    }
+    
 }

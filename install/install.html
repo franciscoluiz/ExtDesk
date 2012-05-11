@@ -1,5 +1,4 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-    "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -11,7 +10,6 @@
         <script type="text/javascript" src="../extjs/ext-all.js"></script>
 
         <title>ExtDesk</title>
-
 
         <style type="text/css">
 
@@ -103,86 +101,122 @@
                         typeAhead: true,
                         anchor:"100%",
                         valueField:'value',
-                        value:'en',
+                        value:'en'
                     });
 
                     var form = Ext.create('Ext.form.Panel', {
                         xtype : "form",
                         url : 'install.php', 
-                        bodyPadding: 10,
                         region: 'center',
+                        layout: 'auto',
                         items: [
                             {
-                                xtype: 'textfield',
-                                name:'mysql_server',
-                                fieldLabel: 'Mysql Server',
-                                anchor: '100%',
-                                allowBlank: false,							                    
+                                xtype:'panel',
+                                title: 'Server Settings',
+                                bodyPadding:12,
+                                layout: 'auto',
+                                items : [
+                                    {
+                                        xtype: 'textfield',
+                                        name:'mysql_server',
+                                        fieldLabel: 'Mysql Server',
+                                        anchor: '100%',
+                                        allowBlank: false						                    
+                                    },
+                                    {
+                                        xtype : 'textfield',
+                                        name : 'user',
+                                        fieldLabel : 'User',
+                                        anchor : '100%',
+                                        allowBlank: false
+                                    },
+                                    {
+                                        xtype : 'textfield',
+                                        name : 'password',
+                                        inputType: 'password',
+                                        fieldLabel : 'Password',
+                                        anchor : '100%',
+                                        allowBlank : false
+                                    },
+                                    {
+                                        xtype: 'textfield',
+                                        name : 'database',
+                                        fieldLabel: 'Database',
+                                        anchor: '100%',
+                                        allowBlank: false
+                                    },
+                                    langsCombo,
+                                ]
                             },
+                                
                             {
-                                xtype : 'textfield',
-                                name : 'user',
-                                fieldLabel : 'User',
-                                anchor : '100%',
-                                allowBlank: false,
-                            },
-                            {
-                                xtype : 'textfield',
-                                name : 'password',
-                                inputType: 'password',
-                                fieldLabel : 'Password',
-                                anchor : '100%',
-                                allowBlank : false,
-                            },
-                            {
-                                xtype: 'textfield',
-                                name : 'database',
-                                fieldLabel: 'Database',
-                                anchor: '100%',
-                                allowBlank: false,
-                            },							                
-                            langsCombo
+                                xtype:'panel',
+                                title: 'Admin Settings',
+                                bodyPadding:12,
+                                layout: 'auto',
+                                items : [
+                                    
+                                    {
+                                        xtype : 'textfield',
+                                        name : 'user_admin',
+                                        fieldLabel : 'Admin User',
+                                        anchor : '100%',
+                                        allowBlank: false
+                                    },
+                                    {
+                                        xtype : 'textfield',
+                                        name : 'email_admin',
+                                        fieldLabel : 'Admin Email',
+                                        anchor : '100%',
+                                        allowBlank : false
+                                    },
+                                    {
+                                        xtype : 'textfield',
+                                        name : 'password_admin',
+                                        inputType: 'password',
+                                        fieldLabel : 'Admin Password',
+                                        anchor : '100%',
+                                        allowBlank : false
+                                    }
+                                    
+                                ]
+                            }
+                            
+                            
+                            
                         ],
                         buttons: [
                             {
-                                text : "Cancel",
-                                handler : function(){
-                                    win.close();
-                                },
-                                scope:this
-                            },
-                            {
                                 text : 'Install',
-								scope:this,
+                                scope:this,
                                 handler : function(){
-									Ext.MessageBox.show({msg: "Installing..",progressText: "Installing, please wait.",	width:300,wait:true,waitConfig: {interval:50},modal:true});
+                                    Ext.MessageBox.show({msg: "Installing..",progressText: "Installing, please wait.",	width:300,wait:true,waitConfig: {interval:50},modal:true});
                                     form.submit({
-										success : function(data,options){
-											Ext.MessageBox.hide();
-											if (options.result.success){
-												Ext.Msg.show({
-													title : 'Congratulations ExtDesk was Installed',
-													msg : options.result.msg+" Do you want redirect to Extdesk page..?",
-													buttons : Ext.Msg.YESNOCANCEL,
-													icon : Ext.Msg.QUESTION,
-													fn : function(btn, text){
-														if (btn == 'yes'){
-															window.location ="../index.html";    		
-														}
-													}
-												});    	
-												//Ext.Msg.alert(, );
-											}else{
-												Ext.MessageBox.hide();
-												Ext.MessageBox.alert('Error',options.result.msg);		
-											}											
-										},
-										failure : function(data,options){
-											Ext.MessageBox.hide();		
-											Ext.MessageBox.alert('Error',options.result.msg);
+                                        success : function(data,options){
+                                            Ext.MessageBox.hide();
+                                            if (options.result.success){
+                                                Ext.Msg.show({
+                                                    title : 'Congratulations ExtDesk was Installed',
+                                                    msg : options.result.msg+" Do you want redirect to Extdesk page..?",
+                                                    buttons : Ext.Msg.YESNOCANCEL,
+                                                    icon : Ext.Msg.QUESTION,
+                                                    fn : function(btn, text){
+                                                        if (btn == 'yes'){
+                                                            window.location ="../index.html";    		
+                                                        }
+                                                    }
+                                                });    	
+                                            }else{
+                                                Ext.MessageBox.hide();
+                                                Ext.MessageBox.alert('Error',options.result.msg);		
+                                            }											
+                                        },
+                                        failure : function(data,options){
+                                            Ext.MessageBox.hide();		
+                                            Ext.MessageBox.alert('Error',options.result.msg);
 											
                                         },
-										errors: function(data){
+                                        errors: function(data){
                                             Ext.MessageBox.alert('Error',options.result.msg);											
                                         }
 										
@@ -201,27 +235,21 @@
                         title: "Installation",
                         url: 'diskeinstall.php',
                         width: 450,
-                        height: 220,
-                        minWidth: 450,
-                        minHeight:200,
+                        height: 383,
                         layout: 'border',
                         resizable: false,
                         plain:true,
-                        closable:true,
+                        closable:false,
                         items:[
-                            form
-                            ,
                             {
                                 xtype:'panel',
                                 region:'west',
-                                //title:'test',
                                 width:155,
                                 bodyPadding:12,
                                 html:'<img src="../resources/images/extdesklogo.png"/>'	
-                            }
-							    
-							    
-                        ],
+                            },
+                            form			    
+                        ]
 							    
                     },this);
                 }
@@ -245,7 +273,5 @@
             <span class="title">ExtDesk <b>Installer</b></span>
             <span class="logo"> </span>
         </div>
-        <a href="#" class="install" onclick="wininstall();">Install</a>
-
     </body>
 </html>
