@@ -1,6 +1,18 @@
 ExtDesk
 =============
-A new desk to the web. (This is a work in progress....)
+
+A extended desktop to the web. (This is a work in progress....)
+
+License
+------------
+Open Source License!
+
+ExtDesk is an avid supporter of open source software. Our open source license is the appropriate option if you are creating an open source application under a license compatible with the GNU GPL license v3. Although the GPLv3 has many terms, the most important is that you must provide the source code of your application to your users so they can be free to modify your application for their own needs.
+
+The ExtDesk source code is free and is entirely open to the public. It is available on our downloads page, found in http://extdesk.net/download
+
+If you want or plan to commercialize your application using the ExtDesk, you can contact us and it becomes necessary that you acquire a commercial license from Sencha for Ext JS.
+
 Screenshot
 ------------
 
