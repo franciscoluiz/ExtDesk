@@ -31,7 +31,7 @@ This file may be used under the terms of the GNU General Public License version 
  * http://www.sencha.com/license
  */
 
-Ext.Loader.setPath('Ext.ux', 'client/ux');
+Ext.Loader.setPath('Ext.ux', 'client/ux/CheckColumn');
 
 Ext.define('MyDesktop.Modules.Admin.Client.Admin', {			// 1.- Steep One define the name of the module
     requires: [
@@ -108,7 +108,7 @@ Ext.define('MyDesktop.Modules.Admin.Client.Admin', {			// 1.- Steep One define t
             handler : this.createWindow,
             scope: this
         };
-        this.loadCss("client/ux/css/CheckHeader");
+        this.loadCss("client/ux/CheckColumn/css/CheckHeader");
         
         /*** MODELS ***/        
         // model ImageAdmin

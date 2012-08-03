@@ -172,10 +172,10 @@ Ext.define('Ext.ux.desktop.Desktop', {
         var me = this;
         return {
             xtype: 'dataview',
-			id:'id_shortcut_dataview',
-			overItemCls : 'x-view-over',            
-			trackOver : true,
-            itemSelector : me.shortcutItemSelector,
+            id:'id_shortcut_dataview',
+            overItemCls: 'x-view-over',
+            trackOver: true,
+            itemSelector: me.shortcutItemSelector,
             store: me.shortcuts,
             tpl: new Ext.XTemplate(me.shortcutTpl)
         };
@@ -193,7 +193,6 @@ Ext.define('Ext.ux.desktop.Desktop', {
         /*** Languaje options ***/
 	    me.tileText = userStore.strings().findRecord("alias","tile").data.string;
 	   	me.cascadeText = userStore.strings().findRecord("alias","cascade").data.string;
-
         ret.items.push(
                 { text:  me.tileText, handler: me.tileWindows, scope: me, minWindows: 1 },
                 { text:  me.cascadeText, handler: me.cascadeWindows, scope: me, minWindows: 1 })
@@ -355,7 +354,7 @@ Ext.define('Ext.ux.desktop.Desktop', {
                 minimizable: true,
                 maximizable: true
             });
-		me.notification("Ejecutando",config.title);
+		me.notification("Executando",config.title);
                         
         cls = cls || Ext.window.Window;
         win = me.add(new cls(cfg));
