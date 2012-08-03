@@ -41,7 +41,15 @@ class Admin {
 
     function Users_Save() {
 
-        $post = json_decode($_GET["jsonp"]);
+    
+	//$post = json_decode($_GET["jsonp"]);
+        if(get_magic_quotes_gpc()){
+            $post = json_decode(stripslashes($_GET["jsonp"]));
+        }else{
+            $post = json_decode($_GET["jsonp"]);
+        }
+	
+
 
         foreach ($post as $key) {
 
@@ -60,7 +68,7 @@ class Admin {
             if ($post[0]->password != "") {
                 $salt = sha1("1" . $vp . "1");
                 $password = "$salt$vp$salt";
-                $vp = sha1(mysql_real_escape_string($password));
+                $vp = sha1($password);
                 $pswd = " password = '$vp',";
             } else {
                 $pswd = "";
@@ -69,7 +77,7 @@ class Admin {
             if ($id == null) {
                 $query = "INSERT INTO users (username,password,email,extrainfo1,extrainfo2,extrainfo3,active) VALUES ('$vu','$vp','$vm','$vex1','$vex2','$vex3',$vact);";
             } else {
-                $query = "UPDATE users 	SET" . $pswd . " email = '$vm',  extrainfo1 = '$vex1', extrainfo2 ='$vex2',
+                $query = "UPDATE users 	SET" . $pswd . " email = '$vm', username = '$vu',  extrainfo1 = '$vex1', extrainfo2 ='$vex2',
 					extrainfo3 = '$vex3', active = $vact WHERE P_Id=$id";
             }
             $this->query = $this->dbh->prepare($query);
@@ -108,7 +116,15 @@ class Admin {
     }
 
     function Modules_Save() {
-        $post = json_decode($_GET["jsonp"]);
+    
+	//$post = json_decode($_GET["jsonp"]);
+        if(get_magic_quotes_gpc()){
+            $post = json_decode(stripslashes($_GET["jsonp"]));
+        }else{
+            $post = json_decode($_GET["jsonp"]);
+        }
+	
+
         foreach ($post as $key) {
             $vid = $key->id;
             $vjs = $key->js;
@@ -162,7 +178,15 @@ class Admin {
 
     function Actions_Save() {
 
-        $post = json_decode($_GET["jsonp"]);
+    
+	//$post = json_decode($_GET["jsonp"]);
+        if(get_magic_quotes_gpc()){
+            $post = json_decode(stripslashes($_GET["jsonp"]));
+        }else{
+            $post = json_decode($_GET["jsonp"]);
+        }
+	
+
         foreach ($post as $key) {
             $vid = $key->id;
             $vm = $key->module;
@@ -212,7 +236,15 @@ class Admin {
     }
 
     function Groups_Save() {
-        $post = json_decode($_GET["jsonp"]);
+    
+	//$post = json_decode($_GET["jsonp"]);
+        if(get_magic_quotes_gpc()){
+            $post = json_decode(stripslashes($_GET["jsonp"]));
+        }else{
+            $post = json_decode($_GET["jsonp"]);
+        }
+	
+
         foreach ($post as $key) {
             $vid = $key->id;
             $vg = $key->group;
@@ -266,7 +298,15 @@ class Admin {
     }
 
     function ModulesinGroups_Save() {
-        $post = json_decode($_GET["jsonp"]);
+    
+	//$post = json_decode($_GET["jsonp"]);
+        if(get_magic_quotes_gpc()){
+            $post = json_decode(stripslashes($_GET["jsonp"]));
+        }else{
+            $post = json_decode($_GET["jsonp"]);
+        }
+	
+
         $count_saved = 0;
         foreach ($post as $key) {
 
@@ -343,7 +383,15 @@ class Admin {
     }
 
     function ActionsinGroups_Save() {
-        $post = json_decode($_GET["jsonp"]);
+    
+	//$post = json_decode($_GET["jsonp"]);
+        if(get_magic_quotes_gpc()){
+            $post = json_decode(stripslashes($_GET["jsonp"]));
+        }else{
+            $post = json_decode($_GET["jsonp"]);
+        }
+	
+
         $count_saved = 0;
 
         $adminGroup = FALSE;
@@ -409,7 +457,14 @@ class Admin {
     }
 
     function GroupsinUser_Save() {
-        $post = json_decode($_GET["jsonp"]);
+    
+	//$post = json_decode($_GET["jsonp"]);
+        if(get_magic_quotes_gpc()){
+            $post = json_decode(stripslashes($_GET["jsonp"]));
+        }else{
+            $post = json_decode($_GET["jsonp"]);
+        }
+	
         $count_saved = 0;
 
         $adminUser = false;

@@ -7,11 +7,11 @@ class modules {
 
     function __construct() {
         //var_dump($_SESSION);
-        $server   = _DB_HOST;
-        $driver   = _DB_DRIVER;
-        $user     = _DB_USER;
+        $server = _DB_HOST;
+        $driver = _DB_DRIVER;
+        $user = _DB_USER;
         $password = _DB_PASSWORD;
-        $dbname   = _DB_NAME;
+        $dbname = _DB_NAME;
         $dsn = "$driver:dbname=$dbname;host=$server";
 
         try {
@@ -79,27 +79,29 @@ class modules {
         $option = $_GET["option"];
         $action = $_GET["action"];
 
-        $sql = "select a.module, a.`option`, a.action,ug.idGroup,u.p_id
-				from 
-				groups_actions ga, 
-				actions a, 
-				user_groups 
-				ug,modules m,
-				groups g,
-				users u
-				where
-				a.id=ga.idActions and ug.idGroup=ga.idGroups and 
-				m.js=a.module and ga.idgroups=g.id and
-				ug.idUser=u.p_id
-				and g.active=1 
-				and u.active=1
-				and u.P_id=$id
-				and a.module='$module'
-				and a.`option`='$option'
-				and a.action='$action'
-				order by m.id
-			";
-
+        $sql = "select a.module, 
+                       a.option, 
+                       a.action,
+                       ug.idGroup,
+                       u.p_id
+                  from groups_actions ga, 
+                       actions a, 
+                       user_groups 
+                       ug,modules m,
+                       groups g,
+                       users u
+                 where a.id=ga.idActions 
+                   and ug.idGroup=ga.idGroups 
+                   and m.js=a.module 
+                   and ga.idgroups=g.id
+                   and ug.idUser=u.p_id
+                   and g.active=1 
+                   and u.active=1
+                   and u.P_id=$id
+                   and a.module='$module'
+                   and a.option='$option'
+                   and a.action='$action'
+                 order by m.id";
 
         $stmt = $this->dbh->prepare($sql);
         $stmt->execute();

@@ -113,8 +113,9 @@ Ext.define('MyDesktop.Modules.Admin.Client.Admin', {			// 1.- Steep One define t
         /*** MODELS ***/        
         // model ImageAdmin
         if (! Ext.ClassManager.isCreated('ImageAdmin')) {
-            Ext.regModel('ImageAdmin', {
-                Fields: [
+            Ext.define('ImageAdmin', {
+                extend: 'Ext.data.Model',
+                fields: [
                 {
                     name : 'id', 	
                     type : 'string'
@@ -139,8 +140,8 @@ Ext.define('MyDesktop.Modules.Admin.Client.Admin', {			// 1.- Steep One define t
         }
 				
         // model AdminUsers
-        if (! Ext.ClassManager.isCreated('AdminUsers')) {
-            Ext.define('AdminUsers', {
+        if (! Ext.ClassManager.isCreated('AdminUsers_model')) {
+            Ext.define('AdminUsers_model', {
                 extend: 'Ext.data.Model',
                 fields: [
                 {
@@ -400,7 +401,7 @@ Ext.define('MyDesktop.Modules.Admin.Client.Admin', {			// 1.- Steep One define t
         // Store Users
         me.storeUsers = Ext.create('Ext.data.Store',{
             id : 'AdminUsers',
-            model : 'AdminUsers',
+            model : 'AdminUsers_model',
             autoLoad: false,
             proxy : {
                 type: 'ajax',
@@ -1000,7 +1001,7 @@ addUser : function(){
     	
     var me=this;
     	
-    var record = Ext.create('AdminUsers',{
+    var record = Ext.create('AdminUsers_model',{
         id : null,			
         username : '',
         password : '',
