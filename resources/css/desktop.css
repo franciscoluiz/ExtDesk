@@ -423,5 +423,9 @@ div.thumb-wrap:hover span.title{
     background-image: url( ../images/tango/preferences-desktop-theme_16x16.png ) !important;
 }
 
-
-
+#ajax_connect {
+   background: url( ../images/connect-off.gif ) center center no-repeat;
+}
+.ajax_connect {
+   background: url( ../images/connect-on.gif ) center center no-repeat !important;
+}

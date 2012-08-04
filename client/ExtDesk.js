@@ -170,7 +170,8 @@ Ext.define('MyDesktop.ExtDesk', {
        return Ext.apply(ret, {
             quickStart:quickStarts,
             trayItems: [
-                { xtype: 'trayclock', flex: 1 }
+                { xtype: 'trayclock', flex: 1 },
+                { xtype: 'container', id:'ajax_connect', width:20, height:16 }
             ]
         });
     },

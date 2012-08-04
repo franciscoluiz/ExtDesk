@@ -125,6 +125,15 @@ Ext.define('Ext.ux.desktop.Desktop', {
         if (wallpaper) {
             me.setWallpaper(wallpaper, me.wallpaperStretch);
         }
+        
+        Ext.Ajax.on( {
+            beforerequest : function(){
+                Ext.getCmp('ajax_connect').addCls('ajax_connect');
+            },
+            requestcomplete : function(){
+                Ext.getCmp('ajax_connect').removeCls('ajax_connect');
+            } 
+        });
     },
 
     afterRender: function () {
