@@ -27,7 +27,33 @@ Ext.define('MyDesktop.Modules.Example2.Client.Example2', {			// 1.- Steep One de
             scope: this
         };	
         															// 14.-Define de Model to use 
-		Ext.regModel('ImageEx', {
+		//Ext.regModel('ImageEx', {
+		 if (! Ext.ClassManager.isCreated('ImageEx')) {
+			Ext.define('ImageEx', {
+				extend: 'Ext.data.Model',
+				fields: [
+					{
+					name : 'id',
+					type : 'string'
+				},
+				{
+					name : 'src',
+					type : 'string'
+				},
+				{
+					name : 'title',
+					type : 'string'
+				},
+				{
+					name : 'caption',
+					type : 'string'
+				}
+			]
+			});
+		}
+		/*
+		Ext.define('ImageEx', {
+		extend: 'Ext.data.Model',
 		Fields: [
 				{ name : 'id', 	type : 'string'},
 				{ name : 'src', 	type : 'string'},
@@ -35,7 +61,8 @@ Ext.define('MyDesktop.Modules.Example2.Client.Example2', {			// 1.- Steep One de
 				{ name : 'caption',	type : 'string'}
 			]
 		});															
-    																// 15.-We create a store to load the images
+		*/
+		// 15.-We create a store to load the images
 
     	me.store=Ext.create('Ext.data.Store', {
 			id:'imagesStore',
@@ -47,8 +74,18 @@ Ext.define('MyDesktop.Modules.Example2.Client.Example2', {			// 1.- Steep One de
 				{id : 'option1ex', src:'modules/Example2/Client/Resources/images/example_48x48.png', 	title : "Option 4",	caption : "One more option"}
 				]
 		});
-																	//16.-We create a template to use
-
+		
+		// template
+        me.imageTpl = new Ext.XTemplate(
+            '<tpl for=".">',
+            '<div id="{id}" class="thumb-wrap">',
+            '<img src="{src}" />',
+            '<span class="title">{title}</span><br/>',
+            '<span class="caption">{caption}</span>',
+            '</div>',
+            '</tpl><br/>'
+            );															//16.-We create a template to use
+		/*
 		me.imageTpl = new Ext.XTemplate(
 			'<tpl for=".">',
 				'<div id="{id}" class="thumb-wrap">',
@@ -58,7 +95,7 @@ Ext.define('MyDesktop.Modules.Example2.Client.Example2', {			// 1.- Steep One de
 				'</div>',
 			'</tpl><br/>'
 		);
-        
+        */
         
     },
 

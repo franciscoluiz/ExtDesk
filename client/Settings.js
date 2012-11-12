@@ -26,8 +26,8 @@ Ext.define('MyDesktop.Settings', {
         'Ext.ux.desktop.Wallpaper',
         'MyDesktop.WallpaperModel'
     ],
-	iconCls:'settings',
-    layout: 'fit',
+    layout: 'anchor',
+    iconCls:'settings',
     title: userStore.strings().findRecord("alias","changeSettings").data.string,
     modal: true,
     width: 540,
@@ -64,17 +64,31 @@ Ext.define('MyDesktop.Settings', {
         /**
 		* Define de top Menu :)
 		**/
+		
 		if (! Ext.ClassManager.isCreated('set_mod_image')) {
-			Ext.regModel('set_mod_image', {
-			Fields: [
-					{ name : 'id', 	type : 'string'},
-					{ name : 'src', 	type : 'string'},
-					{ name : 'title', 	type : 'string'},
-					{ name : 'caption',	type : 'string'}
-				]
+			Ext.define('set_mod_image', {
+				extend: 'Ext.data.Model',
+				fields: [
+					{
+					name : 'id',
+					type : 'string'
+				},
+				{
+					name : 'src',
+					type : 'string'
+				},
+				{
+					name : 'title',
+					type : 'string'
+				},
+				{
+					name : 'caption',
+					type : 'string'
+				}
+			]
 			});
 		}
-
+		
 		me.store=Ext.create('Ext.data.Store', {
 			id:'imagesStore',
 			model: 'set_mod_image',
@@ -85,23 +99,24 @@ Ext.define('MyDesktop.Settings', {
 				{id : 'themes', 	src:'resources/images/tango/preferences-desktop-theme_48x48.png', 		title :this.lang["themes"],			caption : this.lang["themes_label"]}
 				]
 		});
-
-		me.imageTpl = new Ext.XTemplate(
-			'<tpl for=".">',
-				'<div id="{id}" class="thumb-wrap">',
-				  '<img src="{src}" />',
-				  '<span class="title">{title}</span><br/>',
-				  '<span class="caption">{caption}</span>',
-				'</div>',
-			'</tpl><br/>'
-		);
 		
+		// template
+        me.imageTpl = new Ext.XTemplate(
+            '<tpl for=".">',
+            '<div id="{id}" class="thumb-wrap">',
+            '<img src="{src}" />',
+            '<span class="title">{title}</span><br/>',
+            '<span class="caption">{caption}</span>',
+            '</div>',
+            '</tpl><br/>'
+            );															//16.-We create a template to use
+
  		me.items = [
 			{	
                	id:'settingsTabPanel',
 				xtype: 'tabpanel',				
                 activeTab:0,
-                bodyStyle: 'padding: 5px;',
+                //bodyStyle: 'padding: 5px;',
                 layout:'border',				
 				items:[
 						{	// Settings Tab
@@ -111,6 +126,11 @@ Ext.define('MyDesktop.Settings', {
 							header:false,
 							border:false,
 							layout:'anchor',
+							//TODO: fix layout
+							width:525,
+			                height:325,
+
+							
 							//bodyStyle: "background-image:url(blue.jpg) !important",
 							items :
 								Ext.create('Ext.view.View', {
@@ -157,44 +177,30 @@ Ext.define('MyDesktop.Settings', {
         me.preview.setWallpaper(me.selected);
         me.tree = me.createTreeWallpaper();
 		
+		
 		var tw=Ext.getCmp('preferTabWallpaper');
 		if (tw==undefined){
 			
-			me.tabWallpaper= Ext.create('Ext.Panel', {
+			//TODO : Panel wallpaper Tab
+			me.tabWallpaper = Ext.create('Ext.Panel',{
 				iconCls:'preferences-wallpaper',
 				id : 'preferTabWallpaper',
 				title: this.lang["wallpaper"],
-				closable : true,
-				header:false,
-				border:false,
-				layout:'anchor',		
-				items:							
-					[
-						{
-							anchor: '0 -30',
-							border: false,
-							layout: 'border',
-							items: [
-								me.tree,
-								{
-									xtype: 'panel',
-									title: this.lang["preview"],
-									region: 'center',
-									layout: 'fit',
-									items: [ me.preview ]
-								}
-							]
-						},
-						{
-							xtype: 'checkbox',
-							boxLabel: this.lang["stretch"],
-							checked: me.stretch,
-							listeners: {
-								change: function (comp) {
-									me.stretch = comp.checked;
-								}
-							}
-						}
+                closable:true,
+                layout: 'border',
+                width:525,
+                height:325,
+                //html : 'We first module'							//11.-  the module body
+ 				items : [
+ 					me.tree,
+					{
+					
+						xtype: 'panel',
+						title: this.lang["preview"],
+						region: 'center',
+						layout: 'fit',
+						items: [ me.preview ]
+					}
 				],
 				dockedItems: [
                     {
@@ -202,6 +208,16 @@ Ext.define('MyDesktop.Settings', {
                         dock: 'bottom',
                         statusAlign: 'right',
                         items: [
+                        	{
+								xtype: 'checkbox',
+								boxLabel: this.lang["stretch"],
+								checked: me.stretch,
+								listeners: {
+									change: function (comp) {
+										me.stretch = comp.checked;
+									}
+								}
+                        	},
                             '->',
                             {
                                 xtype: 'button',                        
@@ -218,11 +234,11 @@ Ext.define('MyDesktop.Settings', {
                         ]
                     }
                 ]
-				
-			});			
- 	
+
+			});
+                
 			var sp = Ext.getCmp('settingsTabPanel');
-			var tw = Ext.getCmp('preferTabWallpaper')
+			var tw = Ext.getCmp('preferTabWallpaper');
 			sp.add(tw);
 		}
 		tw.show();
@@ -239,7 +255,10 @@ Ext.define('MyDesktop.Settings', {
 				iconCls:'preferences-shorcut',
 				id : 'preferTabShortcutsForm',
 				title : this.lang["shortcut"],
+				bodyStyle: 'padding: 15px;',
 				closable:true,
+                width:525,
+                height:325,
 				dockedItems: [
                     {
                         xtype: 'toolbar',
@@ -262,9 +281,6 @@ Ext.define('MyDesktop.Settings', {
                         ]
                     }
                 ]
-				
-				
-				
 										
 			});
 									
@@ -308,9 +324,12 @@ Ext.define('MyDesktop.Settings', {
 				iconCls:'preferences-quick-launch',
 				id : 'preferTabQuickLaunchForm',
 				title : this.lang["quicklaunch"],
+				bodyStyle: 'padding: 15px;',
 				closable : true,
 				header:false,
 				border:false,
+                width:525,
+                height:325,
 				dockedItems: [
                     {
                         xtype: 'toolbar',
@@ -359,7 +378,7 @@ Ext.define('MyDesktop.Settings', {
 			});
 			
 			var sp = Ext.getCmp('settingsTabPanel');
-			var tq = Ext.getCmp('preferTabQuickLaunchForm')
+			var tq = Ext.getCmp('preferTabQuickLaunchForm');
 			sp.add(tq);
 			
 		}
@@ -389,23 +408,26 @@ Ext.define('MyDesktop.Settings', {
 				closable : true,
 				header:false,
 				border:false,
-				layout:'anchor',		
+				layout:'border',		
+                width:525,
+                height:325,
 				items:							
 					[
-						{
+						/*{
 							anchor: '0 -30',
 							border: false,
 							layout: 'border',
-							items: [
+							items: [*/
 								me.treeTheme,
 								{
 									xtype: 'panel',
 									region: 'center',
 									layout: 'fit',
+									title: this.lang["preview"],
 									items: [ me.previewTheme ]
 								}
-							]
-						}
+						//	]
+						//}
 				],
 				dockedItems: [
                     {
@@ -443,6 +465,8 @@ Ext.define('MyDesktop.Settings', {
  * Wallpaer methods
  */
 	createTreeWallpaper : function() {
+        //TODO : Createwallpaper method.
+        
         var me = this;
 
         function child (img) {
@@ -456,6 +480,7 @@ Ext.define('MyDesktop.Settings', {
             autoScroll: true,
             width: 150,
             region: 'west',
+            //layout:'fit',
             split: true,
             minWidth: 100,
             listeners: {
@@ -822,11 +847,6 @@ Ext.define('MyDesktop.Settings', {
     			}//sucess
 			})//Ajax;	
 
-		
-		
-		
-		
-	
 	},
 
     getTextOfIcoTheme: function (path) {

@@ -117,66 +117,57 @@
 							lan["bad_login"]= strings[9].string;
 	
 						
-							var form = Ext.create('Ext.form.Panel', {
-								layout: 'absolute',
-								url: 'ExtDesk.php?Module=Main&action=load_user',
-								defaultType: 'textfield',
-								border: false,
-								defaults:{
-								  enableKeyEvents:true,
-								  listeners:{
-									specialKey: function(field, el)
-									{
-									  if(el.getKey() == Ext.EventObject.ENTER)
-									  {
-										Ext.getCmp('btnEnter').handler.call(Ext.getCmp('btnEnter').scope);
-									  }
-									}
-								  }
-								},
-								//bodyStyle: "background-image:url(blue.jpg) !important",
-								items: [
-									{
-										id:"idLoginUser",
-										fieldLabel: lan["user"],
-										fieldWidth: 60,
-										msgTarget: 'side',
-										allowBlank: false,
-										x: 5,
-										y: 5,
-										name: 'user',
-										anchor: '-5'
-									},
-									{
-										id:"idLoginPswd",
-										inputType: 'password',
-										fieldLabel: lan["pswd"],
-										fieldWidth: 60,
-										x: 5,
-										y: 35,
-										name: 'password',
-										anchor: '-5'
-									},
-									{
-										id: 'idRememberUser',
-										xtype: 'checkboxfield',		
-										name: 'recordarUsuario',
-										x: 110,
-										y: 55,								
-										hideLabel: true,
-										style: 'margin-top:15px',
-										boxLabel: lan["r_user"]
-									},
-									{
-										id: 'idRememberPswd',
-										xtype: 'checkboxfield',		
-										name: 'recordarUsuario',
-										x: 110,
-										y: 85,								
-										hideLabel: true,
-										style: 'margin-top:15px',
-										boxLabel: lan["r_psd"]
-									}
+                var form = Ext.create('Ext.form.Panel', {
+                    //layout: 'absolute',
+                    url: 'ExtDesk.php?Module=Main&action=load_user',
+                    defaultType: 'textfield',
+                    border: false,
+                    layout:'auto',
+                    bodyPadding: 10,
+                    defaults:{
+                        fieldWidth: 60,
+                        enableKeyEvents:true,
+                        listeners:{
+                            specialKey: function(field, el)
+                            {
+                                if(el.getKey() == Ext.EventObject.ENTER)
+                                {
+                                    Ext.getCmp('btnEnter').handler.call(Ext.getCmp('btnEnter').scope);
+                                }
+                            }
+                        }
+                    },
+                    //bodyStyle: "background-image:url(blue.jpg) !important",
+                    items: [
+                    {
+                        id:"idLoginUser",
+                        fieldLabel: lan["user"],
+                        msgTarget: 'side',
+                        allowBlank: false,
+                        name: 'user'
+                    },
+                    {
+                        id:"idLoginPswd",
+                        inputType: 'password',
+                        fieldLabel: lan["pswd"],
+                        name: 'password'
+                    },
+                    {
+                        id: 'idRememberUser',
+                        xtype: 'checkboxfield',		
+                        name: 'recordarUsuario',
+                        boxLabel: lan["r_user"],
+                        hideLabel: true,                        
+                        style: 'margin-left:105px;margin-top:8px;'
+                    },
+                    {
+                        id: 'idRememberPswd',
+                        xtype: 'checkboxfield',		
+                        name: 'recordarUsuario',
+                        boxLabel: lan["r_psd"],
+                        hideLabel: true,                         
+                        style: 'margin-left:105px;margin-top:8px;'
+                    }
 								
 								]
 							});

@@ -3,7 +3,7 @@
 $include-default: false;
 
 // Insert your custom variables here.
-// $base-color: #aa0000;
+ $base-color: #E9FED5;
 
 @import 'ext4/default/all';
 
@@ -19,6 +19,7 @@ $include-default: false;
 @include extjs-form;
     @include extjs-form-field;
     @include extjs-form-fieldset;
+    @include extjs-form-file;
     @include extjs-form-checkboxfield;
     @include extjs-form-checkboxgroup;
     @include extjs-form-triggerfield;

@@ -1,17 +1,3 @@
-/*
-
-This file is part of Ext JS 4
-
-Copyright (c) 2011 Sencha Inc
-
-Contact:  http://www.sencha.com/contact
-
-GNU General Public License Usage
-This file may be used under the terms of the GNU General Public License version 3.0 as published by the Free Software Foundation and appearing in the file LICENSE included in the packaging of this file.  Please review the following information to ensure the GNU General Public License version 3.0 requirements will be met: http://www.gnu.org/copyleft/gpl.html.
-
-If you are unsure which license is appropriate for your use, please contact the sales department at http://www.sencha.com/contact.
-
-*/
 /*!
  * Ext JS Library 4.0
  * Copyright(c) 2006-2011 Sencha Inc.
@@ -37,7 +23,7 @@ Ext.define('Ext.ux.desktop.Desktop', {
 
         'Ext.ux.desktop.TaskBar',
         'Ext.ux.desktop.Wallpaper',
-        'Ext.ux.desktop.FitAllLayout'
+        //'Ext.ux.desktop.FitAllLayout'
     ],
 
     activeWindowCls: 'ux-desktop-active-win',
@@ -46,7 +32,7 @@ Ext.define('Ext.ux.desktop.Desktop', {
 
     border: false,
     html: '&#160;',
-    layout: 'fitall',
+    layout: 'fit',
 
     xTickSize: 1,
     yTickSize: 1,
@@ -109,7 +95,7 @@ Ext.define('Ext.ux.desktop.Desktop', {
         me.windows = new Ext.util.MixedCollection();
 
         me.contextMenu = new Ext.menu.Menu(me.createDesktopMenu());
-	
+
         me.items = [
             { xtype: 'wallpaper', id: me.id+'_wallpaper' },
             me.createDataView()
@@ -125,23 +111,37 @@ Ext.define('Ext.ux.desktop.Desktop', {
         if (wallpaper) {
             me.setWallpaper(wallpaper, me.wallpaperStretch);
         }
-        
-        Ext.Ajax.on( {
+	Ext.Ajax.on( {
             beforerequest : function(){
                 Ext.getCmp('ajax_connect').addCls('ajax_connect');
             },
             requestcomplete : function(){
                 Ext.getCmp('ajax_connect').removeCls('ajax_connect');
-            } 
-        });
-    },
+            }
+	});
+		
+		Ext.getCmp("id_shortcut_dataview").on('viewready',me.resizeDesktop,me);
+		Ext.EventManager.onWindowResize(function () {
+			me.resizeDesktop();
+		},this);    
+		
+		//Ext.getCmp("id_shortcut_dataview").on('resize',me.resizeDesktop,me);    
+		
+		Ext.EventManager.onWindowResize(function () {
+		
+			console.log("se resizo");
+			//me.resizeDesktop();
+			//Ext.getCmp("id_shortcut_dataview").on('resize',me.resizeDesktop,me);    
+		});
 
+		
+	},
     afterRender: function () {
-        var me = this;
+		var me = this;
         me.callParent();
         me.el.on('contextmenu', me.onDesktopMenu, me);
-        Ext.getCmp("id_shortcut_dataview").on('resize',me.resizeDesktop,me);    
-        me.shortcuts.on('datachanged',me.resizeDesktop,me);
+		me.shortcuts.on('datachanged',me.resizeDesktop,me);
+
 	},
 	
 	resizeDesktop:function(){
@@ -173,7 +173,6 @@ Ext.define('Ext.ux.desktop.Desktop', {
 
 	},
 
-
     //------------------------------------------------------
     // Overrideable configuration creation methods
 
@@ -186,6 +185,10 @@ Ext.define('Ext.ux.desktop.Desktop', {
             trackOver: true,
             itemSelector: me.shortcutItemSelector,
             store: me.shortcuts,
+            style: {
+                position: 'absolute'
+            },
+            x: 0, y: 0,
             tpl: new Ext.XTemplate(me.shortcutTpl)
         };
     },
@@ -217,7 +220,6 @@ Ext.define('Ext.ux.desktop.Desktop', {
 	    me.minimizeText = userStore.strings().findRecord("alias","minimize").data.string;	    
 	    me.maximizeText = userStore.strings().findRecord("alias","maximize").data.string;	    
 	    me.closeText = userStore.strings().findRecord("alias","close").data.string;	    
-
 
         return {
             defaultAlign: 'br-tr',
@@ -265,7 +267,6 @@ Ext.define('Ext.ux.desktop.Desktop', {
         if (win) {
             me.restoreWindow(win);
         }
-        
     },
 
     onWindowClose: function(win) {
@@ -287,6 +288,7 @@ Ext.define('Ext.ux.desktop.Desktop', {
 
     onWindowMenuClose: function () {
         var me = this, win = me.windowMenu.theWin;
+
         win.close();
     },
 
@@ -298,6 +300,7 @@ Ext.define('Ext.ux.desktop.Desktop', {
         var me = this, win = me.windowMenu.theWin;
 
         win.maximize();
+        win.toFront();
     },
 
     onWindowMenuMinimize: function () {
@@ -355,7 +358,6 @@ Ext.define('Ext.ux.desktop.Desktop', {
     },
 
     createWindow: function(config, cls) {
-        
         var me = this, win, cfg = Ext.applyIf(config || {}, {
                 stateful: false,
                 isWindow: true,
@@ -363,7 +365,7 @@ Ext.define('Ext.ux.desktop.Desktop', {
                 minimizable: true,
                 maximizable: true
             });
-		me.notification("Executando",config.title);
+		me.notification("Ejecutando",config.title);
                         
         cls = cls || Ext.window.Window;
         win = me.add(new cls(cfg));
@@ -383,7 +385,7 @@ Ext.define('Ext.ux.desktop.Desktop', {
         });
 
         win.on({
-            afterrender: function () {
+            boxready: function () {
                 win.dd.xTickSize = me.xTickSize;
                 win.dd.yTickSize = me.yTickSize;
 
@@ -407,8 +409,8 @@ Ext.define('Ext.ux.desktop.Desktop', {
                 }
             });
         };
-		//console.log(config);
-		
+console.log(config);
+
         return win;
     },
 

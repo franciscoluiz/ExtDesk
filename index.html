@@ -9,31 +9,22 @@
         <!--
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         -->
-        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
         
         <title>ExtDesk</title>
         <link rel="stylesheet" type="text/css" href="extjs/resources/css/ext-all-blue.css" id="idTheme" />
         <link rel="stylesheet" type="text/css" href="resources/css/desktop.css" />
-        <!--<script type="text/javascript" src="../../builds/ext-core.js"></script>
-        <script type="text/javascript" src="classes.js"></script>-->
         <script type="text/javascript" src="extjs/ext-all-debug.js"></script>
-<!--        <script type="text/javascript" src="extjs/ext-locale-loader.js"></script> -->
+ 
         <script type="text/javascript">
 
 			Ext.Ajax.disableCaching = false;
             Ext.Loader.setConfig({enabled:true});
             Ext.Loader.setPath({
-                'Ext.ux.desktop'   : 'client/js',
-                'MyDesktop'        : 'client',
-                'MyDesktop.Modules': './modules'
+                'Ext.ux.desktop'    : 'client/js',
+                'MyDesktop'         : 'client',
+                'MyDesktop.Modules' : './modules'
             });
-/*            Ext.Loader.setLocale({
-                enabled: true,
-                language: 'es',
-                localizedByDefault: false,
-                types: ['controller', 'view']
-            });
-            */
 
             Ext.require('MyDesktop.ExtDesk');
             Ext.require('Ext.data.Store');
