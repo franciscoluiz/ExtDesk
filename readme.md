@@ -3,6 +3,11 @@ ExtDesk
 
 A extended desktop to the web. (This is a work in progress....)
 
+Siguenos en facebook (http://www.facebook.com/Extdesk)
+
+Siguenos en facebook (https://plus.google.com/u/0/111022226664150821629/)
+
+
 License
 ------------
 Open Source License!
