@@ -128,7 +128,7 @@ Ext.define('MyDesktop.Settings', {
 							layout:'anchor',
 							//TODO: fix layout
 							width:525,
-			                height:325,
+			                                height:325,
 
 							
 							//bodyStyle: "background-image:url(blue.jpg) !important",
@@ -257,8 +257,8 @@ Ext.define('MyDesktop.Settings', {
 				title : this.lang["shortcut"],
 				bodyStyle: 'padding: 15px;',
 				closable:true,
-                width:525,
-                height:325,
+                                width:525,
+                                height:325,
 				dockedItems: [
                     {
                         xtype: 'toolbar',
@@ -328,8 +328,8 @@ Ext.define('MyDesktop.Settings', {
 				closable : true,
 				header:false,
 				border:false,
-                width:525,
-                height:325,
+                                width:525,
+                                height:325,
 				dockedItems: [
                     {
                         xtype: 'toolbar',
@@ -409,8 +409,8 @@ Ext.define('MyDesktop.Settings', {
 				header:false,
 				border:false,
 				layout:'border',		
-                width:525,
-                height:325,
+                                width:525,
+                                height:325,
 				items:							
 					[
 						/*{
@@ -455,7 +455,7 @@ Ext.define('MyDesktop.Settings', {
 			});			
  	
 			var sp = Ext.getCmp('settingsTabPanel');
-			var tt = Ext.getCmp('preferTabTheme')
+			var tt = Ext.getCmp('preferTabTheme');
 			sp.add(tt);
 		}
 		tt.show();
@@ -548,7 +548,7 @@ Ext.define('MyDesktop.Settings', {
 				progressText: me.lang["saving_data"],
 				width:300,
 				wait:true,
-				waitConfig: {interval:100},
+				waitConfig: {interval:100}
 			});    	
         	
         	//save in the server
@@ -815,7 +815,7 @@ Ext.define('MyDesktop.Settings', {
 				progressText: me.lang["saving_data"],
 				width:300,
 				wait:true,
-				waitConfig: {interval:100},
+				waitConfig: {interval:100}
 			});    	
         	
         	//save in the server
@@ -826,7 +826,7 @@ Ext.define('MyDesktop.Settings', {
     				Module : 'Settings',
     				option : 'Theme',
     				action :'save',
-    				theme : theme,				
+    				theme : theme				
     			},
     			success: function(r){
         			var resp=Ext.decode(r.responseText,true);	//decode respond 

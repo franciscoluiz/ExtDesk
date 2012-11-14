@@ -24,6 +24,7 @@ var Desktop = {
         { 'group': 'desktop',   'alias': 'minimize' ,      'string': 'Развернуть'},
         { 'group': 'desktop',   'alias': 'maximize' ,      'string': 'Свернуть'},
         { 'group': 'desktop',   'alias': 'close' ,       'string': 'Закрыть'},
+        { 'group': 'desktop',   'alias': 'loading' ,       'string': 'Загрузка'},
 
         { 'group': 'settigs',   'alias': 'set_wallpaper' ,      'string': 'Обои'},
         { 'group': 'settigs',   'alias': 'set_wallpaper_label' ,   'string': 'Изменение обоев'},

@@ -3,9 +3,9 @@ ExtDesk
 
 A extended desktop to the web. (This is a work in progress....)
 
-Siguenos en facebook (http://www.facebook.com/Extdesk)
+Follow us on facebook (http://www.facebook.com/Extdesk)
 
-Siguenos en google+ (https://plus.google.com/u/0/111022226664150821629/)
+Follow us on facebookgoogle+ (https://plus.google.com/u/0/111022226664150821629/)
 
 
 License

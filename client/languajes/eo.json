@@ -24,6 +24,7 @@ var Desktop = {
         { 'group': 'desktop',   'alias': 'minimize' ,      'string': 'Redukti'},
         { 'group': 'desktop',   'alias': 'maximize' ,      'string': 'pligrandigi'},
         { 'group': 'desktop',   'alias': 'close' ,       'string': 'Fermi'},
+        { 'group': 'desktop',   'alias': 'loading' ,       'string': 'Sxargxante'},
 
         { 'group': 'settigs',   'alias': 'set_wallpaper' ,      'string': 'Murpapero'},
         { 'group': 'settigs',   'alias': 'set_wallpaper_label' ,   'string': 'Sxangxi la murpapero'},

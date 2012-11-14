@@ -23,7 +23,8 @@ var Desktop = {
         { 'group': 'desktop',   'alias': 'restore' ,      'string': 'Restore'},
         { 'group': 'desktop',   'alias': 'minimize' ,      'string': 'Minimize'},
         { 'group': 'desktop',   'alias': 'maximize' ,      'string': 'Maximize'},
-        { 'group': 'desktop',   'alias': 'close' ,       'string': 'close'},
+        { 'group': 'desktop',   'alias': 'close' ,       'string': 'Close'},
+        { 'group': 'desktop',   'alias': 'loading' ,       'string': 'Loading'},
 
         { 'group': 'settigs',   'alias': 'set_wallpaper' ,      'string': 'Wallpaper'},
         { 'group': 'settigs',   'alias': 'set_wallpaper_label' ,   'string': 'Change the wallpaper'},

@@ -24,6 +24,7 @@ var Desktop = {
         { 'group': 'desktop',   'alias': 'minimize' ,      'string': 'Minimizar'},
         { 'group': 'desktop',   'alias': 'maximize' ,      'string': 'Maximizar'},
         { 'group': 'desktop',   'alias': 'close' ,       'string': 'Fechar'},
+        { 'group': 'desktop',   'alias': 'loading' ,       'string': 'Carregando'},
 
         { 'group': 'settigs',   'alias': 'set_wallpaper' ,      'string': 'Papel de parede'},
         { 'group': 'settigs',   'alias': 'set_wallpaper_label' ,   'string': 'Alterar papel de parede'},

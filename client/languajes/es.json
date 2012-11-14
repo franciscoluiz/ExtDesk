@@ -24,7 +24,8 @@
         { 'group': 'desktop',   'alias': 'minimize' ,     'string': 'Minimizar'},
         { 'group': 'desktop',   'alias': 'maximize' ,     'string': 'Maximizar'},
         { 'group': 'desktop',   'alias': 'close' ,      'string': 'Cerrar'},
-
+        { 'group': 'desktop',   'alias': 'loading' ,       'string': 'Ejecutando'},
+        
         { 'group': 'settigs',   'alias': 'set_wallpaper' ,     'string': 'Fondo de escritorio'},
         { 'group': 'settigs',   'alias': 'set_wallpaper_label',   'string': 'Elija el fondo de escritorio.'},
         { 'group': 'settigs',   'alias': 'set_preview' ,     'string': 'Vista preliminar'},
