@@ -1643,9 +1643,10 @@ openGroupsTab: function(opt){
         });
 						
         var tab0 = Ext.getCmp('adminTabPanel');
-        var tab3 = Ext.getCmp('adminTab3');		
+        var tab3 = Ext.getCmp('adminTab3');	
+        tab0.add(tab3);	
     }
-    tab0.add(tab3);
+    
     tab3.show();
 },
 
