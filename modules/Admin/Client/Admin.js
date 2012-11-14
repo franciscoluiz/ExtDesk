@@ -1205,12 +1205,13 @@ openModulesTab : function(opt){
                 title: this.lang["actions"],//'Acciones',
                 iconCls : 'icon-admin-actions',
                 layout:'fit',
-                width:'300',
+                width:'250',
                 region: 'east',
                 items:[
                 {
                     id : 'idAdminActionsGrid',
                     layout:'fit',
+                    width:300,
                     xtype: 'gridpanel',
                     store: me.storeActions,
                     plugins:[me.editorActions],
@@ -1250,6 +1251,7 @@ openModulesTab : function(opt){
                     ]
                 }
                 ],
+                
                 dockedItems: [
                 {
                     xtype: 'toolbar',
@@ -1286,6 +1288,7 @@ openModulesTab : function(opt){
                     ]
                 }
                 ]
+            
             /*** inserta aqui toolbar***/
             }
             ]
