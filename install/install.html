@@ -12,8 +12,7 @@
         <title>ExtDesk</title>
 
         <style type="text/css">
-
-            body {    
+            body {
                 background: none repeat scroll 0 0 #F8F8F8;
             }
 
@@ -24,7 +23,7 @@
                 position: absolute;
                 top: 50%;
                 width: 320px;
-            }		
+            }
 
 
             #loading .logo{
@@ -38,23 +37,21 @@
                 width: 320px;
             }
 
-            #loading .title{
+            #loading .title {
                 margin-left: 25%;
                 margin-right: 20%;
                 font-family: Verdana;
             }
 
-            .install{
+            .install {
                 font-family: Verdana;
                 position: absolute;
                 top: 65%;
                 left: 48%;
             }
-
-
         </style>
 
-        <script type="text/javascript">
+        <script type="text/javascript" language="javascript">
             Ext.require([
                 'Ext.window.Window',
                 'Ext.tab.*',
@@ -62,15 +59,12 @@
                 'Ext.layout.container.Card',
                 'Ext.layout.container.Border'
             ]);
-			
-            function wininstall(){
-				
-                //console.log("install");
-				
-                var win=Ext.getCmp('idWinInstall');
-						
-                if(win==undefined){
-					
+
+            function wininstall() {
+                var win = Ext.getCmp('idWinInstall');
+
+                if (win == undefined) {
+
                     // Define the model for a State
                     Ext.define('LanguagesModel', {
                         extend: 'Ext.data.Model',
@@ -78,16 +72,16 @@
                             {type: 'string', name: 'value'},
                             {type: 'string', name: 'language'}
                         ]
-                    });				
-					
+                    });
+
                     var langs = [
-                        { "value" : "en",	   "language" : "English"},
-                        { "value" : "eo", 	 "language" : "Esperanto"},        				
+                        { "value" : "en",	 "language" : "English"},
+                        { "value" : "eo", 	 "language" : "Esperanto"},
                         { "value" : "es",    "language" : "Español"},
                         { "value" : "pt-br", "language" : "Portugues (Brasil)"},
-                        { "value" : "ru", "language" : "Russian"}
-                    ]
-					
+                        { "value" : "ru",    "language" : "Russian"}
+                    ];
+
                     var storelang = Ext.create('Ext.data.Store', {
                         model: 'LanguagesModel',
                         data: langs
@@ -95,105 +89,98 @@
 
                     var langsCombo = Ext.create('Ext.form.field.ComboBox', {
                         fieldLabel: 'Language',
-                        name :'language',
+                        name: 'language',
                         displayField: 'language',
                         store: storelang,
                         queryMode: 'local',
                         typeAhead: true,
-                        anchor:"100%",
-                        valueField:'value',
+                        editable: false,
+                        anchor: '100%',
+                        valueField: 'value',
                         value:'en'
                     });
 
                     var form = Ext.create('Ext.form.Panel', {
-                        xtype : "form",
-                        url : 'install.php', 
+                        xtype: 'form',
+                        url: 'install.php',
                         region: 'center',
                         layout: 'auto',
+                        defaults: {
+                            xtype: 'form',
+                            bodyPadding: 12,
+                            layout: 'auto'
+                        },
                         items: [
                             {
-                                xtype:'panel',
                                 title: 'Server Settings',
-                                bodyPadding:12,
-                                layout: 'auto',
+                                defaults: {
+                                    xtype: 'textfield',
+                                    anchor: '100%',
+                                    allowBlank: false
+                                },
                                 items : [
                                     {
-                                        xtype: 'textfield',
-                                        name:'mysql_server',
-                                        fieldLabel: 'Mysql Server',
-                                        anchor: '100%',
-                                        allowBlank: false						                    
+                                        name: 'mysql_server',
+                                        fieldLabel: 'Mysql Server'
                                     },
                                     {
-                                        xtype : 'textfield',
-                                        name : 'user',
-                                        fieldLabel : 'User',
-                                        anchor : '100%',
-                                        allowBlank: false
+                                        name: 'user',
+                                        id: 'xpto',
+                                        fieldLabel: 'User'
                                     },
                                     {
-                                        xtype : 'textfield',
-                                        name : 'password',
+                                        name: 'password',
                                         inputType: 'password',
-                                        fieldLabel : 'Password',
-                                        anchor : '100%',
-                                        allowBlank : false
+                                        fieldLabel: 'Password'
                                     },
                                     {
-                                        xtype: 'textfield',
-                                        name : 'database',
-                                        fieldLabel: 'Database',
-                                        anchor: '100%',
-                                        allowBlank: false
+                                        name: 'database',
+                                        fieldLabel: 'Database'
                                     },
-                                    langsCombo,
+                                    langsCombo
                                 ]
                             },
-                                
                             {
-                                xtype:'panel',
                                 title: 'Admin Settings',
-                                bodyPadding:12,
-                                layout: 'auto',
-                                items : [
-                                    
+                                defaults: {
+                                    xtype: 'textfield',
+                                    anchor: '100%',
+                                    allowBlank: false
+                                },
+                                items: [
                                     {
-                                        xtype : 'textfield',
                                         name : 'user_admin',
-                                        fieldLabel : 'Admin User',
-                                        anchor : '100%',
-                                        allowBlank: false
+                                        fieldLabel : 'Admin User'
                                     },
                                     {
-                                        xtype : 'textfield',
                                         name : 'email_admin',
                                         fieldLabel : 'Admin Email',
-                                        anchor : '100%',
-                                        allowBlank : false
+                                        vtype: 'email'
                                     },
                                     {
-                                        xtype : 'textfield',
                                         name : 'password_admin',
                                         inputType: 'password',
-                                        fieldLabel : 'Admin Password',
-                                        anchor : '100%',
-                                        allowBlank : false
+                                        fieldLabel : 'Admin Password'
                                     }
-                                    
                                 ]
                             }
-                            
-                            
-                            
                         ],
                         buttons: [
                             {
-                                text : 'Install',
-                                scope:this,
-                                handler : function(){
-                                    Ext.MessageBox.show({msg: "Installing..",progressText: "Installing, please wait.",	width:300,wait:true,waitConfig: {interval:50},modal:true});
-                                    form.submit({
-                                        success : function(data,options){
+                                text: 'Install',
+                                scope: this,
+                                handler: function(){
+                                    Ext.MessageBox.show({
+                                        msg: 'Installing..',
+                                        progressText: 'Installing, please wait.',
+                                        width: 300,
+                                        wait: true,
+                                        waitConfig: {interval: 50},
+                                        modal: true
+                                    });
+
+                                    form.getForm().submit({
+                                        success: function(data,options){
                                             Ext.MessageBox.hide();
                                             if (options.result.success){
                                                 Ext.Msg.show({
@@ -201,73 +188,81 @@
                                                     msg : options.result.msg+" Do you want redirect to Extdesk page..?",
                                                     buttons : Ext.Msg.YESNOCANCEL,
                                                     icon : Ext.Msg.QUESTION,
-                                                    fn : function(btn, text){
-                                                        if (btn == 'yes'){
-                                                            window.location ="../index.html";    		
+                                                    fn: function(btn, text) {
+                                                        if (btn == 'yes') {
+                                                            window.location ="../index.html";
                                                         }
                                                     }
-                                                });    	
-                                            }else{
+                                                });
+                                            } else {
                                                 Ext.MessageBox.hide();
-                                                Ext.MessageBox.alert('Error',options.result.msg);		
-                                            }											
+                                                Ext.MessageBox.alert('Error',options.result.msg);
+                                            }
                                         },
-                                        failure : function(data,options){
-                                            Ext.MessageBox.hide();		
-                                            Ext.MessageBox.alert('Error',options.result.msg);
-											
+                                        failure: function(data, options) {
+                                            var msg = null;
+
+                                            if (!msg) {
+                                                switch (options.failureType) {
+                                                    case Ext.form.action.Action.CLIENT_INVALID: {
+                                                        msg = 'Form fields may not be submitted with invalid values';
+                                                        break;
+                                                    }
+                                                    case Ext.form.action.Action.CONNECT_FAILURE: {
+                                                        msg = 'Ajax communication failed';
+                                                        break;
+                                                    }
+                                                    case Ext.form.action.Action.SERVER_INVALID: {
+                                                        msg = options.result.msg;
+                                                    }
+                                                }
+                                            }
+
+                                            Ext.MessageBox.hide();
+                                            Ext.MessageBox.alert('Error', msg);
                                         },
-                                        errors: function(data){
-                                            Ext.MessageBox.alert('Error',options.result.msg);											
+                                        errors: function(data) {
+                                            Ext.MessageBox.alert('Error', options.result.msg);
                                         }
-										
                                     })
-									
+
                                 }
-								
+
                             }
-						
+
                         ]
 
                     });
-					
+
                     var win = Ext.create('Ext.window.Window', {
-                        id : 'idWinInstall',
+                        id: 'idWinInstall',
                         title: "Installation",
                         url: 'diskeinstall.php',
                         width: 450,
                         height: 383,
                         layout: 'border',
                         resizable: false,
-                        plain:true,
-                        closable:false,
+                        plain: true,
+                        closable: false,
                         items:[
                             {
-                                xtype:'panel',
-                                region:'west',
-                                width:155,
-                                bodyPadding:12,
-                                html:'<img src="../resources/images/extdesklogo.png"/>'	
+                                xtype: 'panel',
+                                region: 'west',
+                                width: 155,
+                                bodyPadding: 12,
+                                html: '<img src="../resources/images/extdesklogo.png" />'
                             },
-                            form			    
+                            form
                         ]
-							    
-                    },this);
+                    }, this);
                 }
-				
                 win.show();
-				
             }
-			
-            Ext.onReady(function(){
-              
-                wininstall();	
-			
+
+            Ext.onReady(function() {
+                wininstall();
             });
-			
         </script>
-
-
     </head>
     <body>
         <div id="loading">

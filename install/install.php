@@ -1,5 +1,4 @@
 <?php
-
 include_once ('sql_parse.php');
 
 if (empty($_POST)) {
@@ -136,4 +135,3 @@ if (is_file($sqlFileFP) == TRUE)
 } 
 
 echo "{success:true,msg:'Installed... have a nice day'}";
-?>
