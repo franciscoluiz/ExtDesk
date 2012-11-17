@@ -90,10 +90,7 @@
 				login : function(e,c){
 
 					var jsonData=c.request.scope.reader.jsonData;				    
-				    
-				    //console.log(jsonData.success==false &&jsonData.error==1);
-				    
-				    
+		    
 				    if (jsonData.success==false &&jsonData.error==1){
 							//console.log(jsonData);
 							//console.log(window);
@@ -207,9 +204,16 @@
 												MyExtDesk.load();
 											
 											},
-											failure: function(form, action) {
+											failure: function(form, action,a,b,c) {
+												//console.log(action.result.error);
 												
-												Ext.Msg.confirm(lan["error"],lan["bad_login"],
+												if (action.result.error==0){
+													error=action.result.msg;
+												}else{
+													error=lan["bad_login"];
+												}
+												
+												Ext.Msg.confirm(lan["error"],error,
 													function(btn, text){
 													if (btn == 'yes'){
 														Ext.getCmp('idLoginUser').setValue("");
