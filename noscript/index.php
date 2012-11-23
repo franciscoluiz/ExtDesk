@@ -3,20 +3,20 @@
 // get all languages that the brownser has been configured
 function get_Languages() {
 	
-	$splitA = explode(",", $_SERVER['HTTP_ACCEPT_LANGUAGE']);
-	$newA = '';
+	$Arraylanguages = explode(",", $_SERVER['HTTP_ACCEPT_LANGUAGE']);
+	$languages = '';
 	$i = 0;
 	
-	foreach ($splitA as $key)
+	foreach ($Arraylanguages as $key)
 	{
-		$splitB = explode(";", $key);
+		$split = explode(";", $key);
 		
-		$newA[$i] = $splitB[0];
+		$languages[$i] = $split[0];
 		$i++;
 			
 	}
   
-  return $newA; 
+  return $languages; 
    
 }
 
@@ -25,23 +25,21 @@ $nav_lang = get_Languages();
 clearstatcache();
 
 $found = false;
- 
-/* 
-  loop to verify if what is the first langage detected by brownser
-*/
+
+// loop to verify if what is the first langage detected by brownser
 foreach ($nav_lang as $item) { 
      
-     $json_file = 'lang/'. $item . "json";
+     $json_file = 'lang/'. strtolower($item) . ".json";
      
-      if(file_exists($item)) {
+      if(file_exists($json_file)) {
+        $nav_lang = $json_file;
         $found = true;
         break; 
       }
 } 
 
-if (!$found) {
-  $nav_lang = 'lang/en.json';
-}
+// default language set to english
+if (!$found) { $nav_lang = 'lang/en.json'; }
 
 $string = file_get_contents($nav_lang);
 $json   = json_decode($string, true);
@@ -95,10 +93,9 @@ $ob_6  = $json['ob_6'];
 
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<!-- saved from url=(0059)http://www.appslibrary.com/requirements/js_instruction.html -->
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	
-	<title>How to enable JavaScript</title>
+	<title><?php echo $title; ?></title>
 <style type="text/css"></style></head>
 
 <body bgcolor="#FFFFFF" text="#000000" link="#0000FF" alink="#0000FF" vlink="#0000FF">
@@ -119,16 +116,16 @@ $ob_6  = $json['ob_6'];
 			<a href="#IE7"><img src="img/IE7-logo.jpg" alt="MSIE 7" height="91" border="0"></a>
 		</td>
 		<td valign="top">
-			<a href="http://www.appslibrary.com/requirements/js_instruction.html#IE6"><img src="img/IE6-logo.jpg" alt="MSIE 6" height="91" border="0"></a>
+			<a href="#IE6"><img src="img/IE6-logo.jpg" alt="MSIE 6" height="91" border="0"></a>
 		</td>
 		<td valign="top">
-			<a href="http://www.appslibrary.com/requirements/js_instruction.html#FF"><img src="img/FF-logo.jpg" alt="Mozilla Fire Fox" height="91" border="0"></a>
+			<a href="#FF"><img src="img/FF-logo.jpg" alt="Mozilla Fire Fox" height="91" border="0"></a>
 		</td>
 		<td valign="top">
-			<a href="http://www.appslibrary.com/requirements/js_instruction.html#SA"><img src="img/SA-logo.jpg" alt="Apple Safari" height="91" border="0"></a>
+			<a href="#SA"><img src="img/SA-logo.jpg" alt="Apple Safari" height="91" border="0"></a>
 		</td>
 		<td valign="top">
-			<a href="http://www.appslibrary.com/requirements/js_instruction.html#O"><img src="img/O-logo.jpg" alt="Opera Browser" height="91" border="0"></a>
+			<a href="#O"><img src="img/O-logo.jpg" alt="Opera Browser" height="91" border="0"></a>
 		</td>
 	</tr>
 </tbody></table>

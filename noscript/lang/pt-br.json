@@ -1,0 +1,43 @@
+{ 
+  "title": "Como habilitar o JavaScript",
+  
+  "desc": "O site que voc&#234; est&#225; exibindo requer JavaScript. JavaScript &#233; usado de diversas maneiras afim de melhorar o website, &#233; utilizado na valida&#231;&#227;o e execu&#231;&#227;o de envios de formul&#225;rios e permitindo que o conte&#250;do seja interativo. Para que o site funcione como projetado, voc&#234; deve habilitar o JavaScript no seu navegador. Abaixo, est&#227;o simples instru&#231;&#245;es para habilitar o JavaScript nos navegadores mais populares. Clique no logo do seu browser para ver as instru&#231;&#245;es. Se voc&#234; est&#225; usando um navegador que n&#227;o est&#225; listado, por favor consulte a documenta&#231;&#227;o do software para obter mais instru&#231;&#245;es",
+  
+  "alert1": "Para determinar a vers&#227;o do seu navegador, clique no meu 'Ajuda' e depois 'Sobre'",
+  
+  "ie7_1": "Clique em Ferramentas",
+  "ie7_2": "Selecione 'Op&#231;&#245;es de Internet'",
+  "ie7_3": "Op&#231;&#245;es de Internet, aba 'Seguran&#231;a",
+  "ie7_4": "Selecione 'N&#237;vel padr&#227;o...'",
+  "ie7_5": "Desca at&#233; voc&#234; ver 'Script'",
+  "ie7_6": "Em 'Ativar script', selecione 'Habilitar'",
+  "ie7_7": "Clique em ok",
+  "ie7_8": "Clique em 'Sim'",
+  
+  "ie6_1": "Clique em Ferramentas",
+  "ie6_2": "Selecione 'Op&#231;&#245;es de Internet'",
+  "ie6_3": "Op&#231;&#245;es de Internet, aba 'Seguran&#231;a",
+  "ie6_4": "Selecione 'N&#237;vel padr&#227;o...'",
+  "ie6_5": "Em 'Ativar script', selecione 'Habilitar'",
+  "ie7_6": "Clique em 'Ok'",
+  "ie7_7": "Clique em 'Sim'",
+  
+  "ff_1": "Clique em Ferramentas",
+  "ff_2": "Selecione 'Op&#231;&#245;es'",
+  "ff_3": "Op&#231;&#245;es de Internet na sess&#227;o 'Conte&#250;do'",
+  "ff_4": "Selecione 'Habilitar JavaScript'",
+  "ff_5": "Clique em ok",
+  
+  "as_1": "Selecione 'Prefer&#234;ncias' do menu Safari",
+  "as_2": "V&#225; at&#233; a sess&#227;o 'Seguran&#231;a'",
+  "as_3": "Marque 'Habilitar JavaScript'",
+  "as_4": "Saia da janela",
+  
+  "ob_1": "Clique em Ferramentas",
+  "ob_2": "Selecione 'Preferences'",
+  "ob_3": "Op&#231;&#245;es de Internet 'Advanced' tab",
+  "ob_4": "Selecione 'Content' on the left",
+  "ob_5": "Check 'Enable JavaScript'",
+  "ob_6": "Clique 'Ok'"
+  
+}
