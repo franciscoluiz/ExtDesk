@@ -75,10 +75,35 @@ class modules {
         $id = $_SESSION["ExtDeskSession"]["id"];
 
 
-        $module = $_GET["Module"];
-        $option = $_GET["option"];
-        $action = $_GET["action"];
-
+        //$module = $_GET["Module"];
+        //$option = $_GET["option"];
+        //$action = $_GET["action"];
+    
+			
+		$module = null;
+		$option = null;
+		$action = null;
+		
+		if (isset($_GET["Module"])) { 
+			$module = $_GET["Module"]; 
+		}
+		if (isset($_GET["option"])) { 
+			$option = $_GET["option"]; 
+		}
+		if (isset($_GET["action"])) { 
+			$action = $_GET["action"]; 
+		}
+		
+		if (isset($_POST["Module"])) { 
+			$module = $_POST["Module"]; 
+		}
+		if (isset($_POST["option"])) { 
+			$option = $_POST["option"]; 
+		}
+		if (isset($_POST["action"])) { 
+			$action = $_POST["action"]; 
+		}
+			
         $sql = "select a.module, 
                        a.option, 
                        a.action,
