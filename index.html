@@ -15,7 +15,8 @@
         <link rel="stylesheet" type="text/css" href="extjs/resources/css/ext-all-blue.css" id="idTheme" />
         <link rel="stylesheet" type="text/css" href="resources/css/desktop.css" />
         <script type="text/javascript" src="extjs/ext-all-debug.js"></script>
- 
+        <script type="text/javascript" src="client/ux/Notification/Notification.js"></script>
+ 		<link rel="stylesheet" type="text/css" href="client/ux/Notification/css/notification.css" />
         <script type="text/javascript">
 
 			Ext.Ajax.disableCaching = false;
@@ -23,13 +24,12 @@
             Ext.Loader.setPath({
                 'Ext.ux.desktop'    : 'client/js',
                 'MyDesktop'         : 'client',
-                'MyDesktop.Modules' : './modules'
+                'MyDesktop.Modules' : './modules',
             });
 
             Ext.require('MyDesktop.ExtDesk');
             Ext.require('Ext.data.Store');
             Ext.require('MyDesktop.MyExtDesk');
-
 
             var userStore;
             var myDesktopApp;

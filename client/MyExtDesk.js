@@ -54,7 +54,7 @@
 		});
 
 		Ext.define('MyDesktop.MyExtDesk', {
-				
+
 				user : 'User',
 			
 				load : function(){

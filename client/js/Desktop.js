@@ -10,6 +10,9 @@
  * @extends Ext.panel.Panel
  * <p>This class manages the wallpaper, shortcuts and taskbar.</p>
  */
+
+
+
 Ext.define('Ext.ux.desktop.Desktop', {
     extend: 'Ext.panel.Panel',
 
@@ -20,7 +23,6 @@ Ext.define('Ext.ux.desktop.Desktop', {
     'Ext.menu.Menu',
     'Ext.view.View', // dataview
     'Ext.window.Window',
-
     'Ext.ux.desktop.TaskBar',
     'Ext.ux.desktop.Wallpaper'
     ],
@@ -545,26 +547,18 @@ Ext.define('Ext.ux.desktop.Desktop', {
     },
 	
     notification:function(title,msg){
-        //*** some problems in two notifications at the same time...:( need fix it;
-        //*** disable y enable desk is a dirty way to prevent two clicks in a shortcut
-        //Ext.getCmp('id_shortcut_dataview').disable();   //***<-- dirty way
-
-        if(!this.msgCt){
-            this.msgCt = Ext.core.DomHelper.insertFirst(document.body, {
-                id:'msg-div'
-            }, true);
-        }
-        //var s = Ext.String.format.apply(String, Array.prototype.slice.call(arguments, 1));
-        var m = Ext.core.DomHelper.append(this.msgCt, this.createBox(title, msg), true);
-        m.hide();
-        m.slideIn('b').ghost("b", {
-            delay: 600, 
-            remove: true,
-            callback:function(){
-            //Ext.getCmp('id_shortcut_dataview').enable(); //***<-- dirty way
-            }
-        });
-			  
+ 
+    	//Notification
+    	Ext.create('widget.uxNotification', {
+			title: title,
+			position: 'br',
+			manager: 'demo1',
+			cls: 'ux-notification-light',
+			autoCloseDelay: 2500,
+			spacing: 50,
+			html: msg
+		}).show();
+    	
 }
 	
 });
