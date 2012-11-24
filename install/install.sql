@@ -7,20 +7,23 @@ CREATE TABLE IF NOT EXISTS `modules` (
   `module` varchar(45) DEFAULT NULL,
   `iconLaunch` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=12;
+) ENGINE=InnoDB COLLATE='utf8_general_ci' AUTO_INCREMENT=12;
 
 INSERT INTO `modules` (`id`, `js`, `name`, `iconCls`, `module`, `iconLaunch`) VALUES 
 (1,'Admin','Admin','admin-shortcut','admin-win','icon-admin'),
 (2,'Settings','Settings',NULL,NULL,NULL),
-(3,'Notepad','Notepad','notepad-shortcut','notepad','icon-notepad'),
-(4,'AccordionWindow','Accordion Window','accordion-shortcut','acc-win','icon-accordion'),
-(5,'GridWindow','Grid Window','grid-shortcut','grid-win','icon-grid'),
-(6,'SystemStatus','System Status','systemStatus-shortcut','systemstatus','icon-systemStatus'),
-(7,'TabWindow','Tab Window','tab-shortcut','tab-win','icon-tab'),
-(8,'BogusModule','Bogus Module','bugus-shortcut','bogus-menu',NULL),
-(9,'BogusMenuModule','Bogus Menu Module','bugus-shortcut','bogus-menu','icon-bugus'),
-(10,'Example1','Example1','example-shortcut','example1-win','icon-example'),
-(11,'Example2','Example2','example-shortcut','example2-win','example-shortcut');
+(3, 'Notepad', 'Notepad', 'notepad-shortcut', 'notepad', 'icon-notepad'),
+(4, 'AccordionWindow', 'Accordion Window', 'accordion-shortcut', 'acc-win', 'icon-accordion'),
+(5, 'GridWindow', 'Grid Window', 'grid-shortcut', 'grid-win', 'icon-grid'),
+(6, 'SystemStatus', 'System Status', 'systemStatus-shortcut', 'systemstatus', 'icon-systemStatus'),
+(7, 'TabWindow', 'Tab Window', 'tab-shortcut', 'tab-win', 'icon-tab'),
+(8, 'BogusModule', 'Bogus Module', 'bugus-shortcut', 'bogus-menu', NULL),
+(9, 'BogusMenuModule', 'Bogus Menu Module', 'bugus-shortcut', 'bogus-menu', 'icon-bugus'),
+(10, 'Example1', 'Example1', 'example-shortcut', 'example1-win', 'icon-example'),
+(11, 'Example2', 'Example2', 'example-shortcut', 'example2-win', 'example-shortcut');
+
+
+
 
 DROP TABLE IF EXISTS `actions`;
 CREATE TABLE IF NOT EXISTS `actions` (
@@ -29,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `actions` (
   `option` varchar(45) DEFAULT NULL,
   `action` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=23;
+) ENGINE=InnoDB COLLATE='utf8_general_ci' AUTO_INCREMENT=23;
 
 INSERT INTO `actions` (`id`, `module`, `option`, `action`) VALUES 
 (1,'Admin','Users','List'),
@@ -55,6 +58,9 @@ INSERT INTO `actions` (`id`, `module`, `option`, `action`) VALUES
 (21,'Settings','QLaunchs','Save'),
 (22,'Settings','Theme','Save');
 
+
+
+
 DROP TABLE IF EXISTS `groups`;
 CREATE TABLE IF NOT EXISTS `groups` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -63,12 +69,15 @@ CREATE TABLE IF NOT EXISTS `groups` (
   `active` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `group_UNIQUE` (`group`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=4;
+) ENGINE=InnoDB COLLATE='utf8_general_ci' AUTO_INCREMENT=4;
 
-INSERT INTO `groups` VALUES 
-(1,'Administrator','Can access only admin modules',1),
-(2,'DemoGroup','Only can save wallpaper',1),
+INSERT INTO `groups` (`id`, `group`, `description`, `active`) VALUES 
+(1,'Administrator','Can access only admin modules', 1),
+(2,'DemoGroup','Only can save wallpaper', 1),
 (3,'Full Access','Can access all modules with all actions', 1 );
+
+
+
 
 DROP TABLE IF EXISTS `groups_actions`;
 CREATE TABLE IF NOT EXISTS `groups_actions` (
@@ -76,7 +85,7 @@ CREATE TABLE IF NOT EXISTS `groups_actions` (
   `idGroups` int(11) DEFAULT NULL,
   `idActions` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=49;
+) ENGINE=InnoDB COLLATE='utf8_general_ci' AUTO_INCREMENT=49;
 
 INSERT INTO `groups_actions` (`id`, `idGroups`, `idActions`) VALUES 
 (1,1,1),
@@ -128,6 +137,9 @@ INSERT INTO `groups_actions` (`id`, `idGroups`, `idActions`) VALUES
 (47,3,21),
 (48,3,22);
 
+
+
+
 DROP TABLE IF EXISTS `groups_modules`;
 CREATE TABLE IF NOT EXISTS `groups_modules` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -135,7 +147,7 @@ CREATE TABLE IF NOT EXISTS `groups_modules` (
   `idModules` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `idgroups` (`idGroups`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=15;
+) ENGINE=InnoDB COLLATE='utf8_general_ci' AUTO_INCREMENT=15;
 
 INSERT INTO `groups_modules` (`id`, `idGroups`, `idModules`) VALUES 
 (1,1,1),
@@ -153,33 +165,40 @@ INSERT INTO `groups_modules` (`id`, `idGroups`, `idModules`) VALUES
 (13,3,10),
 (14,3,11);
 
+
+
+
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
-  `P_Id` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
-  `password` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
-  `email` varchar(254) COLLATE utf8_unicode_ci NOT NULL,
-  `regdate` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
-  `CpassReqDate` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
-  `voucher` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
-  `wallPaper` varchar(45) COLLATE utf8_unicode_ci DEFAULT 'Desk',
-  `theme` varchar(45) COLLATE utf8_unicode_ci DEFAULT 'blue',
-  `wpStretch` tinyint(1) DEFAULT NULL,
-  `extrainfo1` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `extrainfo2` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `extrainfo3` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `active` tinyint(1) DEFAULT NULL,
-  PRIMARY KEY (`P_Id`),
-  UNIQUE KEY `id` (`P_Id`),
-  UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2;
+	`P_Id` INT(11) NOT NULL AUTO_INCREMENT,
+	`username` VARCHAR(200) NOT NULL,
+	`password` VARCHAR(200) NOT NULL,
+	`email` VARCHAR(254) NOT NULL,
+	`regdate` VARCHAR(200) NOT NULL,
+	`CpassReqDate` VARCHAR(200) NOT NULL,
+	`voucher` VARCHAR(200) NOT NULL,
+	`wallPaper` VARCHAR(45) NULL DEFAULT 'Desk',
+	`theme` VARCHAR(45) NULL DEFAULT 'blue',
+	`wpStretch` TINYINT(1) NULL DEFAULT NULL,
+	`extrainfo1` VARCHAR(45) NULL DEFAULT NULL,
+	`extrainfo2` VARCHAR(45) NULL DEFAULT NULL,
+	`extrainfo3` VARCHAR(45) NULL DEFAULT NULL,
+	`active` TINYINT(1) NULL DEFAULT NULL,
+	PRIMARY KEY (`P_Id`),
+	UNIQUE INDEX `id` (`P_Id`),
+	UNIQUE INDEX `username` (`username`)
+) ENGINE=InnoDB COLLATE='utf8_general_ci' AUTO_INCREMENT=2;
 
-INSERT INTO `users` VALUES 
+
+INSERT INTO `users` (`P_Id`, `username`, `password`, `email`, `regdate`, `CpassReqDate`, `voucher`, `wallPaper`, `theme`, `wpStretch`, `extrainfo1`, `extrainfo2`, `extrainfo3`, `active`) VALUES 
 (1,
 'set_admin_user',
 'set_admin_pass',
 'set_admin_email',
 '1316496013','','','Blue','blue',1,'','','',1);
+
+
+
 
 DROP TABLE IF EXISTS `user_groups`;
 CREATE TABLE IF NOT EXISTS `user_groups` (
@@ -187,12 +206,15 @@ CREATE TABLE IF NOT EXISTS `user_groups` (
   `idUser` int(11) DEFAULT NULL,
   `idGroup` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=4;
+) ENGINE=InnoDB COLLATE='utf8_general_ci' AUTO_INCREMENT=4;
 
-INSERT INTO `user_groups` (`id`, `idUser`, `idGroup`) VALUES 
+INSERT INTO `user_groups` (`id`, `idUser`, `idGroup`) VALUES
 (1,1,1),
 (2,1,2),
 (3,1,3);
+
+
+
 
 DROP TABLE IF EXISTS `user_preferences`;
 CREATE TABLE IF NOT EXISTS `user_preferences` (
@@ -202,7 +224,7 @@ CREATE TABLE IF NOT EXISTS `user_preferences` (
   `shorcut` int(11) DEFAULT NULL,
   `qLaunch` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=2;
+) ENGINE=InnoDB COLLATE='utf8_general_ci' AUTO_INCREMENT=12;
 
 INSERT INTO `user_preferences` (`id`, `idUser`, `idModule`, `shorcut`, `qLaunch`) VALUES 
 (1,1,1,1,1),

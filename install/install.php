@@ -5,16 +5,26 @@ if (empty($_POST)) {
     die("{success:false,msg:'Post data don't exist.'}");
 }
 
-$lang    = $_POST['language'];
-$server1 = $_POST['mysql_server'];
-$bd1     = 'mysql';
-$user1   = $_POST['user'];
-$pswd1   = $_POST['password'];
-$schema1 = $_POST['database'];
+$lang        = null;
+$server1     = null;
+$bd1         = 'mysql';
+$user1       = null;
+$pswd1       = null;
+$schema1     = null;
+$admin_user  = null;
+$admin_pass  = null;
+$admin_email = null;
 
-$admin_user  = $_POST['user_admin'];
-$admin_pass  = $_POST['password_admin'];
-$admin_email = $_POST['email_admin'];
+if (isset($_POST["language"]))        { $lang        = $_POST["language"]; }
+if (isset($_POST["mysql_server"]))     { $server1     = $_POST["mysql_server"]; }
+//if (isset($_POST["bd1"]))         { $bd1 = $_POST["bd1"]; }
+if (isset($_POST["user"]))       { $user1       = $_POST["user"]; }
+if (isset($_POST["password"]))       { $pswd1       = $_POST["password"]; }
+if (isset($_POST["database"]))       { $schema1       = $_POST["database"]; }
+if (isset($_POST["user_admin"]))  { $admin_user  = $_POST["user_admin"]; }
+if (isset($_POST["password_admin"]))  { $admin_pass  = $_POST["password_admin"]; }
+if (isset($_POST["email_admin"])) { $admin_email = $_POST["email_admin"]; }
+
 
 include_once('../server/include/class.utils.php');
 $utils = new utils;
@@ -61,9 +71,6 @@ foreach ($configFile as $line) {
 fclose($handle);
 chmod('../server/include/config.php', 0666);
 
-
-
-        
 $sqlFile = file('install.sql');
 
 foreach ($sqlFile as $line_num => $line) {
@@ -95,9 +102,6 @@ foreach ($sqlFile as $line) {
 fclose($handle);
 chmod($sqlFileFP, 0666);
 
-
-
-
 $sqlfile = $sqlFileFP;
 $sql_query = @fread(@fopen($sqlfile, 'r'), @filesize($sqlfile));
 $sql_query = remove_remarks($sql_query);
@@ -117,6 +121,7 @@ function runsql($db, $sql) {
 
 
 $dsn = "$bd1:dbname=$schema1;host=$server1";
+
 try {
     $db = new PDO($dsn, $user1, $pswd1);
 } catch (PDOException $e) {
