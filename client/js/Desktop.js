@@ -120,7 +120,9 @@ Ext.define('Ext.ux.desktop.Desktop', {
                 Ext.getCmp('ajax_connect').addCls('ajax_connect');
             },
             requestcomplete : function(){
-                Ext.getCmp('ajax_connect').removeCls('ajax_connect');
+                if(Ext.Object.getSize(Ext.Ajax.requests)<=1){
+			Ext.getCmp('ajax_connect').removeCls('ajax_connect');
+		}
             }
         });
 		
