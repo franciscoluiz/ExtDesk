@@ -7,6 +7,7 @@ Follow us on facebook (http://www.facebook.com/Extdesk)
 
 Follow us on facebookgoogle+ (https://plus.google.com/u/0/111022226664150821629/)
 
+Just a small test of my github installation : xcape 
 
 License
 ------------
