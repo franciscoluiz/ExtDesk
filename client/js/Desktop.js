@@ -11,8 +11,6 @@
  * <p>This class manages the wallpaper, shortcuts and taskbar.</p>
  */
 
-
-
 Ext.define('Ext.ux.desktop.Desktop', {
     extend: 'Ext.panel.Panel',
 
@@ -554,10 +552,10 @@ Ext.define('Ext.ux.desktop.Desktop', {
     	Ext.create('widget.uxNotification', {
 			title: title,
 			position: 'br',
-			manager: 'demo1',
-			cls: 'ux-notification-light',
-			autoCloseDelay: 2500,
-			spacing: 50,
+			//manager: 'demo1',
+			//cls: 'ux-notification-light',
+			autoCloseDelay: 4500,
+			spacing: 20,
 			html: msg
 		}).show();
     	
