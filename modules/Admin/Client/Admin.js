@@ -1299,7 +1299,9 @@ openModulesTab : function(opt){
         Ext.getCmp('idAdminModulesGrid').on('select',me.updateActions,this);
         //first obtain the module,who calls the update
         me.storeActions.on('beforeload',function(st){
-            var module=Ext.getCmp("idAdminModulesGrid").getSelectionModel().selected.items[0].data.name;
+	   //FIX: select data.js (by pixelead0)        	
+            //var module=Ext.getCmp("idAdminModulesGrid").getSelectionModel().selected.items[0].data.name;
+            var module=Ext.getCmp("idAdminModulesGrid").getSelectionModel().selected.items[0].data.js;
             st.proxy.extraParams.module=module;
         },this);
 			
@@ -1364,7 +1366,9 @@ saveActions : function(){
     
 addActions : function(){
     var me=this;
-    var module=Ext.getCmp("idAdminModulesGrid").getSelectionModel().selected.items[0].data.name;
+    //FIX: select data.js (by pixelead0)        	    
+    //var module=Ext.getCmp("idAdminModulesGrid").getSelectionModel().selected.items[0].data.name;
+    var module=Ext.getCmp("idAdminModulesGrid").getSelectionModel().selected.items[0].data.js;
     var record = Ext.create('AdminActions',{
         id : null,			
         module : module,
@@ -1381,7 +1385,9 @@ updateActions : function(){
     	
     var p=Ext.getCmp("idPanelActions");
     if (!p.collapsed){
-        var module=Ext.getCmp("idAdminModulesGrid").getSelectionModel().selected.items[0].data.name;
+    	//FIX: select data.js (by pixelead0)        	    
+        //var module=Ext.getCmp("idAdminModulesGrid").getSelectionModel().selected.items[0].data.name;
+        var module=Ext.getCmp("idAdminModulesGrid").getSelectionModel().selected.items[0].data.js;
         me.storeActions.load({
             params:{
                 "module":module
