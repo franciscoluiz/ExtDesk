@@ -68,17 +68,25 @@ Ext.define('Ext.ux.desktop.StartMenu', {
             dock: 'right',
             cls: 'ux-start-menu-toolbar',
             vertical: true,
-            width: 100
+            width: 120
         }, me.toolConfig));
 
+
+
         me.toolbar.layout.align = 'stretch';
+
+
         me.addDocked(me.toolbar);
 
+		me.toolbar.setWidth(120);
+		
         delete me.toolItems;
-
+		
+		/*
         me.on('deactivate', function () {
             me.hide();
         });
+        */
     },
 
     addMenuItem: function() {

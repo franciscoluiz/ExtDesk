@@ -89,6 +89,8 @@ class os {
             switch ($Module) {
 
                 case "Main" :
+					if ($action=="load_user/") { $action="load_user";}	//TODO: dirty fix in update to ext js4
+
                     switch ($action) {
                         case "load_user":
                             // we get the languaje strings

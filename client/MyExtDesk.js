@@ -64,7 +64,7 @@
 							this.user=user;
 							//***<load personal theme :D>
 							var getPath = location.href.substring(0,location.href.lastIndexOf("/")+1);
-							Ext.getDom('idTheme').href= getPath + "extjs/resources/css/ext-all-"+this.user.get('theme')+".css";
+							//Ext.getDom('idTheme').href= getPath + "extjs/resources/css/ext-all-"+this.user.get('theme')+".css";
 							//***<(8D>
 							apps.push('Ext.window.MessageBox');
 							apps.push('Ext.ux.desktop.ShortcutModel');							
@@ -173,7 +173,7 @@
 								id : 'idWinLogin',
 								title: lan["login"],
 								width: 350,
-								height: 200,
+								height: 210,
 								minWidth: 350,
 								minHeight:200,
 								layout: 'fit',

@@ -49,11 +49,11 @@
 .ux-start-button .x-btn-arrow {
     background-image: none;
 }
-
+/*
 .ux-start-button .x-btn-arrow-right {
     padding-left: 10px;
 }
-
+*/
 .ux-taskbar {
     padding-left: 4px !important;
 }
@@ -100,6 +100,15 @@
     TaskBar
 */
 
+/* Use high specificity selector to override default styling*/
+div.ux-taskbar div.x-toolbar {
+    background: transparent none;
+    border: 0 none;
+    /*padding: 0;*/
+}
+
+
+/*
 .ux-taskbar .x-toolbar {
     background: transparent none;
     border-color: transparent;
@@ -109,18 +118,20 @@
     border-color: #d3e1f1;
 }
 
+*/
+
 .ux-desktop-windowbar .x-btn-inner,
 .x-nbr .ux-desktop-windowbar .x-btn-icon-text-left button {
     text-align: left !important;
 }
 
 .ux-taskbar .x-toolbar {
-    height: 28px;
+    /*height: 28px;*/
 }
 
 .ux-taskbar {
-    height: 28px;
-    padding: 0;
+    /*height: 28px;*/
+    /*padding: 0;*/
 }
 
 .x-toolbar .x-toolbar {

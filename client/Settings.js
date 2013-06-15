@@ -31,7 +31,7 @@ Ext.define('MyDesktop.Settings', {
     title: userStore.strings().findRecord("alias","changeSettings").data.string,
     modal: true,
     width: 540,
-    height: 380,
+    height: 400,
     border: false,
     lang:Array,
 
@@ -182,6 +182,17 @@ Ext.define('MyDesktop.Settings', {
 		if (tw==undefined){
 			
 			//TODO : Panel wallpaper Tab
+			me.colorPicker = Ext.create('Ext.menu.ColorPicker', {
+		    	value: '000000',
+				select:function(a){
+
+					console.log(a);				
+
+				},
+				scope:this
+			});
+
+			
 			me.tabWallpaper = Ext.create('Ext.Panel',{
 				iconCls:'preferences-wallpaper',
 				id : 'preferTabWallpaper',
@@ -218,6 +229,10 @@ Ext.define('MyDesktop.Settings', {
 									}
 								}
                         	},
+							{
+        						text: 'choose a color',
+        						menu: me.colorPicker
+    						},                        	
                             '->',
                             {
                                 xtype: 'button',                        
@@ -389,12 +404,22 @@ Ext.define('MyDesktop.Settings', {
 		
 		var me = this;
 
-		var getPath = location.href.substring(0,location.href.lastIndexOf("/"));		
-		var selectTheme=Ext.getDom('idTheme').href.replace(getPath + "/extjs/resources/css/ext-all-", "", "");
-		selectTheme='resources/themes/'+selectTheme.replace(".css",".jpg");
+		var selectTheme=Tools.readCookie("EDtheme");
+		if (selectTheme==null){
+			Tools.createCookie("EDtheme","classic",365);
+			selectTheme="classic";
+		}
+
+		console.log(selectTheme);
+		
+		//var getPath = location.href.substring(0,location.href.lastIndexOf("/"));		
+		
+		//var selectTheme=Ext.getDom('idTheme').href.replace(getPath + "/extjs/resources/css/ext-all-", "", "");
+		
+		//selectTheme='resources/themes/'+selectTheme.replace(".css",".jpg");
 		
 		me.previewTheme = Ext.create('widget.wallpaper');
-        me.previewTheme.setWallpaper(selectTheme);
+        //me.previewTheme.setWallpaper(selectTheme);
         
         me.treeTheme = me.createTreeTheme();
 		
@@ -478,7 +503,7 @@ Ext.define('MyDesktop.Settings', {
             rootVisible: false,
             lines: false,
             autoScroll: true,
-            width: 150,
+            width: 170,
             region: 'west',
             //layout:'fit',
             split: true,
@@ -768,7 +793,7 @@ Ext.define('MyDesktop.Settings', {
             rootVisible: false,
             lines: false,
             autoScroll: true,
-            width: 150,
+            width: 170,
             region: 'west',
             split: true,
             minWidth: 100,
@@ -784,15 +809,24 @@ Ext.define('MyDesktop.Settings', {
                     expanded: true,
                     //TODO: add themes here... and desktop.csss
                     children:[
-                        child('access.jpg'),		
-                        child('blue.jpg'),
-                        child('cyma.jpg'),
+                        child('access.jpg'),
+                        child('classic.jpg'),
                         child('gray.jpg'),
-                        child('green.jpg'),
+                        child('extdesk-bird.jpg'),		
+                        child('extdesk-book.jpg'),
+                        child('extdesk-cyma.jpg'),
+                        child('extdesk-extribute.jpg'),
+                        child('extdesk-plus.jpg'),
+                        child('extdesk-sencha.jpg'),
+                        child('extdesk-pop.jpg'),
+                        child('neptune.jpg'),
+                        /*
                         child('numetal.jpg'),
                         child('pop.jpg'),
                         child('sabina.jpg'),
                         child('shunkti.jpg'),
+                        */
+                        
                     ]
                 }
             })
@@ -804,10 +838,18 @@ Ext.define('MyDesktop.Settings', {
 	onOkTheme : function(){
 		var me = this;
 		var theme= me.getTextOfWallpaper(me.selectedTheme);
-		theme=theme.toLowerCase();
+		
+		theme = theme.toLowerCase();
+		
+		theme = theme.replace(' ','-');
+		
+		console.log(theme);
 		
 		var getPath = location.href.substring(0,location.href.lastIndexOf("/")+1);
-		Ext.getDom('idTheme').href= getPath + "extjs/resources/css/ext-all-"+theme+".css";
+		
+		Tools.createCookie("EDtheme",theme,365);
+		
+		//Ext.getDom('idTheme').href= getPath + "extjs/resources/css/ext-all-"+theme+".css";
 		// FIXME: workin here.
 		
 			Ext.MessageBox.show({
@@ -834,7 +876,8 @@ Ext.define('MyDesktop.Settings', {
 	        			if (resp.success){
 							//me.desktop.setWallpaper(me.selected, me.stretch);        	
 	        				me.destroy();
-	        				Ext.MessageBox.hide();     				
+	        				Ext.MessageBox.hide();
+	        				window.location.reload();
 	        			}else{
 	        				Ext.MessageBox.hide();
 	        				Ext.MessageBox.alert(me.lang["settings"]+" > "+me.lang["themes"]+ " Error ",resp.msg);
