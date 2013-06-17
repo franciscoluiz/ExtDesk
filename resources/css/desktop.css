@@ -294,34 +294,44 @@ div.ux-taskbar div.x-toolbar {
 
 /*themes*/
 .ico-theme-Access{
-	background-image: url( ../themes/ico-theme-access.jpg ) !important;
+	background-image: url( ../themes/ico-theme-access.png ) !important;
 }
-.ico-theme-Blue{
-	background-image: url( ../themes/ico-theme-blue.jpg ) !important;
-}
-.ico-theme-Cyma{
-	background-image: url( ../themes/ico-theme-cyma.jpg ) !important;
+.ico-theme-Classic{
+	background-image: url( ../themes/ico-theme-classic.png ) !important;
 }
 .ico-theme-Gray{
-	background-image: url( ../themes/ico-theme-gray.jpg ) !important;
+	background-image: url( ../themes/ico-theme-gray.png ) !important;
 }
-.ico-theme-Green{
-	background-image: url( ../themes/ico-theme-green.jpg ) !important;
-}
-.ico-theme-Numetal{
-	background-image: url( ../themes/ico-theme-numetal.jpg ) !important;
-}
-.ico-theme-Pop{
-	background-image: url( ../themes/ico-theme-pop.jpg ) !important;
-}
-.ico-theme-Sabina{
-	background-image: url( ../themes/ico-theme-sabina.jpg ) !important;
-}
-.ico-theme-Shunkti{
-	background-image: url( ../themes/ico-theme-shunkti.jpg ) !important;
+.ico-theme-Extdesk-bird{
+	background-image: url( ../themes/ico-theme-extdesk-bird.png ) !important;
 }
 
+.ico-theme-Extdesk-book{
+	background-image: url( ../themes/ico-theme-extdesk-book.png ) !important;
+}
 
+.ico-theme-Extdesk-cyma{
+	background-image: url( ../themes/ico-theme-extdesk-cyma.png ) !important;
+}
+
+.ico-theme-Extdesk-extribute{
+	background-image: url( ../themes/ico-theme-extdesk-extribute.png ) !important;
+}
+.ico-theme-Extdesk-plus {
+	background-image: url( ../themes/ico-theme-extdesk-plus.png ) !important;	
+}
+
+.ico-theme-Extdesk-sencha{
+	background-image: url( ../themes/ico-theme-extdesk-sencha.png ) !important;	
+}
+
+.ico-theme-Extdesk-pop{
+	background-image: url( ../themes/ico-theme-extdesk-pop.png ) !important;	
+}
+
+.ico-theme-Neptune{
+	background-image: url( ../themes/ico-theme-extdesk-neptune.png ) !important;	
+}
 
 
 /*aditional*/

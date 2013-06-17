@@ -792,7 +792,7 @@ Ext.define('MyDesktop.Settings', {
             title: this.lang["selectTheme"],
             rootVisible: false,
             lines: false,
-            autoScroll: true,
+            autoScroll: true, 
             width: 170,
             region: 'west',
             split: true,
@@ -809,17 +809,17 @@ Ext.define('MyDesktop.Settings', {
                     expanded: true,
                     //TODO: add themes here... and desktop.csss
                     children:[
-                        child('access.jpg'),
-                        child('classic.jpg'),
-                        child('gray.jpg'),
-                        child('extdesk-bird.jpg'),		
-                        child('extdesk-book.jpg'),
-                        child('extdesk-cyma.jpg'),
-                        child('extdesk-extribute.jpg'),
-                        child('extdesk-plus.jpg'),
-                        child('extdesk-sencha.jpg'),
-                        child('extdesk-pop.jpg'),
-                        child('neptune.jpg'),
+                        child('access.png'),
+                        child('classic.png'),
+                        child('gray.png'),
+                        child('extdesk-bird.png'),		
+                        child('extdesk-book.png'),
+                        child('extdesk-cyma.png'),
+                        child('extdesk-extribute.png'),
+                        child('extdesk-plus.png'),
+                        child('extdesk-sencha.png'),
+                        child('extdesk-pop.png'),
+                        child('neptune.png'),
                         /*
                         child('numetal.jpg'),
                         child('pop.jpg'),
@@ -900,8 +900,8 @@ Ext.define('MyDesktop.Settings', {
         var dot = text.lastIndexOf('.');
         text = Ext.String.capitalize(text.substring(0, dot));
         text = 'ico-theme-'+text.replace(/[-]/g, '-');
-        
 		return text;
+    
     },
    
     onSelectTheme : function (tree, record) {
