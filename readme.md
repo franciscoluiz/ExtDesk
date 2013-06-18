@@ -1,4 +1,4 @@
-ExtDesk
+ExtDesk just another test
 =============
 
 A extended desktop to the web. (This is a work in progress....)
