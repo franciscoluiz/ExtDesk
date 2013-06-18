@@ -1,0 +1,17 @@
+	openOption--[count]-- : function(opt){
+		var me = this;
+		var tab1=Ext.getCmp('--[moduleLow]--Tab--[count]--');
+		if (tab1==undefined){
+			me.tab1= Ext.create('Ext.form.Panel', {
+					id : '--[moduleLow]--Tab--[count]--',
+					title : 'Tab --[count]--',
+					closable:true,
+					html:'This is Tab --[count]--'
+			}); 
+			var tab0 = Ext.getCmp('--[moduleLow]--TabPanel');
+			var tab--[count]-- = Ext.getCmp('--[moduleLow]--Tab--[count]--');		
+			tab0.add(tab--[count]--);
+		}
+		tab--[count]--.show();
+    },
+    

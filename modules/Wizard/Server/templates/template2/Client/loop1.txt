@@ -1,0 +1,1 @@
+				{id : '--[moduleLow]--option--[count]--', src:'modules/--[module]--/Client/Resources/images/--[moduleLow]--_48x48.png', 	title : "Option --[count]--",	caption : "this is the option --[count]--"},

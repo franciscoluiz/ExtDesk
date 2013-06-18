@@ -28,5 +28,30 @@ class utils {
         
         return $senha_codificada;
     }
+    /*
+     * gimmicklessgpt at gmail dot com20-May-2009 04:04
+     *
+     * Found in docs of php.net
+     *  
+     * Here's a simple recursive function to copy entire directories 
+     * Note to do your own check to make sure the directory exists that you first call it on. 
+     * 
+     * */
+    function recurse_copy($src,$dst) { 
+        $dir = opendir($src); 
+        @mkdir($dst); 
+        while(false !== ( $file = readdir($dir)) ) { 
+            if (( $file != '.' ) && ( $file != '..' )) { 
+                if ( is_dir($src . '/' . $file) ) { 
+                    $this->recurse_copy($src . '/' . $file,$dst . '/' . $file); 
+                } 
+                else { 
+                    copy($src . '/' . $file,$dst . '/' . $file); 
+                } 
+            } 
+        } 
+        closedir($dir); 
+    } 
+
     
 }

@@ -20,7 +20,8 @@ INSERT INTO `modules` (`id`, `js`, `name`, `iconCls`, `module`, `iconLaunch`) VA
 (8, 'BogusModule', 'Bogus Module', 'bugus-shortcut', 'bogus-menu', NULL),
 (9, 'BogusMenuModule', 'Bogus Menu Module', 'bugus-shortcut', 'bogus-menu', 'icon-bugus'),
 (10, 'Example1', 'Example1', 'example-shortcut', 'example1-win', 'icon-example'),
-(11, 'Example2', 'Example2', 'example-shortcut', 'example2-win', 'example-shortcut');
+(11, 'Example2', 'Example2', 'example-shortcut', 'example2-win', 'example-shortcut'),
+(12, 'Wizard', 'Wizard', 'wizard-shortcut', 'wizard-win', 'wizard-shortcut');
 
 
 
@@ -56,7 +57,8 @@ INSERT INTO `actions` (`id`, `module`, `option`, `action`) VALUES
 (19,'Settings','Wallpaper','Save'),
 (20,'Settings','Shortcuts','Save'),
 (21,'Settings','QLaunchs','Save'),
-(22,'Settings','Theme','Save');
+(22,'Settings','Theme','Save'),
+(23,'Wizard','Module','Make');
 
 
 
@@ -135,7 +137,8 @@ INSERT INTO `groups_actions` (`id`, `idGroups`, `idActions`) VALUES
 (45,3,19),
 (46,3,20),
 (47,3,21),
-(48,3,22);
+(48,3,22),
+(49,3,23);
 
 
 
@@ -163,7 +166,8 @@ INSERT INTO `groups_modules` (`id`, `idGroups`, `idModules`) VALUES
 (11,3,8),
 (12,3,9),
 (13,3,10),
-(14,3,11);
+(14,3,11),
+(15,3,12);
 
 
 
@@ -237,4 +241,5 @@ INSERT INTO `user_preferences` (`id`, `idUser`, `idModule`, `shorcut`, `qLaunch`
 (8,1,8,0,0),
 (9,1,9,0,0),
 (10,1,10,1,0),
-(11,1,11,1,0);
+(11,1,11,1,0),
+(12,1,12,1,0);

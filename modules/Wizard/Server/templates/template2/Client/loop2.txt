@@ -1,0 +1,3 @@
+												case --[count-1]-- : me.openOption--[count]--(index);
+														break;
+
