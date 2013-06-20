@@ -128,10 +128,7 @@ Ext.define('MyDesktop.Settings', {
 							layout:'anchor',
 							//TODO: fix layout
 							width:525,
-			                                height:325,
-
-							
-							//bodyStyle: "background-image:url(blue.jpg) !important",
+			                height:325,
 							items :
 								Ext.create('Ext.view.View', {
 									//xtype:'dataview',

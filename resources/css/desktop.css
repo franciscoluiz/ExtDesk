@@ -450,3 +450,47 @@ div.thumb-wrap:hover span.title{
 .ajax_connect {
    background: url( ../images/connect-on.gif ) center center no-repeat !important;
 }
+
+div.thumb-wrap-ed-wizard {
+    /*border: 1px solid red;*/
+    clear: right;
+    display: block;
+    float: left;
+    padding: 8px;
+    width: 262px;
+}
+
+div.thumb-wrap-ed-wizard:hover{	
+	/*backg: 1px solid blue;*/
+	color:#3D71B8;
+	cursor :pointer;
+}
+
+
+div.thumb-wrap-ed-wizard img{	
+	float : left;
+	width : 48px;
+	height : 48px;
+	
+}
+div.thumb-wrap-ed-wizard span{
+	padding-left : 25px;
+	
+}
+
+div.thumb-wrap-ed-wizard span.title{
+	color:#269926;
+}
+
+div.thumb-wrap-ed-wizard span.caption{
+	color:#133CAC;
+}
+div.thumb-wrap-ed-wizard:hover span.title{	
+	/*backg: 1px solid blue;*/
+	/*color: #C0272B;*/
+	font-weight:bold;
+	text-decoration: underline;
+	
+
+}
+

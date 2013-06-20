@@ -13,7 +13,19 @@ CREATE TABLE IF NOT EXISTS `modules` (
 INSERT INTO `modules` (`id`, `js`, `name`, `iconCls`, `module`, `iconLaunch`) VALUES 
 (1,'Admin','Admin','admin-shortcut','admin-win','icon-admin'),
 (2,'Settings','Settings',NULL,NULL,NULL),
-(3, 'Wizard', 'Wizard', 'wizard-shortcut', 'wizard-win', 'icon-wizard');
+(3, 'Notepad', 'Notepad', 'notepad-shortcut', 'notepad', 'icon-notepad'),
+(4, 'AccordionWindow', 'Accordion Window', 'accordion-shortcut', 'acc-win', 'icon-accordion'),
+(5, 'GridWindow', 'Grid Window', 'grid-shortcut', 'grid-win', 'icon-grid'),
+(6, 'SystemStatus', 'System Status', 'systemStatus-shortcut', 'systemstatus', 'icon-systemStatus'),
+(7, 'TabWindow', 'Tab Window', 'tab-shortcut', 'tab-win', 'icon-tab'),
+(8, 'BogusModule', 'Bogus Module', 'bugus-shortcut', 'bogus-menu', NULL),
+(9, 'BogusMenuModule', 'Bogus Menu Module', 'bugus-shortcut', 'bogus-menu', 'icon-bugus'),
+(10, 'Example1', 'Example1', 'example-shortcut', 'example1-win', 'icon-example'),
+(11, 'Example2', 'Example2', 'example-shortcut', 'example2-win', 'example-shortcut'),
+(12, 'Wizard', 'Wizard', 'wizard-shortcut', 'wizard-win', 'wizard-shortcut');
+
+
+
 
 DROP TABLE IF EXISTS `actions`;
 CREATE TABLE IF NOT EXISTS `actions` (
@@ -125,8 +137,8 @@ INSERT INTO `groups_actions` (`id`, `idGroups`, `idActions`) VALUES
 (46,3,20),
 (47,3,21),
 (48,3,22),
-(49,3,23),
-(50,2,23);
+(49,3,23);
+
 
 
 
@@ -145,7 +157,18 @@ INSERT INTO `groups_modules` (`id`, `idGroups`, `idModules`) VALUES
 (3,2,2),
 (4,3,1),
 (5,3,2),
-(6,3,3);
+(6,3,3),
+(7,3,4),
+(8,3,5),
+(9,3,6),
+(10,3,7),
+(11,3,8),
+(12,3,9),
+(13,3,10),
+(14,3,11),
+(15,3,12);
+
+
 
 
 DROP TABLE IF EXISTS `users`;
@@ -209,4 +232,13 @@ CREATE TABLE IF NOT EXISTS `user_preferences` (
 INSERT INTO `user_preferences` (`id`, `idUser`, `idModule`, `shorcut`, `qLaunch`) VALUES 
 (1,1,1,1,1),
 (2,1,2,1,1),
-(3,1,3,1,1);
+(3,1,3,1,1),
+(4,1,4,1,1),
+(5,1,5,1,1),
+(6,1,6,1,1),
+(7,1,7,1,1),
+(8,1,8,0,0),
+(9,1,9,0,0),
+(10,1,10,1,0),
+(11,1,11,1,0),
+(12,1,12,1,0);
