@@ -1,7 +1,9 @@
-ExtDesk just 
+ExtDesk
 =============
 
 A extended desktop to the web. (This is a work in progress....)
+
+Visit us on (http://www.extdesk.net)
 
 Follow us on facebook (http://www.facebook.com/Extdesk)
 
