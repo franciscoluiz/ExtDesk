@@ -8,13 +8,13 @@ CREATE TABLE IF NOT EXISTS `modules` (
   `iconLaunch` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB COLLATE='utf8_general_ci' AUTO_INCREMENT=12;
-
-
+ 
+ 
 INSERT INTO `modules` (`id`, `js`, `name`, `iconCls`, `module`, `iconLaunch`) VALUES 
 (1,'Admin','Admin','admin-shortcut','admin-win','icon-admin'),
 (2,'Settings','Settings',NULL,NULL,NULL),
 (3, 'Wizard', 'Wizard', 'wizard-shortcut', 'wizard-win', 'icon-wizard');
-
+ 
 DROP TABLE IF EXISTS `actions`;
 CREATE TABLE IF NOT EXISTS `actions` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS `actions` (
   `action` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB COLLATE='utf8_general_ci' AUTO_INCREMENT=23;
-
+ 
 INSERT INTO `actions` (`id`, `module`, `option`, `action`) VALUES 
 (1,'Admin','Users','List'),
 (2,'Admin','Users','Save'),
@@ -48,8 +48,8 @@ INSERT INTO `actions` (`id`, `module`, `option`, `action`) VALUES
 (21,'Settings','QLaunchs','Save'),
 (22,'Settings','Theme','Save'),
 (23,'Wizard','Module','Make');
-
-
+ 
+ 
 DROP TABLE IF EXISTS `groups`;
 CREATE TABLE IF NOT EXISTS `groups` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -59,15 +59,15 @@ CREATE TABLE IF NOT EXISTS `groups` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `group_UNIQUE` (`group`)
 ) ENGINE=InnoDB COLLATE='utf8_general_ci' AUTO_INCREMENT=4;
-
+ 
 INSERT INTO `groups` (`id`, `group`, `description`, `active`) VALUES 
 (1,'Administrator','Can access only admin modules', 1),
 (2,'DemoGroup','Only can save wallpaper', 1),
 (3,'Full Access','Can access all modules with all actions', 1 );
-
-
-
-
+ 
+ 
+ 
+ 
 DROP TABLE IF EXISTS `groups_actions`;
 CREATE TABLE IF NOT EXISTS `groups_actions` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -75,7 +75,7 @@ CREATE TABLE IF NOT EXISTS `groups_actions` (
   `idActions` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB COLLATE='utf8_general_ci' AUTO_INCREMENT=49;
-
+ 
 INSERT INTO `groups_actions` (`id`, `idGroups`, `idActions`) VALUES 
 (1,1,1),
 (2,1,2),
@@ -127,9 +127,9 @@ INSERT INTO `groups_actions` (`id`, `idGroups`, `idActions`) VALUES
 (48,3,22),
 (49,3,23),
 (50,2,23);
-
-
-
+ 
+ 
+ 
 DROP TABLE IF EXISTS `groups_modules`;
 CREATE TABLE IF NOT EXISTS `groups_modules` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -138,7 +138,7 @@ CREATE TABLE IF NOT EXISTS `groups_modules` (
   PRIMARY KEY (`id`),
   KEY `idgroups` (`idGroups`)
 ) ENGINE=InnoDB COLLATE='utf8_general_ci' AUTO_INCREMENT=15;
-
+ 
 INSERT INTO `groups_modules` (`id`, `idGroups`, `idModules`) VALUES 
 (1,1,1),
 (2,1,2),
@@ -146,8 +146,8 @@ INSERT INTO `groups_modules` (`id`, `idGroups`, `idModules`) VALUES
 (4,3,1),
 (5,3,2),
 (6,3,3);
-
-
+ 
+ 
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
 	`P_Id` INT(11) NOT NULL AUTO_INCREMENT,
@@ -168,8 +168,8 @@ CREATE TABLE IF NOT EXISTS `users` (
 	UNIQUE INDEX `id` (`P_Id`),
 	UNIQUE INDEX `username` (`username`)
 ) ENGINE=InnoDB COLLATE='utf8_general_ci' AUTO_INCREMENT=2;
-
-
+ 
+ 
 INSERT INTO `users` (`P_Id`, `username`, `password`, `email`, `regdate`, `CpassReqDate`, `voucher`, `wallPaper`, `theme`, `wpStretch`, `extrainfo1`, `extrainfo2`, `extrainfo3`, `active`) VALUES 
 (1,
 'set_admin_user',
@@ -187,15 +187,15 @@ CREATE TABLE IF NOT EXISTS `user_groups` (
   `idGroup` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB COLLATE='utf8_general_ci' AUTO_INCREMENT=4;
-
+ 
 INSERT INTO `user_groups` (`id`, `idUser`, `idGroup`) VALUES
 (1,1,1),
 (2,1,2),
 (3,1,3);
-
-
-
-
+ 
+ 
+ 
+ 
 DROP TABLE IF EXISTS `user_preferences`;
 CREATE TABLE IF NOT EXISTS `user_preferences` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -205,7 +205,7 @@ CREATE TABLE IF NOT EXISTS `user_preferences` (
   `qLaunch` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB COLLATE='utf8_general_ci' AUTO_INCREMENT=12;
-
+ 
 INSERT INTO `user_preferences` (`id`, `idUser`, `idModule`, `shorcut`, `qLaunch`) VALUES 
 (1,1,1,1,1),
 (2,1,2,1,1),
