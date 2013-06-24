@@ -82,7 +82,7 @@ foreach ($sqlFile as $line_num => $line) {
             $sqlFile[$line_num] = str_replace("set_admin_pass", $admin_pass, $line);
             break;
         case "'set_admin_emai":
-            $sqlFile[$line_num] = str_replace("set_admin_emai", $admin_email, $line);
+            $sqlFile[$line_num] = str_replace("set_admin_email", $admin_email, $line);
             break;
     }
 }
