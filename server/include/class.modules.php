@@ -74,36 +74,30 @@ class modules {
         $user = $_SESSION["ExtDeskSession"]["username"];
         $id = $_SESSION["ExtDeskSession"]["id"];
 
-
-        //$module = $_GET["Module"];
-        //$option = $_GET["option"];
-        //$action = $_GET["action"];
-    
-			
-		$module = null;
-		$option = null;
-		$action = null;
-		
-		if (isset($_GET["Module"])) { 
-			$module = $_GET["Module"]; 
-		}
-		if (isset($_GET["option"])) { 
-			$option = $_GET["option"]; 
-		}
-		if (isset($_GET["action"])) { 
-			$action = $_GET["action"]; 
-		}
-		
-		if (isset($_POST["Module"])) { 
-			$module = $_POST["Module"]; 
-		}
-		if (isset($_POST["option"])) { 
-			$option = $_POST["option"]; 
-		}
-		if (isset($_POST["action"])) { 
-			$action = $_POST["action"]; 
-		}
-			
+        $module = null;
+        $option = null;
+        $action = null;
+        
+        if (isset($_GET["Module"])) { 
+            $module = $_GET["Module"]; 
+        }
+        if (isset($_GET["option"])) { 
+            $option = $_GET["option"]; 
+        }
+        if (isset($_GET["action"])) { 
+            $action = $_GET["action"]; 
+        }
+        
+        if (isset($_POST["Module"])) { 
+            $module = $_POST["Module"]; 
+        }
+        if (isset($_POST["option"])) { 
+            $option = $_POST["option"]; 
+        }
+        if (isset($_POST["action"])) { 
+            $action = $_POST["action"]; 
+        }
+            
         $sql = "select a.module, 
                        a.option, 
                        a.action,
@@ -128,14 +122,18 @@ class modules {
                    and a.action='$action'
                  order by m.id";
 
+/*        $d = new debug();
+		$d->log($sql);*/
         $stmt = $this->dbh->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+        $log=new log();
         if (count($result) == 0) {
-            //$d->log("false");
+           $log->save($user,"Access denied to module",$module,$option,$action);
             return FALSE;
         } else {
-            //$d->log("true");
+            $log->save($user,"Granted access to the module",$module,$option,$action);
             return TRUE;
         }
     }

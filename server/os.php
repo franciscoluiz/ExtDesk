@@ -24,6 +24,7 @@ class os {
         $this->load($this->incPath . 'class.security.php', 'Settings', true);
         $this->load($this->incPath . 'class.user.php', 'security', true);
         $this->load($this->incPath . 'class.modules.php', 'security', true);
+        $this->load($this->incPath . 'class.log.php', 'log', true);
 
         /*         * * Load in SESSION var ** */
         $this->iniConfig = new configFile();
@@ -59,7 +60,6 @@ class os {
             //check the action we need
             //$this->debug->log($_GET);
 
-
             $Module = null;
             $option = null;
             $action = null;
@@ -84,8 +84,6 @@ class os {
                 $action = $_POST["action"]; 
             }
             
-        
-            
             switch ($Module) {
 
                 case "Main" :
@@ -95,10 +93,8 @@ class os {
                         case "load_user":
                             // we get the languaje strings
                             $languaje = json_encode($this->lang["languaje"]);
-
                             // send a ok signal
                             $json = '{"success" : true, "login": true,';
-
                             // we print user data
                             $json = $json . '"user" : [{' . $sec->print_user();
                             $json = $json . '"strings":' . $languaje . ",";
@@ -110,16 +106,15 @@ class os {
                     }//<--end case action
                     break;
                 default:
+                   
                     //first check the user permisión
                     //this is a generic function
                     $modules = new modules;
                     $permision = $modules->checkPermision();
-
                     //KILL THIS FUCKING LINE IS JUST TO TEST
                     //$permision=1;
                     //$this->debug->log(var_dump($permision));
                     if ($permision == 1) {
-
                         switch ($Module) {
                             case 'Settings':
                                 switch ($option) {
@@ -166,12 +161,10 @@ class os {
                                 }//<--end case option
                                 break;
                             default:
-
                                 // if we have access,
                                 // 1.- Load the class, we create the path for you
                                 // 2.- We inicialize the class for you
                                 // 3.- We call the method for you...
-
                                 //$Module = $Module;
                                 //$option = $option;
                                 //$action = $action;
@@ -209,7 +202,6 @@ class os {
             $json = '{"success" : false, "login": false,';
             $json = $json . '"user" : [{';
             $json = $json . '"strings":' . $languaje . "}]}";
-
             //OutPut Json
             echo $json;
         }//<-- end if ($res["success"])

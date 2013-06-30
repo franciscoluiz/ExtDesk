@@ -133,6 +133,8 @@ class login extends Registration {
         $stmt->bindParam(':password', $this->Password);
         $stmt->execute();
 
+        $log = new log();
+                
         if ($stmt->rowCount() > 0) {
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
             $_SESSION['ExtDeskSession']['id'] = $result["P_id"];
@@ -144,8 +146,11 @@ class login extends Registration {
             $_SESSION['ExtDeskSession']['extrainfo2'] = $result["extrainfo2"];
             $_SESSION['ExtDeskSession']['extrainfo3'] = $result["extrainfo3"];
             $_SESSION['ExtDeskSession']['bactive'] = $result["active"];
+            $log->save($this->Username,"Granted access to the system","system","login");            
         } else {
+            $log->save($this->Username,"Access denied to the system","system","login");
             return false;
+            
         }
     }
 
