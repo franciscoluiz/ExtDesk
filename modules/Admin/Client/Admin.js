@@ -691,11 +691,13 @@ Ext.define('MyDesktop.Modules.Admin.Client.Admin', {			// 1.- Steep One define t
                             }
 				        	
                         }else{
-                            Ext.Msg.alert(module, this.lang["server_error"]+'<b>'+resp.msg+'</b>')
+                            store.rejectChanges();
+                            Ext.Msg.alert(module, me.lang["server_error"]+' <b>'+resp.msg+'</b>')
                         }			       		
                     }else{
+                        store.rejectChanges();
                         Ext.MessageBox.hide();
-                        Ext.Msg.alert(module, this.lang["server_error"])
+                        Ext.Msg.alert(module, me.lang["server_error"])
                     }		        
 			        			        
                 }
@@ -703,7 +705,7 @@ Ext.define('MyDesktop.Modules.Admin.Client.Admin', {			// 1.- Steep One define t
 			
         }else{
             Ext.MessageBox.hide();
-            Ext.Msg.alert(module, this.lang["no_changes"]);			
+            Ext.Msg.alert(module, me.lang["no_changes"]);			
         }
     	
     },
