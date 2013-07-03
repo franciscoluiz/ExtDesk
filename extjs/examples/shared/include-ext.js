@@ -66,7 +66,7 @@ var Tools = {
 	
 	document.write(strLink + path + '/resources/ext-theme-' + theme + '/ext-theme-' + theme + strDebug + '"/>');
  	//includes ext-all
- 	document.write('<script type="text/javascript" src="http://127.0.0.1/ExtDesk/Extdesk-Main/extjs/ext-all.js"></script>');
+ 	document.write('<script type="text/javascript" src="./extjs/ext-all.js"></script>');
 
 	if (theme=='neptune'){
 
