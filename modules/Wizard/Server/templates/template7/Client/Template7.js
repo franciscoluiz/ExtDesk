@@ -39,7 +39,35 @@ Ext.define('MyDesktop.Modules.--[module]--.Client.--[module]--', {			// 1.- Stee
                 animCollapse:false,
                 constrainHeader:true,
                 layout: 'fit',
-                html : 'We first module'							//11.-  the module body
+				items: [
+                    {
+                        xtype: 'tabpanel',
+                        activeTab:0,
+                        bodyStyle: 'padding: 5px;',
+
+                        items: [{
+                            title: 'Tab Text 1',
+                            header:false,
+                            html : '<p>Something useful would be in here.</p>',
+                            border:false
+                        },{
+                            title: 'Tab Text 2',
+                            header:false,
+                            html : '<p>Something useful would be in here.</p>',
+                            border:false
+                        },{
+                            title: 'Tab Text 3',
+                            header:false,
+                            html : '<p>Something useful would be in here.</p>',
+                            border:false
+                        },{
+                            title: 'Tab Text 4',
+                            header:false,
+                            html : '<p>Something useful would be in here.</p>',
+                            border:false
+                        }]
+                    }
+                ]
 			})
         }
         win.show();

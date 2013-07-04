@@ -55,7 +55,7 @@ Ext.define('MyDesktop.Modules.--[module]--.Client.--[module]--', {			// 1.- Stee
                                { name: 'change', type: 'float' },
                                { name: 'pctChange', type: 'float' }
                             ],
-                            data: MyDesktop.Modules.GridWindow.Client.GridWindow.getDummyData()
+                            data: MyDesktop.Modules.--[module]--.Client.--[module]--.getDummyData()
                         }),
                         columns: [
                             new Ext.grid.RowNumberer(),
