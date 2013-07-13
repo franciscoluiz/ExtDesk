@@ -63,7 +63,7 @@
 */
 
 .ux-desktop-black .ux-start-button {
-    height: 28px;
+    height: 10px;
     padding: 0px;
     display: block;
 }
@@ -126,7 +126,7 @@ div.ux-taskbar div.x-toolbar {
 }
 
 .ux-taskbar .x-toolbar {
-    /*height: 28px;*/
+    height: 28px;
 }
 
 .ux-taskbar {

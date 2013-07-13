@@ -72,7 +72,7 @@ var Tools = {
 
 		repoDevMode = this.readCookie('ExtRepoDevMode'),	
         neptunePath = (repoDevMode ? path + '' : path) +
-            '/packages/ext-theme-neptune/build/ext-theme-neptune' +
+            '/ext-theme-neptune' +
             (repoDevMode ? '-dev' : '') + '.js';
 
         if (repoDevMode &&  window.ActiveXObject) {

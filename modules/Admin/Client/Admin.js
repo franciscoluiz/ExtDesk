@@ -383,14 +383,14 @@ Ext.define('MyDesktop.Modules.Admin.Client.Admin', {			// 1.- Steep One define t
                 caption : this.lang["userLegend"]
             },
 			{
-                id : 'option1ex', 
+                id : 'option2ex', 
                 src:'modules/Admin/Client/Resources/images/modules_48x48.png', 	
                 title : this.lang["modulesCaption"],	
                 caption : this.lang["modulesLegend"]
                 },
 
                 {
-                id : 'option1ex', 
+                id : 'option3ex', 
                 src:'modules/Admin/Client/Resources/images/groups_48x48.png', 	
                 title : this.lang["groupsCaption"],	
                 caption : this.lang["groupsLegend"]

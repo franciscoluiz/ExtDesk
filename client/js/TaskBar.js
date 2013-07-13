@@ -65,7 +65,8 @@ Ext.define('Ext.ux.desktop.TaskBar', {
                 iconCls: 'ux-start-button-icon',
                 menu: me.startMenu,
                 menuAlign: 'bl-tl',
-                text: me.startBtnText
+                text: me.startBtnText,
+                height:26
             },
             me.quickStart,
             {
