@@ -92,7 +92,8 @@ class security{
 		$user = $_SESSION['ExtDeskSession']['username'];
 		$wp = $_SESSION['ExtDeskSession']['wallPaper'];
 		$theme = $_SESSION['ExtDeskSession']['theme'];
-		
+		$color = $_SESSION['ExtDeskSession']['color'];
+
 		if(@chdir('./install')){
 			$wp="installexist";
 			$wallpaperStretch="true";
@@ -103,6 +104,7 @@ class security{
 			"name" :"'.$user.'",'.
 			'"wallPaper": "'.$wp.'",'.
 			'"theme": "'.$theme.'",'.
+			'"color": "'.$color.'",'.
 			'"wallpaperStretch" : '.$wallpaperStretch.',';
 		
 		return $string;

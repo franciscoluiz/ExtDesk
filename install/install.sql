@@ -164,6 +164,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 	`extrainfo2` VARCHAR(45) NULL DEFAULT NULL,
 	`extrainfo3` VARCHAR(45) NULL DEFAULT NULL,
 	`active` TINYINT(1) NULL DEFAULT NULL,
+  `shorcutColor` varchar(10) DEFAULT '#FFFFFF',
 	PRIMARY KEY (`P_Id`),
 	UNIQUE INDEX `id` (`P_Id`),
 	UNIQUE INDEX `username` (`username`)

@@ -127,7 +127,7 @@ class login extends Registration {
      */
     function CheckLogin() {
 
-        $stmt = $this->dbh->prepare("SELECT P_id,username, password, wallPaper,theme, wpStretch,extrainfo1,extrainfo2,extrainfo3,active FROM users
+        $stmt = $this->dbh->prepare("SELECT P_id,username, password, wallPaper,theme, wpStretch,extrainfo1,extrainfo2,extrainfo3,active,shorcutColor FROM users
         WHERE username = :username AND password =  :password and active=1");
         $stmt->bindParam(':username', $this->Username);
         $stmt->bindParam(':password', $this->Password);
@@ -146,6 +146,11 @@ class login extends Registration {
             $_SESSION['ExtDeskSession']['extrainfo2'] = $result["extrainfo2"];
             $_SESSION['ExtDeskSession']['extrainfo3'] = $result["extrainfo3"];
             $_SESSION['ExtDeskSession']['bactive'] = $result["active"];
+            $_SESSION['ExtDeskSession']['color'] = $result["shorcutColor"];
+
+            $d=new debug;
+            $d->log($_SESSION);
+
             $log->save($this->Username,"Granted access to the system","system","login");            
         } else {
             $log->save($this->Username,"Access denied to the system","system","login");

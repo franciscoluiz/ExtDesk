@@ -88,9 +88,6 @@ Ext.define('MyDesktop.ExtDesk', {
 
         return Ext.apply(ret, {
             //cls: 'ux-desktop-black',
-
-
-
             contextMenuItems: [
             {
                 text: this.lang["changeSettings"], 

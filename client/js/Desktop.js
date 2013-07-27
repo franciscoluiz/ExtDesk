@@ -105,14 +105,28 @@ Ext.define('Ext.ux.desktop.Desktop', {
 
         me.callParent();
 
+
         me.shortcutsView = me.items.getAt(1);
         me.shortcutsView.on('itemclick', me.onShortcutItemClick, me);
+        me.shortcutsView.on('viewready',function(){
+            //short-cut.color
+            color=userStore.data.color;
+            //put colors in labes of shortcut
+            var items =Ext.DomQuery.select('div .ux-desktop-shortcut-text');
+            Ext.each(items,function(item,i){
+                item.id = item.innerHTML;
+                Ext.fly(item.id).setStyle('color',color);
+            });
 
+        });
+
+        
         var wallpaper = me.wallpaper;
         me.wallpaper = me.items.getAt(0);
         if (wallpaper) {
             me.setWallpaper(wallpaper, me.wallpaperStretch);
         }
+
         Ext.Ajax.on( {
             beforerequest : function(){
                 Ext.getCmp('ajax_connect').addCls('ajax_connect');
@@ -129,10 +143,6 @@ Ext.define('Ext.ux.desktop.Desktop', {
             me.resizeDesktop();
         },this);    
 		
-        Ext.EventManager.onWindowResize(function () {
-		
-        });
-
 		
     },
     afterRender: function () {
@@ -140,7 +150,6 @@ Ext.define('Ext.ux.desktop.Desktop', {
         me.callParent();
         me.el.on('contextmenu', me.onDesktopMenu, me);
         me.shortcuts.on('datachanged',me.resizeDesktop,me);
-
     },
 	
     resizeDesktop:function(){

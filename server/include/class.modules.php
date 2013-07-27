@@ -144,16 +144,20 @@ class modules {
         $wp = $_GET["p1"];
         $wp = str_replace("ico-", "", $wp);
         $stretch = ($_GET["p2"] == 'true') ? 1 : 0;
+        $color = ($_GET["p3"] == '') ? '#ffffff' : $_GET["p3"];
+
+        $_SESSION['ExtDeskSession']['color']=$color;
 
         // create de sql
         $sql = "UPDATE users 
 				SET 
 				wallPaper=:wp, 
-				wpStretch=:stretch
+				wpStretch=:stretch,
+                shorcutColor=:color
 				WHERE username=:user";
 
         $result = $this->dbh->prepare($sql);
-        if ($result->execute(array(':wp' => $wp, ':stretch' => $stretch, ':user' => $user))) {
+        if ($result->execute(array(':wp' => $wp, ':stretch' => $stretch, ':user' => $user,':color'=>$color))) {
             $res = TRUE;
         } else {
             $res = FALSE;

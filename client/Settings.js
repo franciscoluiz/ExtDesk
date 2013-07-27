@@ -34,7 +34,7 @@ Ext.define('MyDesktop.Settings', {
     height: 400,
     border: false,
     lang:Array,
-
+    colorShortcuts : "",
     initComponent: function () {
         var me = this;
 		
@@ -181,10 +181,15 @@ Ext.define('MyDesktop.Settings', {
 			//TODO : Panel wallpaper Tab
 			me.colorPicker = Ext.create('Ext.menu.ColorPicker', {
 		    	value: '000000',
+		    	hideOnClick : true,
 				select:function(a){
-
-					console.log(a);				
-
+					var items =Ext.DomQuery.select('div .ux-desktop-shortcut-text');
+					Ext.each(items,function(item,i){
+					    item.id = item.innerHTML;
+					    Ext.fly(item.id).setStyle('color','#'+a);
+					    me.colorShortcuts="#"+a;
+					    //console.log(me.colorShortcuts);
+					});
 				},
 				scope:this
 			});
@@ -564,7 +569,6 @@ Ext.define('MyDesktop.Settings', {
         if (me.selected) {
         	
   			wp=me.getTextOfIcoWallpaper(me.selected);        	
-        	//FIXME : LANG
 			Ext.MessageBox.show({
 				msg: me.lang["saving_data"],
 				progressText: me.lang["saving_data"],
@@ -578,11 +582,12 @@ Ext.define('MyDesktop.Settings', {
 				url: 'ExtDesk.php',
     			method:'GET',
     			params: { 
-    				Module: 'Settings',
-    				option: 'Wallpaper',
-    				action:'save',
-    				p1:wp,				
-    				p2:me.stretch
+    				Module : 'Settings',
+    				option : 'Wallpaper',
+    				action : 'save',
+    				p1 :wp,				
+    				p2 :me.stretch,
+    				p3 :me.colorShortcuts
     			},
     			success: function(r){
         			var resp=Ext.decode(r.responseText,true);	//decode respond 

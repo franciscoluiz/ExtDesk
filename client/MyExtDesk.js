@@ -6,7 +6,8 @@
 				{name: 'name', type: 'string'},
 				{name: 'wallPaper', type: 'string'},
 				{name: 'wallpaperStretch', type: 'boolean'},
-				{name: 'theme', type: 'string'}
+				{name: 'theme', type: 'string'},
+				{name: 'color', type: 'string'}
 			],
 			proxy: {
 				type: 'rest',
@@ -183,9 +184,9 @@
 								id : 'idWinLogin',
 								title: lan["login"],
 								width: 450,
-								height: 210,
+								height: 215,
 								minWidth: 450,
-								minHeight:210,
+								minHeight:215,
 								layout: 'border',
 								plain:true,
 								closable:false,
