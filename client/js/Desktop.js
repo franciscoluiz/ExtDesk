@@ -553,7 +553,7 @@ Ext.define('Ext.ux.desktop.Desktop', {
 			title: title,
 			position: 'br',
 			//manager: 'demo1',
-			//cls: 'ux-notification-light',
+			cls: 'ux-notification-light',
 			autoCloseDelay: 4500,
 			spacing: 20,
 			html: msg

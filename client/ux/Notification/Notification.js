@@ -23,6 +23,7 @@ Ext.define('Ext.ux.window.Notification', {
 	draggable: false,
 	shadow: false,
 	focus: Ext.emptyFn,
+	width:200,
 
 	// For alignment and to store array of rendered notifications. Defaults to document if not set.
 	manager: null,

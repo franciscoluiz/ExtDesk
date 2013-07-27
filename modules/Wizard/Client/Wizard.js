@@ -107,7 +107,7 @@ Ext.define('MyDesktop.Modules.Wizard.Client.Wizard', {			// 1.- Steep One define
 							title: "Please Select a Template",
 							header:false,
 							border:false,
-							layout:'anchor',
+							layout:'fit',
 							items :
 								Ext.create('Ext.view.View', {		//19.- create dataview
 									//xtype:'dataview',
