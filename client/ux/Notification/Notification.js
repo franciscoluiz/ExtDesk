@@ -122,6 +122,8 @@ Ext.define('Ext.ux.window.Notification', {
 		);
 
 		this.callParent(arguments);
+		tmpId=me.header.id;
+		Ext.getCmp(tmpId).addCls(me.iconH);
 
 	},
 	

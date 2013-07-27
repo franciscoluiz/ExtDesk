@@ -6,6 +6,8 @@
 
 .ux-notification-light .x-window-header {
 	background-color: transparent;
+	padding-left: 17px;
+	background-repeat: no-repeat;
 }
 
 body .ux-notification-light {

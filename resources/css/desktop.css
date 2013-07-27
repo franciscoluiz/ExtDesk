@@ -494,3 +494,43 @@ div.thumb-wrap-ed-wizard:hover span.title{
 
 }
 
+/* Avatar....*/
+/* don't touch this part*/
+    #start-menu-id_header_hd{
+        height:32px;
+    }
+    #start-menu-id_header_hd-textEl{
+        font-size:20px;
+    }
+    #start-menu-id_header_hd{
+        padding-top:5px;
+    } 
+
+
+    #start-menu-id_header-iconEl{
+        width:32px;
+        height:32px;
+    }
+
+    /* avatars here...!*/
+    .admin{
+        background-image: url( ../images/avatars/extdesklogo_s.png ) !important;
+        height:32;
+    }
+
+    .smile{
+        background-image: url( ../images/avatars/smile_s.png ) !important;
+        height:32;
+    }
+
+    .monkey{
+        background-image: url( ../images/avatars/monkey_s.png ) !important;
+        height:32;
+    }
+
+    .cow{
+        background-image: url( ../images/avatars/cow_s.png ) !important;
+        height:32;
+    }
+
+/* end Avatar....*/

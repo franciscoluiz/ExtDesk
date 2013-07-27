@@ -119,8 +119,8 @@ Ext.define('Ext.ux.desktop.Desktop', {
             },
             requestcomplete : function(){
                 if(Ext.Object.getSize(Ext.Ajax.requests)<=1){
-			Ext.getCmp('ajax_connect').removeCls('ajax_connect');
-		}
+                    Ext.getCmp('ajax_connect').removeCls('ajax_connect');
+                }
             }
         });
 		
@@ -129,13 +129,8 @@ Ext.define('Ext.ux.desktop.Desktop', {
             me.resizeDesktop();
         },this);    
 		
-        //Ext.getCmp("id_shortcut_dataview").on('resize',me.resizeDesktop,me);    
-		
         Ext.EventManager.onWindowResize(function () {
 		
-        //console.log("se resizo");
-        //me.resizeDesktop();
-        //Ext.getCmp("id_shortcut_dataview").on('resize',me.resizeDesktop,me);    
         });
 
 		
@@ -400,7 +395,7 @@ Ext.define('Ext.ux.desktop.Desktop', {
         /*** Languaje options ***/
         me.loading = userStore.strings().findRecord("alias","loading").data.string;  
 
-        me.notification(me.loading, config.title);
+         me.notification(me.loading, config.title,config.iconCls); 
                         
         cls = cls || Ext.window.Window;
         win = me.add(new cls(cfg));
@@ -546,7 +541,7 @@ Ext.define('Ext.ux.desktop.Desktop', {
         return '<div class="msg"><h3>' + t + '</h3><p>' + s + '</p></div>';
     },
 	
-    notification:function(title,msg){
+    notification:function(title,msg,ico){
  
     	//Notification
     	Ext.create('widget.uxNotification', {
@@ -556,7 +551,8 @@ Ext.define('Ext.ux.desktop.Desktop', {
 			cls: 'ux-notification-light',
 			autoCloseDelay: 4500,
 			spacing: 20,
-			html: msg
+			html: msg,
+            iconH: ico, 
 		}).show();
     	
 }
