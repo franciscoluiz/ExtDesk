@@ -148,9 +148,6 @@ class login extends Registration {
             $_SESSION['ExtDeskSession']['bactive'] = $result["active"];
             $_SESSION['ExtDeskSession']['color'] = $result["shorcutColor"];
 
-            $d=new debug;
-            $d->log($_SESSION);
-
             $log->save($this->Username,"Granted access to the system","system","login");            
         } else {
             $log->save($this->Username,"Access denied to the system","system","login");
