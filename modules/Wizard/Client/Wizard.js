@@ -1,4 +1,4 @@
--/*
+/*
 This file is part of ExtDesk
 
 GNU General Public License Usage
@@ -12,19 +12,19 @@ This file may be used under the terms of the GNU General Public License version 
  * http://www.sencha.com/license
  */
 
-Ext.define('MyDesktop.Modules.Wizard.Client.Wizard', {			// 1.- Steep One define the name of the module
+Ext.define('MyDesktop.Modules.Wizard.Client.Wizard', {
     extend: 'Ext.ux.desktop.Module',
-    id:'wizard-win',												// 2.- Define the id of window of the module
+    id:'wizard-win',
     init : function(){
         var me = this;
         
         this.launcher = {
-            text: 'Wizard',									// 3.- The name of the shortcut aka launcher/
-            iconCls:'icon-wizard',									// 4.- Changes the icon of the module
+            text: 'Wizard',
+            iconCls:'icon-wizard',
             handler : this.createWindow,
             scope: this
-        };	
-        															// 14.-Define de Model to use 
+	};
+
 		//Ext.regModel('ImageEx', {
 		 if (! Ext.ClassManager.isCreated('ImageWizard')) {
 			Ext.define('ImageWizard', {
@@ -55,13 +55,15 @@ Ext.define('MyDesktop.Modules.Wizard.Client.Wizard', {			// 1.- Steep One define
 			id:'imagesStoreWizard',
 			model: 'ImageWizard',
 			data: [
-				{id : 'wizard1opc', src:'modules/Wizard/Client/Resources/images/template1_48x48.png', 	title : "Template 1",	caption : "Simple Module1"},
-				{id : 'wizard2opc', src:'modules/Wizard/Client/Resources/images/template2_48x48.png', 	title : "Template 2",	caption : "A module with 'X' Tabs"},
-				{id : 'wizard3opc', src:'modules/Wizard/Client/Resources/images/template3_48x48.png', 	title : "Template 3",	caption : "Accordion Example"},
-				{id : 'wizard4opc', src:'modules/Wizard/Client/Resources/images/template4_48x48.png', 	title : "Template 4",	caption : "Notepad Example"},
-				{id : 'wizard5opc', src:'modules/Wizard/Client/Resources/images/template5_48x48.png', 	title : "Template 5",	caption : "Grid Example"},
-				{id : 'wizard6opc', src:'modules/Wizard/Client/Resources/images/template6_48x48.png', 	title : "Template 6",	caption : "System Status Example"},
-				{id : 'wizard7opc', src:'modules/Wizard/Client/Resources/images/template7_48x48.png', 	title : "Template 7",	caption : "Tab Example"},
+				{id : 'wizard1opc', src:'modules/Wizard/Client/Resources/images/template1_48x48.png', title : "Template 1",	caption : "Simple Module1"},
+				{id : 'wizard2opc', src:'modules/Wizard/Client/Resources/images/template2_48x48.png', title : "Template 2",	caption : "A module with 'X' Tabs"},
+				{id : 'wizard3opc', src:'modules/Wizard/Client/Resources/images/template3_48x48.png', title : "Template 3",	caption : "Accordion Example"},
+				{id : 'wizard4opc', src:'modules/Wizard/Client/Resources/images/template4_48x48.png', title : "Template 4",	caption : "Notepad Example"},
+				{id : 'wizard5opc', src:'modules/Wizard/Client/Resources/images/template5_48x48.png', title : "Template 5",	caption : "Grid Example"},
+				{id : 'wizard6opc', src:'modules/Wizard/Client/Resources/images/template6_48x48.png', title : "Template 6",	caption : "System Status Example"},
+				{id : 'wizard7opc', src:'modules/Wizard/Client/Resources/images/template7_48x48.png', title : "Template 7",	caption : "Tab Example"},
+				{id : 'wizard8opc', src:'modules/Wizard/Client/Resources/images/template8_48x48.png', title : "Template 8",	caption : "Crud Basic Example"},
+				{id : 'wizard9opc', src:'modules/Wizard/Client/Resources/images/template8_48x48.png', title : "Template 9",	caption : "Crud With Buttons"}
 				]
 		});
 		
@@ -92,17 +94,13 @@ Ext.define('MyDesktop.Modules.Wizard.Client.Wizard', {			// 1.- Steep One define
                 animCollapse:false,
                 constrainHeader:true,
                 layout: 'fit',
-               //html : 'We Second Module'							//11.-  the module body
-   
                 items:{												//17.- create a tab panel
-	                id:'wizardTabPanel',
-					xtype: 'tabpanel',				
-	                activeTab:0,
-	                //bodyStyle: 'padding: 5px;',
-	                layout:'border',				
-					//html: 'text'
-					items :[		
-						{				
+					id:'wizardTabPanel',
+					xtype: 'tabpanel',
+					activeTab:0,
+					layout:'border',
+					items :[
+						{
 							id : 'wizardTab0',					//18.- create the menu panel and set the title
 							title: "Please Select a Template",
 							header:false,
@@ -110,8 +108,7 @@ Ext.define('MyDesktop.Modules.Wizard.Client.Wizard', {			// 1.- Steep One define
 							layout:'fit',
 							items :
 								Ext.create('Ext.view.View', {		//19.- create dataview
-									//xtype:'dataview',
-									store: me.store,				
+									store: me.store,
 									tpl: me.imageTpl,
 									itemSelector: 'div.thumb-wrap-ed-wizard',
 									emptyText: 'No images available',
@@ -119,8 +116,6 @@ Ext.define('MyDesktop.Modules.Wizard.Client.Wizard', {			// 1.- Steep One define
 									singleSelect: true,
 									listeners: {
 										itemclick:function(view,record,item,index,e,options){
-											
-											//alert(index);
 											switch(index) {
 												case 0 : me.openOption1(index);
 														break;
@@ -136,6 +131,10 @@ Ext.define('MyDesktop.Modules.Wizard.Client.Wizard', {			// 1.- Steep One define
 														break;
 												case 6 : me.openOption7(index);
 														break;
+												case 7 : me.openOption8(index);
+														break;
+												case 8 : me.openOption9(index);
+														break;
 
 											}				
 										}
@@ -144,7 +143,7 @@ Ext.define('MyDesktop.Modules.Wizard.Client.Wizard', {			// 1.- Steep One define
 						}
 					]
 				}
-			})
+			});
         }
         win.show();
         return win;
@@ -153,7 +152,7 @@ Ext.define('MyDesktop.Modules.Wizard.Client.Wizard', {			// 1.- Steep One define
     openOption1 : function(opt){
 		var me = this;
 		var tab1=Ext.getCmp('wizardTab1');
-		if (tab1==undefined){
+		if (tab1===undefined){
 			me.tab1= Ext.create('Ext.form.Panel', {
 					id : 'wizardTab1',
 					title : 'Template 1',
@@ -384,7 +383,7 @@ Ext.define('MyDesktop.Modules.Wizard.Client.Wizard', {			// 1.- Steep One define
 		var me = this;
 		var tab6=Ext.getCmp('wizardTab6');
 		if (tab6==undefined){
-			me.tab5= Ext.create('Ext.form.Panel', {
+			me.tab6= Ext.create('Ext.form.Panel', {
 					id : 'wizardTab6',
 					title : 'Template 6',
 					closable:true,
@@ -427,7 +426,7 @@ Ext.define('MyDesktop.Modules.Wizard.Client.Wizard', {			// 1.- Steep One define
 		var me = this;
 		var tab7=Ext.getCmp('wizardTab7');
 		if (tab7==undefined){
-			me.tab5= Ext.create('Ext.form.Panel', {
+			me.tab7= Ext.create('Ext.form.Panel', {
 					id : 'wizardTab7',
 					title : 'Template 7',
 					closable:true,
@@ -466,7 +465,91 @@ Ext.define('MyDesktop.Modules.Wizard.Client.Wizard', {			// 1.- Steep One define
 		tab7.show();
     },
 
+	openOption8 : function(opt){
+		var me = this;
+		var tab8=Ext.getCmp('wizardTab8');
+		if (tab8==undefined){
+			me.tab8= Ext.create('Ext.form.Panel', {
+					id : 'wizardTab8',
+					title : 'Template 8',
+					closable:true,
+					html:'<img src="modules/Wizard/Server/templates/template8/screenshot.png">',
+		            dockedItems: [
+		                {
+		                    xtype: 'toolbar',
+		                    dock: 'top',
+		                    items: [
+		                        {
+		                            xtype: 'textfield',
+		                            id:'t8_name',
+		                            fieldLabel: 'Module Name',
+		                        	value: 'Crud'
+		                        },
+								{
+                            		xtype: 'checkboxfield',
+                            		id : 't8_install',
+                            		fieldLabel: '',
+                            		boxLabel: 'Install'
+                        		},
+		                        {
+		                            xtype: 'button',
+		                            text: 'Create',
+		                        	scope:this,
+		                        	handler:me.makeTemplate8
+		                        }
+		                    ]
+		                }
+		            ]
+			}); 
+			var tab0 = Ext.getCmp('wizardTabPanel');
+			var tab8 = Ext.getCmp('wizardTab8');		
+			tab0.add(tab8);
+		}		
+		tab8.show();
+    },
 
+	openOption9 : function(opt){
+		var me = this;
+		var tab9=Ext.getCmp('wizardTab9');
+		if (tab9==undefined){
+			me.tab9= Ext.create('Ext.form.Panel', {
+					id : 'wizardTab9',
+					title : 'Template 9',
+					closable:true,
+					html:'<img src="modules/Wizard/Server/templates/template9/screenshot.png">',
+		            dockedItems: [
+		                {
+		                    xtype: 'toolbar',
+		                    dock: 'top',
+		                    items: [
+		                        {
+		                            xtype: 'textfield',
+		                            id:'t9_name',
+		                            fieldLabel: 'Module Name',
+		                        	value: 'Crud'
+		                        },
+								{
+                            		xtype: 'checkboxfield',
+                            		id : 't9_install',
+                            		fieldLabel: '',
+                            		boxLabel: 'Install'
+                        		},
+		                        {
+		                            xtype: 'button',
+		                            text: 'Create',
+		                        	scope:this,
+		                        	handler:me.makeTemplate9
+		                        }
+		                    ]
+		                }
+		            ]
+			}); 
+			var tab0 = Ext.getCmp('wizardTabPanel');
+			var tab9 = Ext.getCmp('wizardTab9');		
+			tab0.add(tab9);
+		}		
+		tab9.show();
+    },
 
 
 	makeTemplate1: function(){
@@ -756,9 +839,89 @@ Ext.define('MyDesktop.Modules.Wizard.Client.Wizard', {			// 1.- Steep One define
 		}else{
 			Ext.Msg.alert("Error : ","debe escribir un nombre")
 		}
+	},
+
+	makeTemplate8: function(){
+		var me=this;
+		
+		var module_name = Ext.getCmp('t8_name').getValue();
+		var module_install=Ext.getCmp('t8_install').getValue();
+		
+		if(module_name!=""){
+			Ext.MessageBox.show({msg: "Making module...",progressText : "please wait",	width:300,wait:true,waitConfig: {interval:50},modal:true});
+			
+			Ext.Ajax.request({
+			    url: 'ExtDesk.php',
+				    method:'GET',
+				    params: {
+				    	Module : 'Wizard',
+				    	option : 'Module',
+				    	action : 'Make',
+				    	template : 'Template8',
+				    	newModule : module_name,
+				    	installModule : module_install
+				    },
+				    success: function(response){
+				    	var text = response.responseText;
+				    	if (text!=""){
+				    		Ext.MessageBox.hide();
+				    		var resp=Ext.decode(text);
+				    		if(resp.success){				        	
+				        		Ext.Msg.alert("Wizard ",resp.msg+'</b>')
+				        	}else{
+				        		Ext.Msg.alert("Wizard Error",resp.msg+'</b>')
+				        	}
+				    	}else{
+				    		Ext.Msg.alert("Wizard Error",'En el lado del servidor')
+				    	}
+				    }
+			});
+		}else{
+			Ext.Msg.alert("Error : ","debe escribir un nombre")
+		}
+	},
+
+	makeTemplate9: function(){
+		var me=this;
+		
+		var module_name = Ext.getCmp('t9_name').getValue();
+		var module_install=Ext.getCmp('t9_install').getValue();
+		
+		if(module_name!=""){
+			Ext.MessageBox.show({msg: "Making module...",progressText : "please wait",	width:300,wait:true,waitConfig: {interval:50},modal:true});
+			
+			Ext.Ajax.request({
+			    url: 'ExtDesk.php',
+				    method:'GET',
+				    params: {
+				    	Module : 'Wizard',
+				    	option : 'Module',
+				    	action : 'Make',
+				    	template : 'Template9',
+				    	newModule : module_name,
+				    	installModule : module_install
+				    },
+				    success: function(response){
+				    	var text = response.responseText;
+				    	if (text!=""){
+				    		Ext.MessageBox.hide();
+				    		var resp=Ext.decode(text);
+				    		if(resp.success){				        	
+				        		Ext.Msg.alert("Wizard ",resp.msg+'</b>')
+				        	}else{
+				        		Ext.Msg.alert("Wizard Error",resp.msg+'</b>')
+				        	}
+				    	}else{
+				    		Ext.Msg.alert("Wizard Error",'En el lado del servidor')
+				    	}
+				    }
+			});
+		}else{
+			Ext.Msg.alert("Error : ","debe escribir un nombre")
+		}
 	}
 
-	
+
 
 
 });

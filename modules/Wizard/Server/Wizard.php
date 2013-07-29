@@ -23,8 +23,6 @@ class Wizard{
         
     function Module_Install($module){
 
-        $d = new debug();
-        $d->log("installing");
         $moduleLow =strtolower($module);
         $count_saved=0;
         

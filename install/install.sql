@@ -223,3 +223,45 @@ CREATE TABLE IF NOT EXISTS `log` (
   PRIMARY KEY (`id`) ,
   INDEX `user` (`user` ASC) 
 ) ENGINE=InnoDB COLLATE='utf8_general_ci';
+
+DROP TABLE IF EXISTS `exampledata`;
+CREATE TABLE IF NOT EXISTS `exampledata` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `col1` varchar(45) DEFAULT NULL,
+  `col2` varchar(45) DEFAULT NULL,
+  `col3` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB COLLATE='utf8_general_ci' AUTO_INCREMENT=1;
+
+INSERT INTO `extdesk-test`.`exampledata` (`col1`, `col2`, `col3`) VALUES 
+('1', 'ExampleData1', 'ExampleData 1'),
+('2', 'ExampleData2', 'ExampleData 2'),
+('3', 'ExampleData3', 'ExampleData 3'),
+('4', 'ExampleData4', 'ExampleData 4'),
+('5', 'ExampleData5', 'ExampleData 5'),
+('6', 'ExampleData6', 'ExampleData 6'),
+('7', 'ExampleData7', 'ExampleData 7'),
+('8', 'ExampleData8', 'ExampleData 8'),
+('9', 'ExampleData9', 'ExampleData 9'),
+('10', 'ExampleData 10', 'ExampleData 10'),
+('11', 'ExampleData 11', 'ExampleData 11'),
+('12', 'ExampleData 12', 'ExampleData 12'),
+('13', 'ExampleData 13', 'ExampleData 13'),
+('14', 'ExampleData 14', 'ExampleData 14'),
+('15', 'ExampleData 15', 'ExampleData 15'),
+('16', 'ExampleData 16', 'ExampleData 16'),
+('17', 'ExampleData 17', 'ExampleData 17'),
+('18', 'ExampleData 18', 'ExampleData 18'),
+('19', 'ExampleData 19', 'ExampleData 19'),
+('20', 'ExampleData 20', 'ExampleData 20'),
+('21', 'ExampleData 21', 'ExampleData 21'),
+('22', 'ExampleData 22', 'ExampleData 22'),
+('23', 'ExampleData 23', 'ExampleData 23'),
+('24', 'ExampleData 24', 'ExampleData 24'),
+('25', 'ExampleData 25', 'ExampleData 25'),
+('26', 'ExampleData 26', 'ExampleData 26'),
+('27', 'ExampleData 27', 'ExampleData 27'),
+('28', 'ExampleData 28', 'ExampleData 28'),
+('29', 'ExampleData 29', 'ExampleData 29'),
+('30', 'ExampleData 30', 'ExampleData 20');
+
