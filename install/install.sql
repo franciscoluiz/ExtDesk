@@ -223,7 +223,7 @@ CREATE TABLE IF NOT EXISTS `log` (
   PRIMARY KEY (`id`) ,
   INDEX `user` (`user` ASC) 
 ) ENGINE=InnoDB COLLATE='utf8_general_ci';
-
+ 
 DROP TABLE IF EXISTS `exampledata`;
 CREATE TABLE IF NOT EXISTS `exampledata` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -232,7 +232,7 @@ CREATE TABLE IF NOT EXISTS `exampledata` (
   `col3` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB COLLATE='utf8_general_ci' AUTO_INCREMENT=1;
-
+ 
 INSERT INTO `extdesk-test`.`exampledata` (`col1`, `col2`, `col3`) VALUES 
 ('1', 'ExampleData1', 'ExampleData 1'),
 ('2', 'ExampleData2', 'ExampleData 2'),
@@ -264,4 +264,3 @@ INSERT INTO `extdesk-test`.`exampledata` (`col1`, `col2`, `col3`) VALUES
 ('28', 'ExampleData 28', 'ExampleData 28'),
 ('29', 'ExampleData 29', 'ExampleData 29'),
 ('30', 'ExampleData 30', 'ExampleData 20');
-
