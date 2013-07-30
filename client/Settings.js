@@ -309,14 +309,21 @@ Ext.define('MyDesktop.Settings', {
 				}
 				var id="id_check_sc_"+module.get("module");
 				me.tabShortcutForm.add({
- 						id : id,
- 						xtype: 'checkboxfield',
-    					fieldLabel: '',
-    					boxLabel: module.get("name"),
-    					anchor: '100%',
-    					checked: checked,
-    					handler: me.clickOnShortcut
-					}					
+					id : id,
+					xtype: 'checkboxfield',
+					fieldLabel: '',
+					boxLabel: module.get("name"),
+					anchor: '100%',
+					checked: checked,
+					handler: me.clickOnShortcut,
+					cls : 'icon-'+module.get('name').toLowerCase(),
+					style: {
+						    backgroundRepeat:'no-repeat'
+						},
+						fieldStyle:{
+						marginLeft:'18px'
+						}
+					}
 				);
 				
 			});
@@ -388,7 +395,14 @@ Ext.define('MyDesktop.Settings', {
 						boxLabel: module.get("name"),
 						anchor: '100%',
 						checked:checked,
-						handler: me.clickOnQLaunch
+						handler: me.clickOnQLaunch,
+						cls : 'icon-'+module.get('name').toLowerCase(),
+						style: {
+							    backgroundRepeat:'no-repeat'
+							},
+						fieldStyle:{
+								marginLeft:'18px'
+						}
 					}					
 			);
 				

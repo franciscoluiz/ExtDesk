@@ -150,24 +150,24 @@ INSERT INTO `groups_modules` (`id`, `idGroups`, `idModules`) VALUES
  
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
-	`P_Id` INT(11) NOT NULL AUTO_INCREMENT,
-	`username` VARCHAR(200) NOT NULL,
-	`password` VARCHAR(200) NOT NULL,
-	`email` VARCHAR(254) NOT NULL,
-	`regdate` VARCHAR(200) NOT NULL,
-	`CpassReqDate` VARCHAR(200) NOT NULL,
-	`voucher` VARCHAR(200) NOT NULL,
-	`wallPaper` VARCHAR(45) NULL DEFAULT 'Desk',
-	`theme` VARCHAR(45) NULL DEFAULT 'blue',
-	`wpStretch` TINYINT(1) NULL DEFAULT NULL,
-	`extrainfo1` VARCHAR(45) NULL DEFAULT NULL,
-	`extrainfo2` VARCHAR(45) NULL DEFAULT NULL,
-	`extrainfo3` VARCHAR(45) NULL DEFAULT NULL,
-	`active` TINYINT(1) NULL DEFAULT NULL,
+  `P_Id` INT(11) NOT NULL AUTO_INCREMENT,
+  `username` VARCHAR(200) NOT NULL,
+  `password` VARCHAR(200) NOT NULL,
+  `email` VARCHAR(254) NOT NULL,
+  `regdate` VARCHAR(200) NOT NULL,
+  `CpassReqDate` VARCHAR(200) NOT NULL,
+  `voucher` VARCHAR(200) NOT NULL,
+  `wallPaper` VARCHAR(45) NULL DEFAULT 'Desk',
+  `theme` VARCHAR(45) NULL DEFAULT 'blue',
+  `wpStretch` TINYINT(1) NULL DEFAULT NULL,
+  `extrainfo1` VARCHAR(45) NULL DEFAULT NULL,
+  `extrainfo2` VARCHAR(45) NULL DEFAULT NULL,
+  `extrainfo3` VARCHAR(45) NULL DEFAULT NULL,
+  `active` TINYINT(1) NULL DEFAULT NULL,
   `shorcutColor` varchar(10) DEFAULT '#FFFFFF',
-	PRIMARY KEY (`P_Id`),
-	UNIQUE INDEX `id` (`P_Id`),
-	UNIQUE INDEX `username` (`username`)
+  PRIMARY KEY (`P_Id`),
+  UNIQUE INDEX `id` (`P_Id`),
+  UNIQUE INDEX `username` (`username`)
 ) ENGINE=InnoDB COLLATE='utf8_general_ci' AUTO_INCREMENT=2;
  
  
@@ -177,10 +177,10 @@ INSERT INTO `users` (`P_Id`, `username`, `password`, `email`, `regdate`, `CpassR
 'set_admin_pass',
 'set_admin_email',
 '1316496013','','','Blue','blue',1,'','','',1);
-
-
-
-
+ 
+ 
+ 
+ 
 DROP TABLE IF EXISTS `user_groups`;
 CREATE TABLE IF NOT EXISTS `user_groups` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -223,7 +223,7 @@ CREATE TABLE IF NOT EXISTS `log` (
   PRIMARY KEY (`id`) ,
   INDEX `user` (`user` ASC) 
 ) ENGINE=InnoDB COLLATE='utf8_general_ci';
- 
+  
 DROP TABLE IF EXISTS `exampledata`;
 CREATE TABLE IF NOT EXISTS `exampledata` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -232,8 +232,8 @@ CREATE TABLE IF NOT EXISTS `exampledata` (
   `col3` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB COLLATE='utf8_general_ci' AUTO_INCREMENT=1;
- 
-INSERT INTO `extdesk-test`.`exampledata` (`col1`, `col2`, `col3`) VALUES 
+  
+ INSERT INTO `exampledata` (`col1`, `col2`, `col3`) VALUES 
 ('1', 'ExampleData1', 'ExampleData 1'),
 ('2', 'ExampleData2', 'ExampleData 2'),
 ('3', 'ExampleData3', 'ExampleData 3'),
