@@ -121,7 +121,7 @@ Ext.define('Ext.ux.desktop.StartMenu', {
             me.showAt(xy);
             me.doConstrain();
             ico=Ext.getCmp('start-menu-id').title;
-            Ext.getCmp('start-menu-id').setIconCls(ico);
+            Ext.fly('start-menu-id_header-iconEl').setStyle('background-image','url(resources/images/avatars/'+ico+'_s.png)');
 
         }
         return me;
