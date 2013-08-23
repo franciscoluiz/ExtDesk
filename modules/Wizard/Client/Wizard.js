@@ -105,6 +105,8 @@ Ext.define('MyDesktop.Modules.Wizard.Client.Wizard', {
 							title: "Please Select a Template",
 							header:false,
 							border:false,
+							autoHeight:true,
+  							autoScroll:true,
 							layout:'fit',
 							items :
 								Ext.create('Ext.view.View', {		//19.- create dataview
